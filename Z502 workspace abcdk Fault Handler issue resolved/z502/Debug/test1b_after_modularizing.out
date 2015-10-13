@@ -1,0 +1,138 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 3 arguments: z502.exe test1b m
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a MultProcessor
+
+Z502SetProcessorNumber done successfully
+MAX_NUMBER_OF_PROCESSORS done successfully
+process_name: test1b
+process_to_run: 16519458 
+test1b priority validated
+validating process_names
+Number of processes already created: 0
+test1b priority validated
+validating process_names
+Number of processes already created: 0
+PID: 1, process_context: 7972968 initialized successfully with 3537032
+7972968	This is Release 4.20:  Test 1b
+SVC handler: create   
+Arg 0: Contents = (Decimal) 16655668,  (Hex)   FE2534
+Arg 1: Contents = (Decimal) 16519548,  (Hex)   FC117C
+Arg 2: Contents = (Decimal)       -3,  (Hex) FFFFFFFD
+Arg 3: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 4: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Came here
+Priority assigned is incorrect. Error Number: -16
+-16
+Exiting!!! As error has occurred
+7665592
+
+
+-16
+Exiting!!! As error has occurred
+test1b: -16
+Program correctly returned an error: -16
+SVC handler: create   
+Arg 0: Contents = (Decimal) 16655708,  (Hex)   FE255C
+Arg 1: Contents = (Decimal) 16519548,  (Hex)   FC117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal)  7665608,  (Hex)   74F7C8
+Arg 4: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Came here
+two_the_same priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 7977256 initialized successfully with 7665608
+7977256	7665592
+
+
+context returned: 7977256
+Program correctly returned success.
+SVC handler: create   
+Arg 0: Contents = (Decimal) 16655764,  (Hex)   FE2594
+Arg 1: Contents = (Decimal) 16519548,  (Hex)   FC117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 4: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Came here
+two_the_same priority validated
+validating process_names
+-19
+Exiting!!! As error has occurred
+7665592
+
+
+-19
+Exiting!!! As error has occurred
+Program correctly returned an error: -19
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)  7977256,  (Hex)   79B928
+Arg 1: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+entered terminate process correctly
+in Terminate switch case
+system argument 0: 7977256, 7977256
+entered pop
+process context to pop: 7977256
+process context: 7977256 popped out of PCB successfully
+Program correctly returned success.
+Creating process "Test1b_1"
+SVC handler: create   
+Arg 0: Contents = (Decimal)  7665556,  (Hex)   74F794
+Arg 1: Contents = (Decimal) 16519548,  (Hex)   FC117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 4: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Came here
+Test1b_1 priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 7977328 initialized successfully with 7665620
+7977328	7665592
+
+
+0
+Creating process "Test1b_2"
+SVC handler: create   
+Arg 0: Contents = (Decimal)  7665556,  (Hex)   74F794
+Arg 1: Contents = (Decimal) 16519548,  (Hex)   FC117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 4: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Came here
+Test1b_2 priority validated
+validating process_names
+Number of processes already created: 2
+validating count -20
+-20
+Exiting!!! As error has occurred
+7665592
+
+
+-20
+Exiting!!! As error has occurred
+-20
+Program correctly returned an error: -20
+2 processes were created in all.
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 16676103,  (Hex)   FE7507
+Arg 1: Contents = (Decimal)  7665608,  (Hex)   74F7C8
+Arg 2: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Program correctly returned success.
+The PID of this process is 7977328
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal)  7665556,  (Hex)   74F794
+Arg 1: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 2: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Program correctly returned success.
+The PID of target process is 7977328
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 16656020,  (Hex)   FE2694
+Arg 1: Contents = (Decimal)  7665620,  (Hex)   74F7D4
+Arg 2: Contents = (Decimal)  7665592,  (Hex)   74F7B8
+Program correctly returned an error: -21
+SVC handler: get_time 
+Arg 0: Contents = (Decimal)  7665580,  (Hex)   74F7AC
+Time of the day: 169
+Test1b, PID 7977328, Ends at Time 169
+ERROR:  Simulation did not end correctly

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+		<item value="377" key="DIALOG_HEIGHT"/>
+		<item value="390" key="DIALOG_X_ORIGIN"/>
+		<item value="129" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item value="D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 509 Design of Software Systems\Z502 workspace\z502" key="OUTSIDE_LOCATION"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.ui.wizards.new.project" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="338" key="DIALOG_X_ORIGIN"/>
+		<item value="201" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+</section>

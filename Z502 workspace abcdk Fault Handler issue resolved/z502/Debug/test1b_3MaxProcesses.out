@@ -1,0 +1,170 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 2 arguments: z502.exe test1b
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a UniProcessor
+Add an 'M' to the command line to invoke multiprocessor operation.
+
+process_name: test1b
+process_to_run: 12128566 
+test1b priority validated
+validating process_names
+Number of processes already created: 0
+PID: 1, process_context: 5805544 initialized successfully with 3341216
+5805544	initial ready position: 1	count_ready_queue: 1
+ready_position: 1	process_name: test1b
+starting context for: test1b
+This is Release 4.20:  Test 1b
+SVC handler: create   
+Arg 0: Contents = (Decimal) 12265056,  (Hex)   BB2660
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       -3,  (Hex) FFFFFFFD
+Arg 3: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+Priority assigned is incorrect. Error Number: -16
+-16
+Exiting!!! As error has occurred
+ErrorReturned in SVC: -16
+
+
+-16
+Exiting!!! As error has occurred
+test1b: -16
+Program correctly returned an error: -16
+SVC handler: create   
+Arg 0: Contents = (Decimal) 12265096,  (Hex)   BB2688
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 13369060,  (Hex)   CBFEE4
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+two_the_same priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 5934584 initialized successfully with 13369060
+5934584	initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: two_the_same
+initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: two_the_same
+ErrorReturned in SVC: 0
+
+
+context returned: 5934584
+Program correctly returned success.
+SVC handler: create   
+Arg 0: Contents = (Decimal) 12265152,  (Hex)   BB26C0
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+two_the_same priority validated
+validating process_names
+-19
+Exiting!!! As error has occurred
+ErrorReturned in SVC: -19
+
+
+-19
+Exiting!!! As error has occurred
+Program correctly returned an error: -19
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)  5934584,  (Hex)   5A8DF8
+Arg 1: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+entered terminate process correctly
+in Terminate switch case
+system argument 0: 5934584, 5934584
+entered pop
+process context to pop: 5934584
+process context: 5934584 popped out of PCB successfully
+Program correctly returned success.
+Creating process "Test1b_1"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 13369008,  (Hex)   CBFEB0
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+Test1b_1 priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 5934800 initialized successfully with 13369072
+5934800	initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: Test1b_1
+initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: Test1b_1
+ErrorReturned in SVC: 0
+
+
+ErrorReturned in test1b: 0
+Creating process "Test1b_2"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 13369008,  (Hex)   CBFEB0
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+Test1b_2 priority validated
+validating process_names
+Number of processes already created: 2
+PID: 3, process_context: 5935088 initialized successfully with 13369072
+5935088	initial ready position: 1	count_ready_queue: 3
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: Test1b_1
+ready_position: 3	process_name: Test1b_2
+initial ready position: 1	count_ready_queue: 3
+ready_position: 1	process_name: test1b
+ready_position: 2	process_name: Test1b_1
+ready_position: 3	process_name: Test1b_2
+ErrorReturned in SVC: 0
+
+
+ErrorReturned in test1b: 0
+Creating process "Test1b_3"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 13369008,  (Hex)   CBFEB0
+Arg 1: Contents = (Decimal) 12128656,  (Hex)   B91190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 4: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Came in SVC Create Process Block
+Test1b_3 priority validated
+validating process_names
+Number of processes already created: 3
+validating count -20
+-20
+Exiting!!! As error has occurred
+ErrorReturned in SVC: -20
+
+
+-20
+Exiting!!! As error has occurred
+ErrorReturned in test1b: -20
+Program correctly returned an error: -20
+3 processes were created in all.
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 12285913,  (Hex)   BB77D9
+Arg 1: Contents = (Decimal) 13369060,  (Hex)   CBFEE4
+Arg 2: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Program correctly returned success.
+The PID of this process is 5935088
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 13369008,  (Hex)   CBFEB0
+Arg 1: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 2: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Program correctly returned success.
+The PID of target process is 5934800
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 12265436,  (Hex)   BB27DC
+Arg 1: Contents = (Decimal) 13369072,  (Hex)   CBFEF0
+Arg 2: Contents = (Decimal) 13369044,  (Hex)   CBFED4
+Program correctly returned an error: -21
+Test1b, PID 5935088, Ends at Time -858993460
+ERROR:  Simulation did not end correctly

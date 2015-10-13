@@ -1,0 +1,442 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 2 arguments: z502.exe test1c
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a UniProcessor
+Add an 'M' to the command line to invoke multiprocessor operation.
+
+process_name: test1c
+process_to_run: 3412288 
+test1c priority validated
+validating process_names
+Number of processes already created: 0
+PID: 1, process_context: 15964072 initialized successfully with 13499648
+15964072	initial ready position: 1	count_ready_queue: 1
+ready_position: 1	process_name: test1c
+starting context for: test1c
+This is Release 4.20:  Test 1c
+in SVC before call type: do_print: 100
+SVC handler: create   
+Arg 0: Contents = (Decimal)  3555392,  (Hex)   364040
+Arg 1: Contents = (Decimal)  3412368,  (Hex)   341190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 22346388,  (Hex)  154FA94
+Arg 4: Contents = (Decimal) 22346316,  (Hex)  154FA4C
+in SVC above switch case
+Came in SVC Create Process Block
+test1c_a priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 16091992 initialized successfully with 22346388
+16091992	in sort ready queue, count_ready_queue: 2
+front: test1c	rear: test1c_a
+sorting ready queue completed
+initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+initial ready position: 1	count_ready_queue: 2
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ErrorReturned in SVC: 0
+
+
+Program correctly returned success.
+in SVC before call type: do_print: 99
+SVC handler: create   
+Arg 0: Contents = (Decimal)  3555420,  (Hex)   36405C
+Arg 1: Contents = (Decimal)  3412368,  (Hex)   341190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 22346376,  (Hex)  154FA88
+Arg 4: Contents = (Decimal) 22346316,  (Hex)  154FA4C
+in SVC above switch case
+Came in SVC Create Process Block
+test1c_b priority validated
+validating process_names
+Number of processes already created: 2
+PID: 3, process_context: 16091848 initialized successfully with 22346376
+16091848	in sort ready queue, count_ready_queue: 3
+front: test1c	rear: test1c_b
+sorting ready queue completed
+initial ready position: 1	count_ready_queue: 3
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+initial ready position: 1	count_ready_queue: 3
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ErrorReturned in SVC: 0
+
+
+in SVC before call type: do_print: 98
+SVC handler: create   
+Arg 0: Contents = (Decimal)  3555432,  (Hex)   364068
+Arg 1: Contents = (Decimal)  3412368,  (Hex)   341190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 22346364,  (Hex)  154FA7C
+Arg 4: Contents = (Decimal) 22346316,  (Hex)  154FA4C
+in SVC above switch case
+Came in SVC Create Process Block
+test1c_c priority validated
+validating process_names
+Number of processes already created: 3
+PID: 4, process_context: 16092712 initialized successfully with 22346364
+16092712	in sort ready queue, count_ready_queue: 4
+front: test1c	rear: test1c_c
+sorting ready queue completed
+initial ready position: 1	count_ready_queue: 4
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+initial ready position: 1	count_ready_queue: 4
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+ErrorReturned in SVC: 0
+
+
+in SVC before call type: do_print: 97
+SVC handler: create   
+Arg 0: Contents = (Decimal)  3555444,  (Hex)   364074
+Arg 1: Contents = (Decimal)  3412368,  (Hex)   341190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 22346352,  (Hex)  154FA70
+Arg 4: Contents = (Decimal) 22346316,  (Hex)  154FA4C
+in SVC above switch case
+Came in SVC Create Process Block
+test1c_d priority validated
+validating process_names
+Number of processes already created: 4
+PID: 5, process_context: 16092208 initialized successfully with 22346352
+16092208	in sort ready queue, count_ready_queue: 5
+front: test1c	rear: test1c_d
+sorting ready queue completed
+initial ready position: 1	count_ready_queue: 5
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+ready_position: 5	process_name: test1c_d
+initial ready position: 1	count_ready_queue: 5
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+ready_position: 5	process_name: test1c_d
+ErrorReturned in SVC: 0
+
+
+in SVC before call type: do_print: 96
+SVC handler: create   
+Arg 0: Contents = (Decimal)  3555456,  (Hex)   364080
+Arg 1: Contents = (Decimal)  3412368,  (Hex)   341190
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 22346340,  (Hex)  154FA64
+Arg 4: Contents = (Decimal) 22346316,  (Hex)  154FA4C
+in SVC above switch case
+Came in SVC Create Process Block
+test1c_e priority validated
+validating process_names
+Number of processes already created: 5
+PID: 6, process_context: 16092496 initialized successfully with 22346340
+16092496	in sort ready queue, count_ready_queue: 6
+front: test1c	rear: test1c_e
+sorting ready queue completed
+initial ready position: 1	count_ready_queue: 6
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+ready_position: 5	process_name: test1c_d
+ready_position: 6	process_name: test1c_e
+initial ready position: 1	count_ready_queue: 6
+ready_position: 1	process_name: test1c
+ready_position: 2	process_name: test1c_a
+ready_position: 3	process_name: test1c_b
+ready_position: 4	process_name: test1c_c
+ready_position: 5	process_name: test1c_d
+ready_position: 6	process_name: test1c_e
+ErrorReturned in SVC: 0
+
+
+in SVC before call type: do_print: 95
+SVC handler: sleep    
+Arg 0: Contents = (Decimal)     1000,  (Hex)      3E8
+in SVC above switch case
+in start timer
+****test1c will be dispatched to the timer queue from the dispatcher
+****process dispatched: test1c
+in SVC before call type: do_print: 94
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 22346072,  (Hex)  154F958
+in SVC above switch case
+Time of the day: 201
+inserting 1st element in timer queue
+count of timer queue: 1
+in print timer while
+timer_position: 1	process_name: test1c	update_sleep_time: 1000
+moved next timer element
+in pop, count_ready_queue: 6
+next ready queue process: test1c_a
+after poping front ready queue points to: test1c_a
+Count of ready queue after popping: 5
+sleeping for: 1000
+checking the status before starting the timer
+Fault_handler: Found vector type 4 with value 0
+Got erroneous result for Status of Timer
+Got expected result (DEVICE_IN_USE) for Status of Timer
+
+The next output from the Interrupt Handler should report that 
+   interrupt of device 4 has occurred with no error.
+calling dispatcher after start timer
+test1c_a will be dispatched to the timer queue from the dispatcher
+process returned by dispatcher: test1c_a
+starting context for: test1c_a
+in SVC before call type: do_print: 93
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal)  3574952,  (Hex)   368CA8
+Arg 1: Contents = (Decimal) 23656500,  (Hex)  168F834
+Arg 2: Contents = (Decimal) 23656460,  (Hex)  168F80C
+in SVC above switch case
+Release 4.20:Test 1x: Pid 16092496
+in SVC before call type: do_print: 92
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 23656488,  (Hex)  168F828
+in SVC above switch case
+Time of the day: 232
+in SVC before call type: do_print: 91
+SVC handler: sleep    
+Arg 0: Contents = (Decimal)       83,  (Hex)       53
+in SVC above switch case
+in start timer
+****test1c_a will be dispatched to the timer queue from the dispatcher
+****process dispatched: test1c_a
+in SVC before call type: do_print: 90
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 23656228,  (Hex)  168F724
+in SVC above switch case
+Time of the day: 256
+before adding and sorting the timer queue
+**Printing timer_queue before sorting
+test1c_a
+count of timer queue: 2
+in print timer while
+timer_position: 1	process_name: test1c	update_sleep_time: 1000
+moved next timer element
+in print timer while
+timer_position: 2	process_name: test1c_a	update_sleep_time: 83
+moved next timer element
+in sort timer queue, count_timer_queue: 2
+current sleep time greater than next sleep time
+front: test1c_a	rear: test1c
+sorting timer queue completed
+count of timer queue: 2
+in print timer while
+timer_position: 1	process_name: test1c_a	update_sleep_time: 83
+moved next timer element
+in print timer while
+timer_position: 2	process_name: test1c	update_sleep_time: 1000
+moved next timer element
+in pop, count_ready_queue: 5
+next ready queue process: test1c_b
+after poping front ready queue points to: test1c_b
+Count of ready queue after popping: 4
+sleeping for: 83
+checking the status before starting the timer
+Fault_handler: Found vector type 4 with value 0
+Got erroneous result for Status of Timer
+Got expected result (DEVICE_IN_USE) for Status of Timer
+
+The next output from the Interrupt Handler should report that 
+   interrupt of device 4 has occurred with no error.
+calling dispatcher after start timer
+test1c_b will be dispatched to the timer queue from the dispatcher
+process returned by dispatcher: test1c_b
+starting context for: test1c_b
+in SVC before call type: do_print: 89
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal)  3574952,  (Hex)   368CA8
+Arg 1: Contents = (Decimal) 24968456,  (Hex)  17CFD08
+Arg 2: Contents = (Decimal) 24968416,  (Hex)  17CFCE0
+in SVC above switch case
+Release 4.20:Test 1x: Pid 16092496
+in SVC before call type: do_print: 88
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 24968444,  (Hex)  17CFCFC
+in SVC above switch case
+Time of the day: 287
+in SVC before call type: do_print: 87
+SVC handler: sleep    
+Arg 0: Contents = (Decimal)       17,  (Hex)       11
+in SVC above switch case
+in start timer
+****test1c_b will be dispatched to the timer queue from the dispatcher
+****process dispatched: test1c_b
+in SVC before call type: do_print: 86
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 24968184,  (Hex)  17CFBF8
+in SVC above switch case
+Time of the day: 311
+before adding and sorting the timer queue
+**Printing timer_queue before sorting
+test1c_b
+count of timer queue: 3
+in print timer while
+timer_position: 1	process_name: test1c_a	update_sleep_time: 83
+moved next timer element
+in print timer while
+timer_position: 2	process_name: test1c	update_sleep_time: 1000
+moved next timer element
+in print timer while
+timer_position: 3	process_name: test1c_b	update_sleep_time: 17
+moved next timer element
+in sort timer queue, count_timer_queue: 3
+current sleep time greater than next sleep time
+current sleep time greater than next sleep time
+front: test1c_b	rear: test1c
+sorting timer queue completed
+count of timer queue: 3
+in print timer while
+timer_position: 1	process_name: test1c_b	update_sleep_time: 17
+moved next timer element
+in print timer while
+timer_position: 2	process_name: test1c_a	update_sleep_time: 83
+moved next timer element
+in print timer while
+timer_position: 3	process_name: test1c	update_sleep_time: 1000
+moved next timer element
+in pop, count_ready_queue: 4
+next ready queue process: test1c_c
+after poping front ready queue points to: test1c_c
+Count of ready queue after popping: 3
+sleeping for: 17
+checking the status before starting the timer
+Fault_handler: Found vector type 4 with value 0
+Got erroneous result for Status of Timer
+Got expected result (DEVICE_IN_USE) for Status of Timer
+
+The next output from the Interrupt Handler should report that 
+   interrupt of device 4 has occurred with no error.
+calling dispatcher after start timer
+test1c_c will be dispatched to the timer queue from the dispatcher
+process returned by dispatcher: test1c_c
+starting context for: test1c_c
+in SVC before call type: do_print: 85
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal)  3574952,  (Hex)   368CA8
+Arg 1: Contents = (Decimal) 26279728,  (Hex)  190FF30
+Arg 2: Contents = (Decimal) 26279688,  (Hex)  190FF08
+in SVC above switch case
+Release 4.20:Test 1x: Pid 16092496
+in SVC before call type: do_print: 84
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 26279716,  (Hex)  190FF24
+in SVC above switch case
+Time of the day: 342
+in SVC before call type: do_print: 83
+SVC handler: sleep    
+Interrupt_handler: Found device ID 4 with status 0
+Arg 0: Contents = (Decimal)       94,  (Hex)       5E
+in SVC before call type: do_print: 83
+in SVC above switch case
+SVC handler: get_time 
+in start timer
+Arg 0: Contents = (Decimal) 20905388,  (Hex)  13EFDAC
+****in SVC above switch case
+test1c_c will be dispatched to the timer queue from the dispatcher
+Time of the day: 368
+****process dispatched: test1c_c
+      Action Succeeded
+in SVC before call type: do_print: 81
+count timer queue in update timer: 3
+SVC handler: get_time 
+T=3
+Arg 0: Contents = (Decimal) 26279456,  (Hex)  190FE20
+before updating test1c_b the update_sleep_time is: 17
+in SVC above switch case
+timeElapsed: 57
+updating sleep time for test1c_b
+Time of the day: 382
+T=2
+before adding and sorting the timer queue
+before updating test1c_a the update_sleep_time is: 83
+**Printing timer_queue before sorting
+timeElapsed: 112
+test1c_c
+updating sleep time for test1c_a
+count of timer queue: 4
+T=1
+in print timer while
+before updating test1c the update_sleep_time is: 1000
+timer_position: 1	process_name: test1c_b	update_sleep_time: -40
+timeElapsed: 167
+moved next timer element
+updating sleep time for test1c
+in print timer while
+printing timer queue after updating sleep times
+timer_position: 2	process_name: test1c_a	update_sleep_time: -29
+count of timer queue: 4
+moved next timer element
+in print timer while
+in print timer while
+timer_position: 1	process_name: test1c_b	update_sleep_time: -40
+timer_position: 3	process_name: test1c	update_sleep_time: 833
+moved next timer element
+moved next timer element
+in print timer while
+in print timer while
+timer_position: 2	process_name: test1c_a	update_sleep_time: -29
+timer_position: 4	process_name: test1c_c	update_sleep_time: 94
+moved next timer element
+moved next timer element
+in print timer while
+in sort timer queue, count_timer_queue: 4
+timer_position: 3	process_name: test1c	update_sleep_time: 833
+current sleep time greater than next sleep time
+moved next timer element
+front: test1c_b	rear: test1c
+in print timer while
+sorting timer queue completed
+timer_position: 4	process_name: test1c_c	update_sleep_time: 94
+count of timer queue: 4
+moved next timer element
+in print timer while
+test1c_b is being popped out of the timer queue as it's timer has expired
+timer_position: 1	process_name: test1c_b	update_sleep_time: -40
+moved next timer element
+in print timer while
+timer_position: 2	process_name: test1c_c	update_sleep_time: 94
+moved next timer element
+in print timer while
+timer_position: 3	process_name: test1c	update_sleep_time: 833
+moved next timer element
+in pop, count_ready_queue: 3
+next ready queue process: test1c_d
+after poping front ready queue points to: test1c_d
+Count of ready queue after popping: 2
+sleeping for: 94
+checking the status before starting the timer
+Fault_handler: Found vector type 4 with value 0
+Got erroneous result for Status of Timer
+Got expected result (DEVICE_IN_USE) for Status of Timer
+
+The next output from the Interrupt Handler should report that 
+   interrupt of device 4 has occurred with no error.
+calling dispatcher after start timer
+test1c_d will be dispatched to the timer queue from the dispatcher
+process returned by dispatcher: test1c_d
+starting context for: test1c_d
+in SVC before call type: do_print: 80
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal)  3574952,  (Hex)   368CA8
+Arg 1: Contents = (Decimal) 27589424,  (Hex)  1A4FB30
+Arg 2: Contents = (Decimal) 27589384,  (Hex)  1A4FB08
+in SVC above switch case
+Release 4.20:Test 1x: Pid 16092496
+in SVC before call type: do_print: 79
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 27589412,  (Hex)  1A4FB24
+in SVC above switch case
+Time of the

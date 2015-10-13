@@ -1,0 +1,21 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 2 arguments: z502.exe test0
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a MultProcessor
+
+Z502SetProcessorNumber done successfully
+MAX_NUMBER_OF_PROCESSORS done successfully
+Inside Test0
+This is Release 4.20:  Test 0
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 10418232,  (Hex)   9EF838
+Time of day is 777
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)       -1,  (Hex) FFFFFFFF
+Arg 1: Contents = (Decimal) 10418220,  (Hex)   9EF82C
+
+Hardware Statistics during the Simulation
+Context Switches =     1:  Mean Number Running Threads =   1.00   CALLS =    11
+  The Z502 halts execution and Ends at Time 47
+Exiting the program

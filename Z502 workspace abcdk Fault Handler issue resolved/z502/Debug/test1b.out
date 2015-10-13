@@ -1,0 +1,138 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 2 arguments: z502.exe test1b
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a UniProcessor
+Add an 'M' to the command line to invoke multiprocessor operation.
+
+process_name: test1b
+process_to_run: 19075362 
+test1b priority validated
+validating process_names
+Number of processes already created: 0
+PID: 1, process_context: 4434360 initialized successfully with 3407220
+4434360	SVC handler: term_proc
+Arg 0: Contents = (Decimal) 10025532,  (Hex)   98FA3C
+Arg 1: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+entered terminate process correctly
+in Terminate switch case
+system argument 0: 10025532, 10025532
+entered popprocess context to pop: 10025532
+This is Release 4.20:  Test 1b
+SVC handler: create   
+Arg 0: Contents = (Decimal) 19211500,  (Hex)  12524EC
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       -3,  (Hex) FFFFFFFD
+Arg 3: Contents = (Decimal) 10025608,  (Hex)   98FA88
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+Priority assigned is incorrect. Error Number: -16
+-16
+Exiting!!! As error has occurred
+test1b: -16
+Program correctly returned an error: -16
+SVC handler: create   
+Arg 0: Contents = (Decimal) 19211540,  (Hex)  1252514
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 10025596,  (Hex)   98FA7C
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+two_the_same priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 4434432 initialized successfully with 10025596
+4434432	10025580
+
+
+context returned: 4434432
+Program correctly returned success.
+SVC handler: create   
+Arg 0: Contents = (Decimal) 19211596,  (Hex)  125254C
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 10025608,  (Hex)   98FA88
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+two_the_same priority validated
+validating process_names
+-19
+Exiting!!! As error has occurred
+Program correctly returned an error: -19
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)  4434432,  (Hex)   43AA00
+Arg 1: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+entered terminate process correctly
+in Terminate switch case
+system argument 0: 4434432, 4434432
+entered popprocess context to pop: 4434432
+process context: 4434432 popped out of PCB successfully
+Program correctly returned success.
+Creating process "Test1b_1"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 10025544,  (Hex)   98FA48
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 10025608,  (Hex)   98FA88
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+Test1b_1 priority validated
+validating process_names
+Number of processes already created: 1
+PID: 2, process_context: 4434504 initialized successfully with 10025608
+4434504	10025580
+
+
+0
+Creating process "Test1b_2"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 10025544,  (Hex)   98FA48
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 10025608,  (Hex)   98FA88
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+Test1b_2 priority validated
+validating process_names
+Number of processes already created: 2
+PID: 3, process_context: 4434576 initialized successfully with 10025608
+4434576	10025580
+
+
+0
+Creating process "Test1b_3"
+SVC handler: create   
+Arg 0: Contents = (Decimal) 10025544,  (Hex)   98FA48
+Arg 1: Contents = (Decimal) 19075452,  (Hex)  123117C
+Arg 2: Contents = (Decimal)       10,  (Hex)        A
+Arg 3: Contents = (Decimal) 10025608,  (Hex)   98FA88
+Arg 4: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Came here
+Test1b_3 priority validated
+validating process_names
+Number of processes already created: 3
+validating count -20
+-20
+Exiting!!! As error has occurred
+-20
+Program correctly returned an error: -20
+3 processes were created in all.
+SVC handler: get_pid  
+Arg 0: Contents = (Decimal) 19231908,  (Hex)  12574A4
+Arg 1: Contents = (Decimal) 10025596,  (Hex)   98FA7C
+Arg 2: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+Program correctly returned success.
+The PID of this process is 4434576
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)       -2,  (Hex) FFFFFFFE
+Arg 1: Contents = (Decimal) 10025580,  (Hex)   98FA6C
+entered terminate process correctly
+in Terminate switch case
+system argument 0: -2, -2
+entered popprocess context to pop: -2
+Program correctly returned success.
+The PID of target process is 4434576
+An Error SHOULD have occurred.
+????: Error( 0 ) occurred in case -2 (GET_PROCESS_ID)
+Test1b, PID 4434576, Ends at Time -858993460
+ERROR:  Simulation did not end correctly

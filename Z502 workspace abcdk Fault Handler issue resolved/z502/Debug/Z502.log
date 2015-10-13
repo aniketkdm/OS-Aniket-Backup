@@ -1,0 +1,47 @@
+﻿Build started 10/13/2015 2:47:53 AM.
+     1>Project "N:\WPI\CS 502 OS\Z502 workspace\z502\Z502.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt base.c
+         base.c
+     1>base.c(120): warning C4013: 'updateTimerQueue' undefined; assuming extern returning int
+     1>base.c(121): warning C4013: 'sort_timer_queue' undefined; assuming extern returning int
+     1>base.c(62): warning C4101: 'LockResult': unreferenced local variable
+     1>base.c(215): warning C4013: 'CustomStartTimer' undefined; assuming extern returning int
+     1>base.c(222): warning C4013: 'only_create_process' undefined; assuming extern returning int
+     1>base.c(257): warning C4013: 'pop_process' undefined; assuming extern returning int
+     1>base.c(270): warning C4013: 'get_process_id' undefined; assuming extern returning int
+     1>base.c(244): warning C4477: 'printf' : format string '%ld' requires an argument of type 'long', but variadic argument 1 has type 'long *'
+     1>base.c(244): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(346): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(362): warning C4013: 'os_create_process' undefined; assuming extern returning int
+     1>base.c(369): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(390): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(411): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(432): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(453): warning C4047: '=': 'long *' differs in levels of indirection from 'int'
+     1>base.c(349): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(349): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(372): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(372): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(393): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(393): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(414): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(414): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(435): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(435): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+     1>base.c(456): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'long *'
+     1>base.c(456): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long *'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"N:\WPI\CS 502 OS\Z502 workspace\z502\Debug\Z502.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"N:\WPI\CS 502 OS\Z502 workspace\z502\Debug\Z502.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"N:\WPI\CS 502 OS\Z502 workspace\z502\Debug\Z502.lib" /MACHINE:X86 Debug\base.obj
+         Debug\functions.obj
+         Debug\sample.obj
+         Debug\StatePrinter.obj
+         Debug\structuresStacksQueues.obj
+         Debug\Test.obj
+         Debug\Z502.obj
+         Z502.vcxproj -> N:\WPI\CS 502 OS\Z502 workspace\z502\Debug\Z502.exe
+     1>Done Building Project "N:\WPI\CS 502 OS\Z502 workspace\z502\Z502.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.51

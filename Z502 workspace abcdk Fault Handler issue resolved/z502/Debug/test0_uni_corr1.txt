@@ -1,0 +1,20 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 1 arguments: z502.exe
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a UniProcessor
+Add an 'M' to the command line to invoke multiprocessor operation.
+
+Inside Test0
+This is Release 4.20:  Test 0
+SVC handler: get_time 
+Arg 0: Contents = (Decimal) 12516620,  (Hex)   BEFD0C
+Time of day is 36
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)       -1,  (Hex) FFFFFFFF
+Arg 1: Contents = (Decimal) 12516608,  (Hex)   BEFD00
+
+Hardware Statistics during the Simulation
+Context Switches =     1:  Mean Number Running Threads =   1.00   CALLS =    10
+  The Z502 halts execution and Ends at Time 47
+Exiting the program

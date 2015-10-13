@@ -1,0 +1,1213 @@
+!SESSION 2015-09-09 17:50:14.239 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-09-09 18:01:23.844
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Onyx'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-09-09 18:02:33.971
+!MESSAGE Indexed 'z502' (0 sources, 0 headers) in 0.023 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+!SESSION 2015-09-09 18:23:02.113 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -data D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 509 Design of Software Systems\Z502 workspace -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-09-09 18:23:16.753
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Onyx'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-09-09 18:29:04.369
+!MESSAGE Indexed 'z502' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.launch 4 104 2015-09-09 18:38:28.739
+!MESSAGE Program file does not exist
+
+!ENTRY org.eclipse.cdt.launch 4 104 2015-09-09 18:41:06.176
+!MESSAGE Program file does not exist
+!SESSION 2015-09-10 01:01:20.882 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-09-10 01:02:35.740
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Onyx'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2015-09-10 02:24:28.557 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-09-10 02:28:55.203
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Onyx'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-09-10 02:48:15.127
+!MESSAGE Indexed 'checking' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:49:37.738
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:50:05.118
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:51:01.396
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:51:55.222
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:52:14.321
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 02:55:26.955
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:405)
+	at org.eclipse.ui.actions.BuildAction$1.runInWorkspace(BuildAction.java:287)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-09-10 02:58:00.177
+!MESSAGE Indexed 'z502' (5 sources, 243 headers) in 13.9 sec: 74,567 declarations; 142,851 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-09-10 03:18:51.020
+!MESSAGE Indexed 'checking' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 03:21:29.103
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 12:15:12.970
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 2 2015-09-10 12:15:40.287
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Internal error building project z502 configuration Debug
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1306)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	... 17 more
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:15:43.436
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:15:43.483
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:43.483
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:43.483
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:15:43.577
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:43.577
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:43.577
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:15:43.577
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:15:43.795
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:43.795
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:43.795
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:15:45.690
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:45.690
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:45.690
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+
+!ENTRY org.eclipse.core.resources 4 75 2015-09-10 12:15:48.311
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 75 2015-09-10 12:15:48.311
+!MESSAGE Errors running builder 'CDT Builder' on project 'z502'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Internal error building project z502 configuration Debug
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1306)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	... 17 more
+!SUBENTRY 2 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:15:48.311
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 3 org.eclipse.core.resources 4 566 2015-09-10 12:15:48.327
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.327
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.327
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 5 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.327
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:48.327
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 7 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:48.327
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:15:48.327
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:15:48.358
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.358
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.358
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:15:48.405
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:48.436
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:15:48.436
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+
+!ENTRY org.eclipse.cdt.core 4 0 2015-09-10 12:16:32.399
+!MESSAGE Error: Cannot run program "rm": Launching failed
+!STACK 0
+java.io.IOException: Cannot run program "rm": Launching failed
+	at org.eclipse.cdt.utils.spawner.Spawner.exec(Spawner.java:349)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:91)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:91)
+	at org.eclipse.cdt.core.CommandLauncher.execute(CommandLauncher.java:194)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.CommandBuilder.build(CommandBuilder.java:105)
+	at org.eclipse.cdt.managedbuilder.internal.buildmodel.StepBuilder.build(StepBuilder.java:94)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanWithInternalBuilder(CommonBuilder.java:1209)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1098)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 2 2015-09-10 12:16:34.880
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Internal error building project z502 configuration Debug
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1306)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	... 17 more
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:16:34.880
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:16:34.958
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:34.958
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:34.958
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.020
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.020
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.020
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:16:35.020
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:16:35.036
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.036
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.036
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.036
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.036
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.036
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+
+!ENTRY org.eclipse.core.resources 4 75 2015-09-10 12:16:35.446
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 75 2015-09-10 12:16:35.446
+!MESSAGE Errors running builder 'CDT Builder' on project 'z502'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Internal error building project z502 configuration Debug
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1306)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	... 17 more
+!SUBENTRY 2 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:16:35.478
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 3 org.eclipse.core.resources 4 566 2015-09-10 12:16:35.478
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.478
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.478
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 5 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.587
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.587
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 7 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.587
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2015-09-10 12:16:35.587
+!MESSAGE Internal error building project z502 configuration Debug
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1382)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Could not delete '/z502/Debug'.
+Contains: Could not delete '/z502/Debug'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 2 org.eclipse.core.resources 4 566 2015-09-10 12:16:35.587
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.587
+!MESSAGE Could not delete '/z502/Debug'.
+!SUBENTRY 3 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.587
+!MESSAGE Could not delete '/z502/Debug'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:354)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:358)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteFolder(ResourceTree.java:810)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1831)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:781)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1370)
+	at org.eclipse.core.internal.resources.Workspace.delete(Workspace.java:1343)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.cleanProgrammatically(CommonBuilder.java:1299)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1100)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.clean(CommonBuilder.java:1046)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:736)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:486)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:398)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog.doClean(CleanDialog.java:318)
+	at org.eclipse.ui.internal.ide.dialogs.CleanDialog$1.runInWorkspace(CleanDialog.java:153)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.
+!SUBENTRY 4 org.eclipse.core.resources 4 273 2015-09-10 12:16:35.602
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.602
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 6 org.eclipse.core.filesystem 4 273 2015-09-10 12:16:35.602
+!MESSAGE Could not delete: D:\MS attempt\WPI\Fall 15 Sem 1 Course n Material\CS 502 OS\Z502 workspace\z502\Debug.

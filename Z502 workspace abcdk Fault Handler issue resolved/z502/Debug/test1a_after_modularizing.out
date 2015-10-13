@@ -1,0 +1,46 @@
+This is Simulation Version 4.20 and Hardware Version 4.20.
+
+Program called with 2 arguments: z502.exe test1a
+Calling with argument 'sample' executes the sample program.
+Simulation is running as a UniProcessor
+Add an 'M' to the command line to invoke multiprocessor operation.
+
+process_name: test1a
+ process_to_run: 19403032 
+test1a priority validated
+validating process_names
+Number of processes already created: 0
+PID: 1, process_context: 7711168 initialized successfully with 3274644
+7711168	This is Release 4.20:  Test 1a
+SVC handler: get_time 
+Arg 0: Contents = (Decimal)  7469464,  (Hex)   71F998
+Time of the day: 36
+SVC handler: sleep    
+Arg 0: Contents = (Decimal)     3000,  (Hex)      BB8
+in start timer
+Got expected result (DEVICE_IN_USE) for Status of Timer
+
+The next output from the Interrupt Handler should report that 
+   interrupt of device 4 has occurred with no error.
+halt started
+halt ended
+Interrupt_handler: Found device ID 4 with status 0
+7711168 is being popped out of the timer queue
+process popped out of timer queue successfully
+interrupt handler completed
+SVC handler: get_time 
+Arg 0: Contents = (Decimal)  7469452,  (Hex)   71F98C
+Time of the day: 3063
+Sleep Time = 3000, elapsed time= 3027
+SVC handler: term_proc
+Arg 0: Contents = (Decimal)       -1,  (Hex) FFFFFFFF
+Arg 1: Contents = (Decimal)  7469480,  (Hex)   71F9A8
+entered terminate process correctly
+in Terminate switch case
+system argument 0: -1, -1
+entered Terminate all mode
+
+Hardware Statistics during the Simulation
+Context Switches =     1:  Mean Number Running Threads =   1.00   CALLS =    22
+  The Z502 halts execution and Ends at Time 3074
+Exiting the program
