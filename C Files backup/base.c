@@ -136,6 +136,11 @@ void InterruptHandler(void) {
 /************************************************************************
  FAULT_HANDLER
  The beginning of the OS502.  Used to receive hardware faults.
+
+ Handling Privilege instructuions:
+ DeviceID for Privileged_Instruction is changed to '9' in global.h
+ So that Timer_interrupt(4) can be distinguished from Privilege_Instruction
+ If Privilege Instruction is received, Terminate All routine is called
  ************************************************************************/
 
 void FaultHandler(void) {
@@ -180,7 +185,7 @@ void FaultHandler(void) {
 
 void svc(SYSTEM_CALL_DATA *SystemCallData) {
 	short call_type;
-	static short do_print = 100;
+	static short do_print = 10;
 	short i;
 	//INT32 Status;
 	MEMORY_MAPPED_IO mmio;
@@ -198,7 +203,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 		}
 		do_print--;
 
-		printf("in SVC above switch case\n");
+		printf("in SVC above switch case\n"); // should be changed to Message
 
 		switch (call_type) {
 			// Get time service call
@@ -277,7 +282,86 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 		}                                           // End of switch
 		
 	}
-}                                               // End of svc
+	else
+	{
+		switch (call_type) {
+			// Get time service call
+		case SYSNUM_GET_TIME_OF_DAY:   // This value is found in syscalls.h
+			mmio.Mode = Z502ReturnValue;
+			mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
+			MEM_READ(Z502Clock, &mmio);
+			*SystemCallData->Argument[0] = mmio.Field1;
+			printf("Time of the day: %d\n", *SystemCallData->Argument[0]);
+			break;
+
+			// SLEEP system call
+		case SYSNUM_SLEEP:
+			CustomStartTimer(0, SystemCallData->Argument[0]);
+			break;
+
+		case SYSNUM_CREATE_PROCESS:
+			printf("Came in SVC Create Process Block\n");
+			/*Validate_Process_Data(SystemCallData);*/
+
+			only_create_process(SystemCallData);
+			printf("ErrorReturned in SVC: %d\n\n\n", *SystemCallData->Argument[4]);
+
+			if (*SystemCallData->Argument[4] != ERR_SUCCESS)
+			{
+				printf("%d\n", *SystemCallData->Argument[4]);
+				printf("Exiting!!! As error has occurred\n");
+				return;
+			}
+
+			*SystemCallData->Argument[4] = (long)ERR_SUCCESS;
+			break;
+
+			// terminate system call
+			// based on the value passed
+			// either terminate all (for negative values)
+			// or terminate process will be called (positive values)
+		case SYSNUM_TERMINATE_PROCESS:
+
+			printf("entered terminate process correctly\n");
+			//getch();
+			printf("in Terminate switch case\n");
+			printf("system argument 0: %ld, %d\n", SystemCallData->Argument[0], SystemCallData->Argument[0]);
+
+			if ((int)SystemCallData->Argument[0] < 0) {
+				printf("entered Terminate all mode\n");
+				*SystemCallData->Argument[1] = ERR_SUCCESS;
+				mmio.Mode = Z502Action;
+				mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
+				MEM_WRITE(Z502Halt, 0);
+				break;
+			}
+			else
+			{
+				printf("entered pop\n");
+				pop_process(SystemCallData);
+				break;
+			}
+
+
+			break;
+
+			/*case SYSNUM_TERMINATE_PROCESS_ONLY:
+			printf("here1");
+			pop_process(SystemCallData);
+			break;*/
+
+		case SYSNUM_GET_PROCESS_ID:
+			get_process_id(SystemCallData);
+			break;
+
+		default:
+			printf("ERROR!  call_type not recognized!\n");
+			printf("Call_type is - %i\n", call_type);
+			break;
+		}                                           // End of switch
+	}
+}
+                                               // End of svc
 
 /************************************************************************
  osInit
