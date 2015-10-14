@@ -30,7 +30,7 @@
 #include             <stdlib.h>
 
 //include the structures, global variables and functions
-//#include			"structuresStacksQueues.c"
+#include			"structuresStacksQueues.c"
 //#include			"globalVariables.c"
 //#include			"functions.c"
 
@@ -147,6 +147,8 @@ void FaultHandler(void) {
 	INT32 DeviceID;
 	INT32 Status; 
 	long ErrorReturned;
+	SP_INPUT_DATA SPData;    // Used to feed SchedulerPrinter
+	PCB_stack *tmp;
 
 	MEMORY_MAPPED_IO mmio;       // Enables communication with hardware
 
@@ -155,6 +157,7 @@ void FaultHandler(void) {
 	MEM_READ(Z502InterruptDevice, &mmio);
 	DeviceID = mmio.Field1;
 	Status = mmio.Field2;
+	int i;
 
 	printf("Fault_handler: Found vector type %d with value %d\n", DeviceID,
 			Status);
@@ -166,7 +169,35 @@ void FaultHandler(void) {
 
 	if (DeviceID == PRIVILEGED_INSTRUCTION)
 	{
-		printf("Privilege Instruction called in User Mode..Exiting\n");
+		Message("Privilege Instruction called in User Mode..Exiting\n"); // Message
+
+		memset(&SPData, 0, sizeof(SP_INPUT_DATA));
+		strcpy(SPData.TargetAction, "Fault");
+
+		tmp = GetCurrentRunningProcess();
+
+		SPData.CurrentlyRunningPID = tmp->PID;
+		SPData.TargetPID = 0;
+		// The NumberOfRunningProcesses as used here is for a future implementation
+		// when we are running multiple processors.  For right now, set this to 0
+		// so it won't be printed out.
+		SPData.NumberOfRunningProcesses = 0;
+
+		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+		for (i = 0; i <= SPData.NumberOfReadyProcesses; i++) {
+			SPData.ReadyProcessPIDs[i] = i;
+		}
+	
+		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
+		for (i = 0; i <= SPData.NumberOfTimerSuspendedProcesses; i++) {
+			SPData.TimerSuspendedProcessPIDs[i] = i + 8;
+		}
+		
+		SPData.NumberOfTerminatedProcesses = 0;   // Not used at this time
+
+		CALL(SPPrintLine(&SPData));
+
+
 		TERMINATE_PROCESS(-2, &ErrorReturned);
 	}
 
@@ -191,7 +222,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 	MEMORY_MAPPED_IO mmio;
 	//Create_Process_Struct *create_process_data = (Create_Process_Struct *)calloc(1, sizeof(Create_Process_Struct));
 	//nnn *n1 = (nnn *)calloc(1, sizeof(nnn));
-	printf("in SVC before call type: do_print: %d\n", do_print);
+	printf("in SVC before call type: do_print: %d\n", do_print); // Message
 	call_type = (short) SystemCallData->SystemCallNumber;
 	if (do_print > 0) {
 		printf("SVC handler: %s\n", call_names[call_type]);
@@ -203,7 +234,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 		}
 		do_print--;
 
-		printf("in SVC above switch case\n"); // should be changed to Message
+		Message("in SVC above switch case\n"); // should be changed to Message
 
 		switch (call_type) {
 			// Get time service call
@@ -212,7 +243,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 			mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
 			MEM_READ(Z502Clock, &mmio);
 			*SystemCallData->Argument[0] = mmio.Field1;
-			printf("Time of the day: %d\n", *SystemCallData->Argument[0]);
+			printf("Time of the day: %d\n", *SystemCallData->Argument[0]); //Message
 			break;
 
 			// SLEEP system call
@@ -221,16 +252,16 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 			break;
 
 		case SYSNUM_CREATE_PROCESS:
-			printf("Came in SVC Create Process Block\n");
+			Message("Came in SVC Create Process Block\n"); //Message
 			/*Validate_Process_Data(SystemCallData);*/
 
 			only_create_process(SystemCallData);
-			printf("ErrorReturned in SVC: %d\n\n\n", *SystemCallData->Argument[4]);
+			printf("ErrorReturned in SVC: %d\n\n\n", *SystemCallData->Argument[4]); //Message
 			
 			if (*SystemCallData->Argument[4] != ERR_SUCCESS)
 			{
 				printf("%d\n", *SystemCallData->Argument[4]);
-				printf("Exiting!!! As error has occurred\n");
+				Message("Exiting!!! As error has occurred\n");
 				return;
 			}
 

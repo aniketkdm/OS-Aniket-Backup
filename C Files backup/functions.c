@@ -14,8 +14,8 @@ int output = 0;
 
 
 /**********************************************************************************
-MESSAGE
-To display only the intended output, Message function is used. 
+printf
+To display only the intended output, printf function is used. 
 Instead of deleting the printf statements a flagging mechanism is used,
 so that printing and supressing the printfs can be easily switched
 ***********************************************************************************/
@@ -49,6 +49,29 @@ int count_timer_queue = 0;
 ready_queue *front_ready_queue = NULL;
 ready_queue *rear_ready_queue = NULL;
 int count_ready_queue = 0;
+
+// returnReadyQueueCount is used to return the count of ready queue
+
+int returnReadyQueueCount()
+{
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+	return count_ready_queue;
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+}
+
+int returnTimerQueueCount()
+{
+	return count_timer_queue;
+}
 
 
 /******************************************************************************
