@@ -88,6 +88,7 @@ typedef         int                             BOOL;
 #define ON_READY_QUEUE						1
 #define PROCESSING							2
 #define	PROCESSED							3
+#define SUSPENDED							4
 
 #define         FALSE                           (BOOL)0
 #define         TRUE                            (BOOL)1
@@ -218,6 +219,10 @@ typedef struct  {
 #define			ERR_MAX_PROCESSES_REACHED				-20L
 #define			ERR_PROCESS_NOT_FOUND					-21L
 #define			ERR_PROCESSED							22L
+#define			ERR_ALREADY_SUSPENDED					-23L
+#define			ERR_ALREADY_RESUMED					    -24L
+#define			ERR_RESUMING_OURSELVES					-25L
+#define			ERR_SUSPENDING_OURSELVES				-26L
 
 #define                  DO_LOCK                     1
 #define                  DO_UNLOCK                   0

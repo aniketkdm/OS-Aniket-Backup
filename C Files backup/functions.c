@@ -70,7 +70,18 @@ int returnReadyQueueCount()
 
 int returnTimerQueueCount()
 {
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
 	return count_timer_queue;
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
 }
 
 
@@ -83,12 +94,12 @@ starting from the front process in the ready queue till the rear process in the 
 
 void print_ready_queue()
 {
-	/*INT32 LockResult;
+	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 
 	ready_queue *tmp = front_ready_queue;
@@ -104,9 +115,9 @@ void print_ready_queue()
 		
 		ready_position++;
 	}
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 }
 
 /**************************************************************************************
@@ -123,7 +134,7 @@ void sort_ready_queue()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -176,7 +187,7 @@ void sort_ready_queue()
 		printf("front: %s\trear: %s\n", front_ready_queue->current_ready_process_addr->process_name, rear_ready_queue->current_ready_process_addr->process_name);
 		printf("sorting ready queue completed\n");
 
-		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -185,7 +196,7 @@ void sort_ready_queue()
 	else
 	{
 		printf("in sort ready queue: count of ready queue is %d; No sorting required. returning\n", count_ready_queue);
-		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		printf("%s\n", &(Success[SPART * LockResult]));
 	}
@@ -193,6 +204,54 @@ void sort_ready_queue()
 
 	return;
 }
+
+PCB_stack* getProcessFromContext(long context)
+{
+	PCB_stack *tmp;
+	int i = PCB_COUNT;
+
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+	tmp = top_process;
+
+	while (i != 0)
+	{
+		if (tmp->process_context == context)
+		{
+			break;
+		}
+		tmp = tmp->prev_process; i--;
+	}
+
+	if (i != 0)
+	{
+		printf("Process found is: %s\n", tmp->process_name);
+
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
+		return tmp;
+	}
+	else
+	{
+		printf("Process not found with context value: %d", context);
+
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
+		return NULL;
+	}
+
+
+}
+
 
 /***************************************************************************************************
 GETCURRENTRUNNINGPROCESS
@@ -204,7 +263,7 @@ using the context obtained, traverses through the PCB to find the Process on the
 PCB_stack* GetCurrentRunningProcess()
 {
 	MEMORY_MAPPED_IO mmio;  
-	long CurrentRunningProcessContext; PCB_stack *tmp = top_process; int i = PCB_COUNT;
+	long CurrentRunningProcessContext; PCB_stack *tmp; //int i = PCB_COUNT;
 	//short *PAGE_TBL_ADDR;
 
 	mmio.Mode = Z502GetCurrentContext;
@@ -214,7 +273,9 @@ PCB_stack* GetCurrentRunningProcess()
 
 	CurrentRunningProcessContext = mmio.Field1;
 
-	while (i != 0)
+	tmp = getProcessFromContext(CurrentRunningProcessContext);
+
+	/*while (i != 0)
 	{
 		if (tmp->process_context == CurrentRunningProcessContext)
 		{
@@ -232,7 +293,9 @@ PCB_stack* GetCurrentRunningProcess()
 	{
 		printf("Process not found with context value: %d", CurrentRunningProcessContext);	
 		return NULL;
-	}
+	}*/
+
+	return tmp;
 
 }
 
@@ -295,9 +358,9 @@ void sort_timer_queue()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 
 	printf("in sort timer queue, count_timer_queue: %d\n",count_timer_queue);
@@ -348,15 +411,22 @@ void sort_timer_queue()
 		printf("front: %s\trear: %s\n", front_timer_queue->current_timer_process->process_name, rear_timer_queue->current_timer_process->process_name);
 		printf("sorting timer queue completed\n");
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));*/
+		printf("%s\n", &(Success[SPART * LockResult]));
+		
+		print_timer_queue();
+
 		return;
 
-		print_timer_queue();
+		
 	}
 	else
 	{
+		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
 		printf("in sort timer queue: count of timer queue is %d; No sorting required. returning\n",count_timer_queue);
 	}
 	
@@ -378,17 +448,16 @@ void push_ready_queue(PCB_stack *P)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
-
 	
 	if (count_ready_queue == 0)
 	{
 		count_ready_queue++;
 		front_ready_queue = rear_ready_queue = R;
 
-		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		printf("%s\n", &(Success[SPART * LockResult]));
 		//return;
@@ -400,7 +469,7 @@ void push_ready_queue(PCB_stack *P)
 		rear_ready_queue->next_ready_process = R;
 		rear_ready_queue = R;
 
-		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -455,10 +524,9 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
-
 
 	ready_queue *tmp = front_ready_queue;
 	int cnt = count_ready_queue;
@@ -489,7 +557,7 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 			count_ready_queue--;
 			
 
-			READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 				&LockResult);
 			printf("%s\n", &(Success[SPART * LockResult]));
 			
@@ -502,7 +570,7 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 
 	printf("%s not found on ready queue, hence not removed\n", temp->process_name);
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 }
@@ -518,7 +586,7 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -529,22 +597,21 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 	above = top_process;
 	while (i != 0)
 	{
-		//printf("%d\t%s\t\n", i, top_process->process_name);
-		//printf("%d\t%s\t\n\n", i,temp->process_name);
+		
 		if (temp->process_context == pop_process_data->Argument[0])
 		{
 			// if the process is being removed from the PCB,
 			// it should also be removed from the ready_queue
 
-			READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));
+			printf("%s\n", &(Success[SPART * LockResult]));*/
 
 			remove_PCB_ready_queue(temp);
 
-			READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));
+			printf("%s\n", &(Success[SPART * LockResult]));*/
 			
 			//printf("here");
 			if (temp->prev_process == NULL)
@@ -561,14 +628,16 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 			printf("process context: %d popped out of PCB successfully\n", temp->process_context);
 			*pop_process_data->Argument[1] = ERR_SUCCESS;
 			
-			READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));
+			printf("%s\n", &(Success[SPART * LockResult]));*/
 			
 			free(temp);
 			PCB_COUNT--;
 
-			
+			READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+				&LockResult);
+			printf("%s\n", &(Success[SPART * LockResult]));
 
 			return;
 		}
@@ -577,7 +646,7 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 		i--;
 
 	}
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 }
@@ -590,10 +659,24 @@ Returns Success or failure w.r.t whether the process is present or not in the PC
 
 void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 {
-	PCB_stack *temp = top_process; int i = PCB_COUNT;
+	PCB_stack *temp; int i; 
+
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+
+
+	temp = top_process;
+	i = PCB_COUNT;
 
 	if (strcmp(ReturnProcessData->Argument[0], "") == 0)
 	{
+
+		temp = GetCurrentRunningProcess();
 
 		*ReturnProcessData->Argument[1] = temp->process_context;
 		if (temp->processing_status == 3)
@@ -605,6 +688,10 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 			*ReturnProcessData->Argument[2] = ERR_SUCCESS;
 		}
 		
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
 		return;
 	}
 
@@ -629,6 +716,11 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	{
 		*ReturnProcessData->Argument[2] = ERR_PROCESS_NOT_FOUND;
 	}
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
 	return;
 }
 
@@ -640,10 +732,12 @@ Details of each validation are mentioned in-line
 
 void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 {
-	int i = PCB_COUNT; PCB_stack *temp = top_process;
-	
+	int i; PCB_stack *temp;
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
 	//validating priority
-	if ((int)create_process_data->Argument[2] > 0)
+	if ((int)create_process_data->Argument[2] > 0 && (int)create_process_data->Argument[2] != 999)
 	{
 		*create_process_data->Argument[4] = ERR_SUCCESS;
 		printf("%s priority validated\n", create_process_data->Argument[0]);
@@ -655,6 +749,13 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 		return;
 	}
 	
+	printf("trying to get lock while validating 1\n");
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+	i = PCB_COUNT; temp = top_process;
 
 	//validating the process_name
 	printf("validating process_names\n");
@@ -664,6 +765,13 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 		if (stricmp(temp->process_name, create_process_data->Argument[0]) == 0)
 		{
 			*create_process_data->Argument[4] = ERR_INCORRECT_PROCESS_NAME;
+
+			READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+				&LockResult);
+			printf("%s\n", &(Success[SPART * LockResult]));
+
+			printf("completed PCB unlock after validating process names failed\n");
+
 			return;
 		}
 		temp = temp->prev_process;
@@ -677,8 +785,16 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 		//printf("Max number of processes allowed: 2\n");
 		*create_process_data->Argument[4] = ERR_MAX_PROCESSES_REACHED;
 		printf("validating count %d\n", *create_process_data->Argument[4]);
+
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
 		return;
 	}
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
 }
 
 /***********************************************************************************************
@@ -718,7 +834,7 @@ long only_create_process(SYSTEM_CALL_DATA *create_process_data)
 
 	MEM_WRITE(Z502Context, &mmio);   // Start of Make Context Sequence
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -747,14 +863,12 @@ long only_create_process(SYSTEM_CALL_DATA *create_process_data)
 	printf("%d\t", *create_process_data->Argument[3]);
 	*create_process_data->Argument[4] = ERR_SUCCESS;
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));
-
 	push_ready_queue(P);
 	P->processing_status = ON_READY_QUEUE;
 
-	
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 	return mmio.Field1;
 
@@ -768,15 +882,18 @@ Starts the context of the process whose detail are passed to this function
 void os_create_process(SYSTEM_CALL_DATA *create_process_data)
 {
 	MEMORY_MAPPED_IO mmio;
+	PCB_stack *tmp;
+
 	printf("starting context for: %s\n", create_process_data->Argument[0]);
-	// below statement will call a method to create a process and 
-	// the called method returns the context created
-	//mmio.Field1 = only_create_process(create_process_data);
+	
 	mmio.Field1 = *create_process_data->Argument[3];
+
+	tmp = getProcessFromContext(*create_process_data->Argument[3]);
+	tmp->processing_status = PROCESSING;
+
 	//Start Context
 	mmio.Mode = Z502StartContext;
 	
-	// Field1 contains the value of the context returned in the last call
 	mmio.Field2 = START_NEW_CONTEXT_AND_SUSPEND;
 	//mmio.Field3 = mmio.Field4 = 0;
 	MEM_WRITE(Z502Context, &mmio);     // Start up the context
@@ -792,7 +909,7 @@ void pop_ready_queue()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -813,7 +930,7 @@ void pop_ready_queue()
 	count_ready_queue--;
 	printf("Count of ready queue after popping: %d\n", count_ready_queue);
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
 
@@ -901,6 +1018,10 @@ Interrupt Handler calls updateTimerQueue to update the times in the timer_queue 
 
 void updateTimerQueue(long timeOfDay)
 {
+	timer_queue *tmp;
+	int t;
+	long timeElapsed;
+
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
@@ -909,8 +1030,8 @@ void updateTimerQueue(long timeOfDay)
 	printf("%s\n", &(Success[SPART * LockResult]));
 
 
-	timer_queue *tmp = front_timer_queue; long timeElapsed;
-	int t = count_timer_queue;
+	tmp = front_timer_queue; 
+	t = count_timer_queue;
 	printf("count timer queue in update timer: %d\n", count_timer_queue);
 	while (t != 0)
 	{
@@ -929,11 +1050,13 @@ void updateTimerQueue(long timeOfDay)
 		t--; tmp=tmp->next_process_context;
 	}
 	printf("printing timer queue after updating sleep times\n");
-	print_timer_queue();
+	
 
 	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));
+
+	print_timer_queue();
 
 	popTimerQueue();
 
@@ -958,9 +1081,9 @@ PCB_stack* dispatcher()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 
 	while (count_ready_queue == 0 && count_timer_queue != 0) // && wasteTimeInt < 5)
@@ -982,9 +1105,10 @@ PCB_stack* dispatcher()
 		printf("%s will be dispatched to the timer queue from the dispatcher\n", process_to_dispatch->process_name);
 		//pop_ready_queue();
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));*/
+		printf("%s\n", &(Success[SPART * LockResult]));
+
 
 		return process_to_dispatch;
 	}
@@ -992,16 +1116,16 @@ PCB_stack* dispatcher()
 	{
 		printf("There is no process on the ready to be dispatched\n");
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));*/
+		printf("%s\n", &(Success[SPART * LockResult]));
 
 		return NULL;
 	}
 	
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 		
 }
 
@@ -1029,9 +1153,9 @@ void AddToTimerQueue(long sleep_time)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 
 	printf("process dispatched: %s\n", current_process->process_name);
@@ -1047,9 +1171,9 @@ void AddToTimerQueue(long sleep_time)
 		count_timer_queue++;
 		front_timer_queue = rear_timer_queue = new_timer_process;
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));*/
+		printf("%s\n", &(Success[SPART * LockResult]));
 
 		print_timer_queue();
 	}
@@ -1062,11 +1186,12 @@ void AddToTimerQueue(long sleep_time)
 		rear_timer_queue = new_timer_process;
 		printf("**Printing timer_queue before sorting\n");
 		printf("%s\n", rear_timer_queue->current_timer_process->process_name);
-		print_timer_queue();
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		
+		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));*/
+		printf("%s\n", &(Success[SPART * LockResult]));
+
+		print_timer_queue();
 
 		sort_timer_queue();
 	}
@@ -1179,4 +1304,127 @@ void CustomStartTimer(long start_time, long sleep_time)
 	MEM_WRITE(Z502Idle, &mmio);       //  Let the interrupt for this timer occur
 									  //DoSleep(sleep_time);*/
 	printf("halt ended\n");
+}
+
+
+void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
+{
+	PCB_stack *tmp;
+	MEMORY_MAPPED_IO mmio;
+
+	// Checking if we are trying to suspend ourselves. 
+	if (SystemCallData->Argument[0] == -1)
+	{
+		printf("Trying to suspend ourself is illegal. Causes Error.\n");
+		*SystemCallData->Argument[1] = ERR_SUSPENDING_OURSELVES;
+		return;
+	}
+
+	tmp = getProcessFromContext(SystemCallData->Argument[0]);
+
+
+	if (tmp == NULL)
+	{
+		*SystemCallData->Argument[1] = ERR_PROCESS_NOT_FOUND;
+		return;
+		
+	}
+	else
+	{
+
+		if (tmp->processing_status == SUSPENDED)
+		{
+			printf("Trying to suspend already suspended process. This causes an error\n");
+			*SystemCallData->Argument[1] = ERR_ALREADY_SUSPENDED;
+
+		}
+		else
+		{
+			tmp->processing_status = SUSPENDED;
+			printf("%d suspended successfully\n", tmp->process_context);
+			*SystemCallData->Argument[1] = ERR_SUCCESS;
+		}
+
+		
+	}
+}
+
+void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
+{
+	PCB_stack *tmp;
+
+	// Checking if the process to be resumed is the currently running process
+	tmp = GetCurrentRunningProcess();
+
+	if (tmp->process_context == SystemCallData->Argument[0])
+	{
+		printf("Trying to resume currently running process. Causes Error.\n");
+		*SystemCallData->Argument[1] = ERR_RESUMING_OURSELVES;
+		return;
+	}
+	
+	tmp = getProcessFromContext(SystemCallData->Argument[0]);
+	
+
+	if (tmp == NULL)
+	{
+		*SystemCallData->Argument[1] = ERR_PROCESS_NOT_FOUND;
+		return;
+
+	}
+	else
+	{
+		if (tmp->processing_status == ON_READY_QUEUE)
+		{
+			printf("Trying to resume already resumed process. Causes error\n");
+			*SystemCallData->Argument[1] = ERR_ALREADY_RESUMED;
+		}
+		else
+		{
+			tmp->processing_status = ON_READY_QUEUE;
+			printf("%d resumed successsfully\n", tmp->process_context);
+			*SystemCallData->Argument[1] = ERR_SUCCESS;
+		}
+		
+	}
+}
+
+
+void CustomChangePriority(SYSTEM_CALL_DATA *SystemCallData)
+{
+	PCB_stack *tmp;
+
+	// checking if the process exists
+	tmp = getProcessFromContext(SystemCallData->Argument[0]);
+
+
+	if (tmp == NULL)
+	{
+		// If the process doesn't exist, then we return an error
+		*SystemCallData->Argument[2] = ERR_PROCESS_NOT_FOUND;
+		return;
+	}
+	else
+	{ 
+		// validating the new priority
+		if (SystemCallData->Argument[1] > 0 && SystemCallData->Argument[1] != 999)
+		{
+			// valid priority
+			tmp->priority = SystemCallData->Argument[1];
+			printf("priority of %s changed to %d successfully\n", tmp->process_name, tmp->priority);
+			*SystemCallData->Argument[2] = ERR_SUCCESS;
+			return;
+		}
+		else
+		{
+			// illegal priority
+			printf("new priority value is incorrect\n");
+			*SystemCallData->Argument[2] = ERR_INCORRECT_PRIORITY;
+			return;
+		}
+		
+
+
+	}
+
 }

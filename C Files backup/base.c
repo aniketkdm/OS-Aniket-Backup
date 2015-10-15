@@ -72,6 +72,10 @@ void InterruptHandler(void) {
 		&LockResult);
 	printf("%s\n", &(Success[SPART * LockResult]));*/
 
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 30, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
 
 	// Get cause of interrupt
 	mmio.Mode = Z502GetInterruptInfo;
@@ -109,13 +113,13 @@ void InterruptHandler(void) {
 	GET_TIME_OF_DAY(&timeOfDay);
 
 	// trying to get a lock
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 	updateTimerQueue(timeOfDay);
 	sort_timer_queue();
@@ -125,9 +129,9 @@ void InterruptHandler(void) {
 	printf("%s\n", &(Success[SPART * LockResult]));*/
 	//make_ready_to_run();
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+	READ_MODIFY(MEMORY_INTERLOCK_BASE + 30, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	printf("%s\n", &(Success[SPART * LockResult]));*/
+	printf("%s\n", &(Success[SPART * LockResult]));
 
 	printf("interrupt handler completed\n");
 }           // End of InterruptHandler
@@ -294,16 +298,26 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 				break;
 			}
 				
+		case SYSNUM_SUSPEND_PROCESS:
+
+			printf("Suspending %d\n", SystemCallData->Argument[0]);
+			CustomSuspendProcess(SystemCallData);
 
 			break;
 		
-		/*case SYSNUM_TERMINATE_PROCESS_ONLY:
-			printf("here1");
-			pop_process(SystemCallData);
-			break;*/
+		case SYSNUM_RESUME_PROCESS:
+			printf("Resuming %d\n", SystemCallData->Argument[0]);
+			CustomResumeProcess(SystemCallData);
+
+			break;
 
 		case SYSNUM_GET_PROCESS_ID:
 			get_process_id(SystemCallData);
+			break;
+
+		case SYSNUM_CHANGE_PRIORITY:
+			printf("Changing priority for %d\n",SystemCallData->Argument[0]);
+			CustomChangePriority(SystemCallData);
 			break;
 		
 		default:
@@ -322,7 +336,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 			mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
 			MEM_READ(Z502Clock, &mmio);
 			*SystemCallData->Argument[0] = mmio.Field1;
-			printf("Time of the day: %d\n", *SystemCallData->Argument[0]);
+			printf("Time of the day: %d\n", *SystemCallData->Argument[0]); //Message
 			break;
 
 			// SLEEP system call
@@ -331,16 +345,16 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 			break;
 
 		case SYSNUM_CREATE_PROCESS:
-			printf("Came in SVC Create Process Block\n");
-			/*Validate_Process_Data(SystemCallData);*/
+			Message("Came in SVC Create Process Block\n"); //Message
+														   /*Validate_Process_Data(SystemCallData);*/
 
 			only_create_process(SystemCallData);
-			printf("ErrorReturned in SVC: %d\n\n\n", *SystemCallData->Argument[4]);
+			printf("ErrorReturned in SVC: %d\n\n\n", *SystemCallData->Argument[4]); //Message
 
 			if (*SystemCallData->Argument[4] != ERR_SUCCESS)
 			{
 				printf("%d\n", *SystemCallData->Argument[4]);
-				printf("Exiting!!! As error has occurred\n");
+				Message("Exiting!!! As error has occurred\n");
 				return;
 			}
 
@@ -373,16 +387,26 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 				break;
 			}
 
+		case SYSNUM_SUSPEND_PROCESS:
+
+			printf("Suspending %d\n", SystemCallData->Argument[0]);
+			CustomSuspendProcess(SystemCallData);
 
 			break;
 
-			/*case SYSNUM_TERMINATE_PROCESS_ONLY:
-			printf("here1");
-			pop_process(SystemCallData);
-			break;*/
+		case SYSNUM_RESUME_PROCESS:
+			printf("Resuming %d\n", SystemCallData->Argument[0]);
+			CustomResumeProcess(SystemCallData);
+
+			break;
 
 		case SYSNUM_GET_PROCESS_ID:
 			get_process_id(SystemCallData);
+			break;
+
+		case SYSNUM_CHANGE_PRIORITY:
+			printf("Changing priority for %d\n", SystemCallData->Argument[0]);
+			CustomChangePriority(SystemCallData);
 			break;
 
 		default:
@@ -544,6 +568,48 @@ void osInit(int argc, char *argv[]) {
 					Create_Process_Data->NumberOfArguments = 5;
 					Create_Process_Data->Argument[0] = (long *) "test1e";
 					Create_Process_Data->Argument[1] = (long *)test1e;
+					Create_Process_Data->Argument[2] = 1;
+					Create_Process_Data->Argument[3] = &context;
+					Create_Process_Data->Argument[4] = &status;
+					printf("process_name: %s\nprocess_to_run: %d \n", Create_Process_Data->Argument[0], Create_Process_Data->Argument[1]);
+					//Validate_Process_Data(Create_Process_Data);
+					//SuccessExpected(Create_Process_Data->Argument[4], "CREATE_PROCESS");
+
+					only_create_process(Create_Process_Data);
+
+					if (status != ERR_SUCCESS)
+					{
+						printf("Exiting!!! As error has occurred");
+						return;
+					}
+					os_create_process(Create_Process_Data);
+					break;
+
+				case 'f':
+					Create_Process_Data->NumberOfArguments = 5;
+					Create_Process_Data->Argument[0] = (long *) "test1f";
+					Create_Process_Data->Argument[1] = (long *)test1f;
+					Create_Process_Data->Argument[2] = 1;
+					Create_Process_Data->Argument[3] = &context;
+					Create_Process_Data->Argument[4] = &status;
+					printf("process_name: %s\nprocess_to_run: %d \n", Create_Process_Data->Argument[0], Create_Process_Data->Argument[1]);
+					//Validate_Process_Data(Create_Process_Data);
+					//SuccessExpected(Create_Process_Data->Argument[4], "CREATE_PROCESS");
+
+					only_create_process(Create_Process_Data);
+
+					if (status != ERR_SUCCESS)
+					{
+						printf("Exiting!!! As error has occurred");
+						return;
+					}
+					os_create_process(Create_Process_Data);
+					break;
+
+				case 'g':
+					Create_Process_Data->NumberOfArguments = 5;
+					Create_Process_Data->Argument[0] = (long *) "test1g";
+					Create_Process_Data->Argument[1] = (long *)test1g;
 					Create_Process_Data->Argument[2] = 1;
 					Create_Process_Data->Argument[3] = &context;
 					Create_Process_Data->Argument[4] = &status;
