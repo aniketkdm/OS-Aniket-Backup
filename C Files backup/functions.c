@@ -208,7 +208,7 @@ void sort_ready_queue()
 PCB_stack* getProcessFromContext(long context)
 {
 	PCB_stack *tmp;
-	int i = PCB_COUNT;
+	int i;
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
@@ -218,6 +218,7 @@ PCB_stack* getProcessFromContext(long context)
 	printf("%s\n", &(Success[SPART * LockResult]));
 
 	tmp = top_process;
+	i = PCB_COUNT;
 
 	while (i != 0)
 	{
@@ -272,6 +273,9 @@ PCB_stack* GetCurrentRunningProcess()
 	SuccessExpected(mmio.Field4, "GetCurrentContext");
 
 	CurrentRunningProcessContext = mmio.Field1;
+
+	printf("top process context: %d and process name: %s\n", top_process->process_context, top_process->process_name);
+	printf("Current running process: %d\n", CurrentRunningProcessContext);
 
 	tmp = getProcessFromContext(CurrentRunningProcessContext);
 
@@ -602,17 +606,23 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 		{
 			// if the process is being removed from the PCB,
 			// it should also be removed from the ready_queue
-
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));*/
-
+			
 			remove_PCB_ready_queue(temp);
 
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));*/
-			
+			if (temp == top_process)
+			{
+				if (PCB_COUNT > 1)
+				{
+					top_process = temp->prev_process;
+					printf("process context: %d popped out of PCB successfully\n", temp->process_context);
+					*pop_process_data->Argument[1] = ERR_SUCCESS;
+					free(temp);
+					PCB_COUNT--;
+					return;
+				}
+			}
+
+					
 			//printf("here");
 			if (temp->prev_process == NULL)
 			{
@@ -628,9 +638,6 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 			printf("process context: %d popped out of PCB successfully\n", temp->process_context);
 			*pop_process_data->Argument[1] = ERR_SUCCESS;
 			
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			printf("%s\n", &(Success[SPART * LockResult]));*/
 			
 			free(temp);
 			PCB_COUNT--;
@@ -676,6 +683,10 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	if (strcmp(ReturnProcessData->Argument[0], "") == 0)
 	{
 
+		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+			&LockResult);
+		printf("%s\n", &(Success[SPART * LockResult]));
+
 		temp = GetCurrentRunningProcess();
 
 		*ReturnProcessData->Argument[1] = temp->process_context;
@@ -688,24 +699,24 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 			*ReturnProcessData->Argument[2] = ERR_SUCCESS;
 		}
 		
-		READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		printf("%s\n", &(Success[SPART * LockResult]));
-
 		return;
 	}
 
-	while (strcmp(temp->process_name, ReturnProcessData->Argument[0]) != 0 && i != 0)
+	while (strcmp(temp->process_name, ReturnProcessData->Argument[0]) != 0 && i != 1)
 	{
+
 		temp = temp->prev_process;
 		i--;
 	}
+	printf("while ended with i=%d\n", i);
 	if (strcmp(temp->process_name, ReturnProcessData->Argument[0]) == 0)
+	//if(i != 0)
 	{
 		*ReturnProcessData->Argument[1] = temp->process_context;
 		if (temp->processing_status == 3)
 		{
 			*ReturnProcessData->Argument[2] = ERR_PROCESSED;
+			printf("%s already processed\n", temp->process_name);
 		}
 		else
 		{
@@ -714,7 +725,9 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	}
 	else
 	{
+		printf("process not found in get_process_id\n");
 		*ReturnProcessData->Argument[2] = ERR_PROCESS_NOT_FOUND;
+		
 	}
 
 	READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
@@ -780,7 +793,7 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 
 	//validating the number of processes
 	printf("Number of processes already created: %d\n", PCB_COUNT);
-	if (PCB_COUNT >= 18) // Limiting the number of processes that can be created
+	if (PCB_COUNT >= 13) // Limiting the number of processes that can be created
 	{
 		//printf("Max number of processes allowed: 2\n");
 		*create_process_data->Argument[4] = ERR_MAX_PROCESSES_REACHED;

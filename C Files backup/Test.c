@@ -166,8 +166,21 @@ void test1b(void) {
 	CREATE_PROCESS("two_the_same", test1x, LEGAL_PRIORITY, &ProcessID1,
 			&ErrorReturned);
 	ErrorExpected(ErrorReturned, "CREATE_PROCESS");
+
+	//GET_PROCESS_ID("", &ProcessID1, &ErrorReturned);     // Legal
+	//SuccessExpected(ErrorReturned, "GET_PROCESS_ID");
+	//printf("The PID of this process is %ld\n", ProcessID2);
+
 	TERMINATE_PROCESS(ProcessID2, &ErrorReturned);
 	SuccessExpected(ErrorReturned, "TERMINATE_PROCESS");
+
+	GET_PROCESS_ID("", &ProcessID2, &ErrorReturned);     // Legal
+	SuccessExpected(ErrorReturned, "GET_PROCESS_ID");
+	printf("The PID of this process is %ld\n", ProcessID2);
+
+	//TERMINATE_PROCESS(-1, &ErrorReturned);
+
+	
 
 	// Loop until an error is found on the CREATE_PROCESS stystem call.
 	// Since the call itself is legal, we must get an error
