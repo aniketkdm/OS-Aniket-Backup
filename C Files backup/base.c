@@ -122,6 +122,25 @@ void InterruptHandler(void) {
 	printf("%s\n", &(Success[SPART * LockResult]));
 
 	updateTimerQueue(timeOfDay);
+
+	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+*/
+	popTimerQueue();
+
+	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+
+	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+	printf("%s\n", &(Success[SPART * LockResult]));
+*/
 	sort_timer_queue();
 
 	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
