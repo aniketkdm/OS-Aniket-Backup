@@ -60,7 +60,10 @@ To waste time, until the some process is ready in the ready queue
 
 void waste_time() {};
 
-// returnReadyQueueCount is used to return the count of ready queue
+/************************************************************************************************
+returnReadyQueueCount
+Returns the count of PCBs on the ready queue
+*************************************************************************************************/
 
 int returnReadyQueueCount()
 {
@@ -77,6 +80,11 @@ int returnReadyQueueCount()
 	&LockResult);
 	Message("%s\n", &(Success[SPART * LockResult]));*/
 }
+
+/************************************************************************************************
+returnTimerQueueCount
+Returns the count of PCBs on the timer queue
+*************************************************************************************************/
 
 int returnTimerQueueCount()
 {
@@ -215,6 +223,13 @@ void sort_ready_queue()
 	return;
 }
 
+/************************************************************************************
+getProcessFromContext
+using the context supplied, traverses through the PCB to find the Process on the PCB_STACK
+If the process is found, then it is returned, else
+If the process is not found then NULL is returned
+************************************************************************************/
+
 PCB_stack* getProcessFromContext(long context)
 {
 	PCB_stack *tmp;
@@ -268,7 +283,8 @@ PCB_stack* getProcessFromContext(long context)
 GETCURRENTRUNNINGPROCESS
 Returns the PCB of the process that is currently running
 Uses the "GetCurrentContext" mechanism to get the address of the context that is running
-using the context obtained, traverses through the PCB to find the Process on the PCB_STACK
+Passes the context of the currently running process to getProcessFromContext routine to get the Process
+The obtained process is then returned
 ****************************************************************************************************/
 
 PCB_stack* GetCurrentRunningProcess()
@@ -1346,6 +1362,13 @@ void CustomStartTimer(long start_time, long sleep_time)
 	Message("halt ended\n");
 }
 
+/****************************************************************************************
+CustomSuspendProcess
+1. Validates if we are trying to suspend ourselves
+2. Validates if the process to be suspended exists
+3. Validates if the process to be suspended is not already suspended
+4. If all validations are successful, then the process is suspended else an error is returned
+*****************************************************************************************/
 
 void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 {
@@ -1362,7 +1385,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 
 	tmp = getProcessFromContext(SystemCallData->Argument[0]);
 
-
+	// validating if the process exists
 	if (tmp == NULL)
 	{
 		*SystemCallData->Argument[1] = ERR_PROCESS_NOT_FOUND;
@@ -1371,7 +1394,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 	}
 	else
 	{
-
+		// Checking if the process is already suspended
 		if (tmp->processing_status == SUSPENDED)
 		{
 			Message("Trying to suspend already suspended process. This causes an error\n");
@@ -1380,6 +1403,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 		}
 		else
 		{
+			// Suspending the process
 			tmp->processing_status = SUSPENDED;
 			Message("%d suspended successfully\n", tmp->process_context);
 			*SystemCallData->Argument[1] = ERR_SUCCESS;
@@ -1388,6 +1412,14 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 		
 	}
 }
+
+/**************************************************************************************
+CustomResumeProcess
+1. Validates if the process to be resumed is currently running. If so, returns an error
+2. Validates if the process to be resumed exists. If not, then error is returned
+3. Validates if the process to be resumed is not already resumed. If so returns with an error
+4. If all validations are successful, the process is resumed
+**************************************************************************************/
 
 void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 {
@@ -1402,7 +1434,9 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 		*SystemCallData->Argument[1] = ERR_RESUMING_OURSELVES;
 		return;
 	}
-	
+
+
+	// Checking if the process is present
 	tmp = getProcessFromContext(SystemCallData->Argument[0]);
 	
 
@@ -1414,6 +1448,7 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 	}
 	else
 	{
+		// Checks if the process is already resumed
 		if (tmp->processing_status == ON_READY_QUEUE)
 		{
 			Message("Trying to resume already resumed process. Causes error\n");
@@ -1429,6 +1464,12 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 	}
 }
 
+/**************************************************************************
+CustomChangePriority
+Checks if the process whose priority is to be changed exists
+Validates the new priority
+Changes the priority if all the checks and validations are successful
+****************************************************************************/
 
 void CustomChangePriority(SYSTEM_CALL_DATA *SystemCallData)
 {
