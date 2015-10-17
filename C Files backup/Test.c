@@ -1,49 +1,49 @@
 /************************************************************************
 
- test.c
+test.c
 
- These programs are designed to test the OS502 functionality
+These programs are designed to test the OS502 functionality
 
- Read Appendix B about test programs and Appendix C concerning
- system calls when attempting to understand these programs.
+Read Appendix B about test programs and Appendix C concerning
+system calls when attempting to understand these programs.
 
- Revision History:
- 1.0 August 1990
- 1.1 December 1990: Tests cleaned up; 1b, 1e - 1k added
- Portability attempted.
- 1.2 December 1991: Still working on portabililty.
- 1.3 July     1992: tests1i/1j made re-entrant.
- 1.4 December 1992: Minor changes - portability
- tests2c/2d added.  2f/2g rewritten
- 1.5 August   1993: Produced new test2g to replace old
- 2g that did a swapping test.
- 1.6 June     1995: Test Cleanup.
- 1.7 June     1999: Add test0, minor fixes.
- 2.0 January  2000: Lots of small changes & bug fixes
- 2.1 March    2001: Minor Bugfixes.
- Rewrote GetSkewedRandomNumber
- 2.2 July     2002: Make appropriate for undergrads
- 3.0 August   2004: Modified to support memory mapped IO
- 3.1 August   2004: hardware interrupt runs on separate thread
- 3.11 August  2004: Support for OS level locking
- 3.13 November 2004: Minor fix defining USER
- 3.41 August  2009: Additional work for multiprocessor + 64 bit
- 3.53 November 2011: Changed test2c so data structure used
- ints (4 bytes) rather than longs.
- 3.61 November 2012: Fixed a number of bugs in test2g and test2gx
- (There are probably many more)
- 3.70 December 2012: Rename test2g to test2h - it still does
- shared memory.  Define a new test2g that runs
- multiple copies of test2f.
- 4.03 December 2013: Changes to test 2e and 2f.
- 4.10 December 2013: Changes to test 2g regarding a clean ending.
- July     2014: Numerous small changes to tests.
- Major rwrite of Test2h
- 4.11 November 2014: Bugfix to test2c and test2e
- 4.12 November 2014: Bugfix to test2e
- 4.20 January 2015: Start work to make thread safe and therefore support
- multiprocessors.
- ************************************************************************/
+Revision History:
+1.0 August 1990
+1.1 December 1990: Tests cleaned up; 1b, 1e - 1k added
+Portability attempted.
+1.2 December 1991: Still working on portabililty.
+1.3 July     1992: tests1i/1j made re-entrant.
+1.4 December 1992: Minor changes - portability
+tests2c/2d added.  2f/2g rewritten
+1.5 August   1993: Produced new test2g to replace old
+2g that did a swapping test.
+1.6 June     1995: Test Cleanup.
+1.7 June     1999: Add test0, minor fixes.
+2.0 January  2000: Lots of small changes & bug fixes
+2.1 March    2001: Minor Bugfixes.
+Rewrote GetSkewedRandomNumber
+2.2 July     2002: Make appropriate for undergrads
+3.0 August   2004: Modified to support memory mapped IO
+3.1 August   2004: hardware interrupt runs on separate thread
+3.11 August  2004: Support for OS level locking
+3.13 November 2004: Minor fix defining USER
+3.41 August  2009: Additional work for multiprocessor + 64 bit
+3.53 November 2011: Changed test2c so data structure used
+ints (4 bytes) rather than longs.
+3.61 November 2012: Fixed a number of bugs in test2g and test2gx
+(There are probably many more)
+3.70 December 2012: Rename test2g to test2h - it still does
+shared memory.  Define a new test2g that runs
+multiple copies of test2f.
+4.03 December 2013: Changes to test 2e and 2f.
+4.10 December 2013: Changes to test 2g regarding a clean ending.
+July     2014: Numerous small changes to tests.
+Major rwrite of Test2h
+4.11 November 2014: Bugfix to test2c and test2e
+4.12 November 2014: Bugfix to test2e
+4.20 January 2015: Start work to make thread safe and therefore support
+multiprocessors.
+************************************************************************/
 
 #define          USER
 #include         "global.h"
@@ -71,11 +71,11 @@ void Test2f_Statistics(int Pid);
 
 /**************************************************************************
 
- Test0
+Test0
 
- Exercises the system calls for GET_TIME_OF_DAY and TERMINATE_PROCESS
+Exercises the system calls for GET_TIME_OF_DAY and TERMINATE_PROCESS
 
- **************************************************************************/
+**************************************************************************/
 
 void test0(void) {
 	long ReturnedTime;
@@ -92,14 +92,14 @@ void test0(void) {
 }                                               // End of test0
 
 /**************************************************************************
- Test1a
+Test1a
 
- Exercises GET_TIME_OF_DAY and SLEEP and TERMINATE_PROCESS
- What should happen here is that the difference between the time1 and time2
- will be GREATER than SleepTime.  This is because a timer interrupt takes
- AT LEAST the time specified.
+Exercises GET_TIME_OF_DAY and SLEEP and TERMINATE_PROCESS
+What should happen here is that the difference between the time1 and time2
+will be GREATER than SleepTime.  This is because a timer interrupt takes
+AT LEAST the time specified.
 
- **************************************************************************/
+**************************************************************************/
 
 void test1a(void) {
 	long ErrorReturned;
@@ -121,25 +121,25 @@ void test1a(void) {
 } /* End of test1a    */
 
 /**************************************************************************
- Test1b
+Test1b
 
- Exercises the CREATE_PROCESS and GET_PROCESS_ID  commands.
+Exercises the CREATE_PROCESS and GET_PROCESS_ID  commands.
 
- This test tries lots of different inputs for create_process.
- In particular, there are tests for each of the following:
+This test tries lots of different inputs for create_process.
+In particular, there are tests for each of the following:
 
- 1. use of illegal priorities
- 2. use of a process name of an already existing process.
- 3. creation of a LARGE number of processes, showing that
- there is a limit somewhere ( you run out of some
- resource ) in which case you take appropriate action.
+1. use of illegal priorities
+2. use of a process name of an already existing process.
+3. creation of a LARGE number of processes, showing that
+there is a limit somewhere ( you run out of some
+resource ) in which case you take appropriate action.
 
- Test the following items for get_process_id:
+Test the following items for get_process_id:
 
- 1. Various legal process id inputs.
- 2. An illegal/non-existant name.
+1. Various legal process id inputs.
+2. An illegal/non-existant name.
 
- **************************************************************************/
+**************************************************************************/
 
 #define         ILLEGAL_PRIORITY                -3
 #define         LEGAL_PRIORITY                  10
@@ -152,35 +152,22 @@ void test1b(void) {
 	long TimeNow;               // Holds ending time of test
 	char ProcessName[16];       // Holds generated process name
 
-	// Try to create a process with an illegal priority.
+		// Try to create a process with an illegal priority.
 	printf("This is Release %s:  Test 1b\n", CURRENT_REL);
 	CREATE_PROCESS("test1b_a", test1x, ILLEGAL_PRIORITY, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 	ErrorExpected(ErrorReturned, "CREATE_PROCESS");
 
 	// Create two processes with same name - 1st succeeds, 2nd fails
 	// Then terminate the process that has been created
 	CREATE_PROCESS("two_the_same", test1x, LEGAL_PRIORITY, &ProcessID2,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 	CREATE_PROCESS("two_the_same", test1x, LEGAL_PRIORITY, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 	ErrorExpected(ErrorReturned, "CREATE_PROCESS");
-
-	//GET_PROCESS_ID("", &ProcessID1, &ErrorReturned);     // Legal
-	//SuccessExpected(ErrorReturned, "GET_PROCESS_ID");
-	//printf("The PID of this process is %ld\n", ProcessID2);
-
 	TERMINATE_PROCESS(ProcessID2, &ErrorReturned);
 	SuccessExpected(ErrorReturned, "TERMINATE_PROCESS");
-
-	GET_PROCESS_ID("", &ProcessID2, &ErrorReturned);     // Legal
-	SuccessExpected(ErrorReturned, "GET_PROCESS_ID");
-	printf("The PID of this process is %ld\n", ProcessID2);
-
-	//TERMINATE_PROCESS(-1, &ErrorReturned);
-
-	
 
 	// Loop until an error is found on the CREATE_PROCESS stystem call.
 	// Since the call itself is legal, we must get an error
@@ -191,7 +178,7 @@ void test1b(void) {
 		sprintf(ProcessName, "Test1b_%ld", NumberOfProcesses);
 		printf("Creating process \"%s\"\n", ProcessName);
 		CREATE_PROCESS(ProcessName, test1x, LEGAL_PRIORITY, &ProcessID1,
-				&ErrorReturned);
+			&ErrorReturned);
 	}
 
 	//  When we get here, we've created all the processes we can.
@@ -221,16 +208,16 @@ void test1b(void) {
 }                                                  // End of test1b
 
 /**************************************************************************
- Test1c
+Test1c
 
- Tests multiple copies of test1x running simultaneously.
- Test1c runs these with the same priority in order to show FCFS scheduling
- behavior; Test1d uses different priorities in order to show priority
- scheduling.
+Tests multiple copies of test1x running simultaneously.
+Test1c runs these with the same priority in order to show FCFS scheduling
+behavior; Test1d uses different priorities in order to show priority
+scheduling.
 
- WARNING:  This test assumes tests 1a - 1b run successfully
+WARNING:  This test assumes tests 1a - 1b run successfully
 
- **************************************************************************/
+**************************************************************************/
 #define         PRIORITY1C              10
 
 void test1c(void) {
@@ -264,7 +251,6 @@ void test1c(void) {
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		SLEEP(SleepTime);
-		//printf("Sleep completed for test1c; waiting for test1c_a to complete");
 		GET_PROCESS_ID("test1c_e", &ReturnedPID, &ErrorReturned);
 	}
 
@@ -273,16 +259,16 @@ void test1c(void) {
 }                                                     // End test1c
 
 /**************************************************************************
- Test 1d
+Test 1d
 
- Tests multiple copies of test1x running simultaneously.
- Test1c runs these with the same priority in order to show
- FCFS scheduling behavior; Test1d uses different priorities
- in order to show priority scheduling.
+Tests multiple copies of test1x running simultaneously.
+Test1c runs these with the same priority in order to show
+FCFS scheduling behavior; Test1d uses different priorities
+in order to show priority scheduling.
 
- WARNING:  This test assumes tests 1a - 1b run successfully
+WARNING:  This test assumes tests 1a - 1b run successfully
 
- **************************************************************************/
+**************************************************************************/
 
 #define         PRIORITY1               10
 #define         PRIORITY2               11
@@ -329,22 +315,22 @@ void test1d(void) {
 }                                                 // End test1d
 
 /**************************************************************************
- Test 1e
+Test 1e
 
- Exercises the SUSPEND_PROCESS and RESUME_PROCESS commands
+Exercises the SUSPEND_PROCESS and RESUME_PROCESS commands
 
- This test should try lots of different inputs for suspend and resume.
- In particular, there should be tests for each of the following:
+This test should try lots of different inputs for suspend and resume.
+In particular, there should be tests for each of the following:
 
- 1. use of illegal process id.
- 2. what happens when you suspend yourself - is it legal?  The answer
- to this depends on the OS architecture and is up to the developer.
- 3. suspending an already suspended process.
- 4. resuming a process that's not suspended.
+1. use of illegal process id.
+2. what happens when you suspend yourself - is it legal?The answer
+to this depends on the OS architecture and is up to the developer.
+3. suspending an already suspended process.
+4. resuming a process that's not suspended.
 
- there are probably lots of other conditions possible.
+there are probably lots of other conditions possible.
 
- **************************************************************************/
+**************************************************************************/
 #define         LEGAL_PRIORITY_1E               10
 
 void test1e(void) {
@@ -358,15 +344,15 @@ void test1e(void) {
 
 	// Make a legal target process
 	CREATE_PROCESS("test1e_a", test1x, LEGAL_PRIORITY_1E, &TargetProcessID,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 
 	// Try to Suspend an Illegal PID
-	SUSPEND_PROCESS((INT32 )9999, &ErrorReturned);
+	SUSPEND_PROCESS((INT32)9999, &ErrorReturned);
 	ErrorExpected(ErrorReturned, "SUSPEND_PROCESS");
 
 	// Try to Resume an Illegal PID
-	RESUME_PROCESS((INT32 )9999, &ErrorReturned);
+	RESUME_PROCESS((INT32)9999, &ErrorReturned);
 	ErrorExpected(ErrorReturned, "RESUME_PROCESS");
 
 	// Suspend alegal PID
@@ -395,9 +381,9 @@ void test1e(void) {
 	SUSPEND_PROCESS(-1, &ErrorReturned);
 
 	/* If we returned "SUCCESS" here, then there is an inconsistency;
-	 * success implies that the process was suspended.  But if we
-	 * get here, then we obviously weren't suspended.  Therefore
-	 * this must be an error.                                    */
+	* success implies that the process was suspended.  But if we
+	* get here, then we obviously weren't suspended.  Therefore
+	* this must be an error.                                    */
 	ErrorExpected(ErrorReturned, "SUSPEND_PROCESS");
 
 	GET_TIME_OF_DAY(&TimeNow);
@@ -406,7 +392,7 @@ void test1e(void) {
 	TERMINATE_PROCESS(-2, &ErrorReturned);
 }                                                // End of test1e
 
-/**************************************************************************
+ /**************************************************************************
  Test1f
 
  Successfully suspend and resume processes. This assumes that Test1e
@@ -442,15 +428,15 @@ void test1f(void) {
 
 	// Make legal targets
 	CREATE_PROCESS("test1f_a", test1x, PRIORITY_1F1, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1f_b", test1x, PRIORITY_1F2, &ProcessID2,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1f_c", test1x, PRIORITY_1F3, &ProcessID3,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1f_d", test1x, PRIORITY_1F4, &ProcessID4,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1f_e", test1x, PRIORITY_1F5, &ProcessID5,
-			&ErrorReturned);
+		&ErrorReturned);
 
 	// Let the 5 processes go for a while
 	SLEEP(SleepTime);
@@ -474,12 +460,12 @@ void test1f(void) {
 	}
 
 	//   Wait for children to finish, then quit
-	SLEEP((INT32 )10000);
+	SLEEP((INT32)10000);
 	TERMINATE_PROCESS(-2, &ErrorReturned);
 
 }                        // End of test1f
 
-/**************************************************************************
+ /**************************************************************************
  Test1g
 
  Generate lots of errors for CHANGE_PRIORITY
@@ -504,11 +490,11 @@ void test1g(void) {
 
 	// Make a legal target
 	CREATE_PROCESS("test1g_a", test1x, LEGAL_PRIORITY_1G, &TargetProcessID,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 
 	// Target Illegal PID
-	CHANGE_PRIORITY((INT32 )9999, LEGAL_PRIORITY_1G, &ErrorReturned);
+	CHANGE_PRIORITY((INT32)9999, LEGAL_PRIORITY_1G, &ErrorReturned);
 	ErrorExpected(ErrorReturned, "CHANGE_PRIORITY");
 
 	// Use illegal priority
@@ -525,17 +511,17 @@ void test1g(void) {
 
 /**************************************************************************
 
- Test1h  Successfully change the priority of a process
+Test1h  Successfully change the priority of a process
 
- There are TWO ways we can see that the priorities have changed:
- 1. When you change the priority, it should be possible to see
-    the scheduling behaviour of the system change; processes
-    that used to be scheduled first are no longer first.  This will be
-    visible in the ready Q as shown by the scheduler printer.
- 2. The processes with more favorable priority should schedule first so
-    they should finish first.
+There are TWO ways we can see that the priorities have changed:
+1. When you change the priority, it should be possible to see
+the scheduling behaviour of the system change; processes
+that used to be scheduled first are no longer first.  This will be
+visible in the ready Q as shown by the scheduler printer.
+2. The processes with more favorable priority should schedule first so
+they should finish first.
 
- **************************************************************************/
+**************************************************************************/
 
 #define         MOST_FAVORABLE_PRIORITY         1
 #define         FAVORABLE_PRIORITY             10
@@ -561,19 +547,19 @@ void test1h(void) {
 	CHANGE_PRIORITY(Ourself, MOST_FAVORABLE_PRIORITY, &ErrorReturned);
 
 	// Make legal targets
-        printf( "TEST1h: Processes started with priority %d\n", NORMAL_PRIORITY);
+	printf("TEST1h: Processes started with priority %d\n", NORMAL_PRIORITY);
 	CREATE_PROCESS("test1h_a", test1x, NORMAL_PRIORITY, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1h_b", test1x, NORMAL_PRIORITY, &ProcessID2,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1h_c", test1x, NORMAL_PRIORITY, &ProcessID3,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1h_d", test1x, NORMAL_PRIORITY, &ProcessID4,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1h_e", test1x, NORMAL_PRIORITY, &ProcessID5,
-			&ErrorReturned);
+		&ErrorReturned);
 	CREATE_PROCESS("test1h_f", test1x, NORMAL_PRIORITY, &ProcessID6,
-			&ErrorReturned);
+		&ErrorReturned);
 
 	//      Sleep awhile to watch the scheduling
 	SLEEP(SleepTime);
@@ -582,68 +568,68 @@ void test1h(void) {
 	//  that the priorities have been changed for processes that
 	//  are ready and for processes that are sleeping.
 
-        printf( "TEST1h: Process %ld now has priority %d\n", ProcessID1, 
-                  FAVORABLE_PRIORITY);
-        CHANGE_PRIORITY(ProcessID1, FAVORABLE_PRIORITY, &ErrorReturned);
+	printf("TEST1h: Process %ld now has priority %d\n", ProcessID1,
+		FAVORABLE_PRIORITY);
+	CHANGE_PRIORITY(ProcessID1, FAVORABLE_PRIORITY, &ErrorReturned);
 
-        printf( "TEST1h: Process %ld now has priority %d\n", ProcessID3, 
-                  LEAST_FAVORABLE_PRIORITY);
-        CHANGE_PRIORITY(ProcessID3, LEAST_FAVORABLE_PRIORITY, &ErrorReturned);
+	printf("TEST1h: Process %ld now has priority %d\n", ProcessID3,
+		LEAST_FAVORABLE_PRIORITY);
+	CHANGE_PRIORITY(ProcessID3, LEAST_FAVORABLE_PRIORITY, &ErrorReturned);
 
-        //      Sleep awhile to watch the scheduling
-        SLEEP(SleepTime);
+	//      Sleep awhile to watch the scheduling
+	SLEEP(SleepTime);
 
-        //  Now change the priority - it should be possible to see
-        //  that the priorities have been changed for processes that
-        //  are ready and for processes that are sleeping.
+	//  Now change the priority - it should be possible to see
+	//  that the priorities have been changed for processes that
+	//  are ready and for processes that are sleeping.
 
-        printf( "TEST1h: Process %ld now has priority %d\n", ProcessID1,
-                  LEAST_FAVORABLE_PRIORITY);
-        CHANGE_PRIORITY(ProcessID1, LEAST_FAVORABLE_PRIORITY, &ErrorReturned);
+	printf("TEST1h: Process %ld now has priority %d\n", ProcessID1,
+		LEAST_FAVORABLE_PRIORITY);
+	CHANGE_PRIORITY(ProcessID1, LEAST_FAVORABLE_PRIORITY, &ErrorReturned);
 
-        printf( "TEST1h: Process %ld now has priority %d\n", ProcessID2,
-                  FAVORABLE_PRIORITY);
-        CHANGE_PRIORITY(ProcessID2, FAVORABLE_PRIORITY, &ErrorReturned);
+	printf("TEST1h: Process %ld now has priority %d\n", ProcessID2,
+		FAVORABLE_PRIORITY);
+	CHANGE_PRIORITY(ProcessID2, FAVORABLE_PRIORITY, &ErrorReturned);
 
-        //     Sleep awhile to watch the scheduling
-        SLEEP(SleepTime);
+	//     Sleep awhile to watch the scheduling
+	SLEEP(SleepTime);
 
-        // Terminate everyone
+	// Terminate everyone
 	TERMINATE_PROCESS(-2, &ErrorReturned);
 
 }                                               // End of test1h  
 
 /**************************************************************************
 
- Test1i   SEND_MESSAGE and RECEIVE_MESSAGE with errors.
+Test1i   SEND_MESSAGE and RECEIVE_MESSAGE with errors.
 
- This has the same kind of error conditions that previous tests did;
- bad PIDs, bad message lengths, illegal buffer addresses, etc.
- Your imagination can go WILD on this one.
+This has the same kind of error conditions that previous tests did;
+bad PIDs, bad message lengths, illegal buffer addresses, etc.
+Your imagination can go WILD on this one.
 
- This is a good time to mention an important aspect of the OS and
- scheduling.
- As you know, after doing a switch_context, the hardware passes
- control to the code after SwitchContext.  In other words, a process
- that is being rescheduled "disappears" into SwitchContext.  But
- it "reappears" after some other process causes that "disappeared"
- process to be scheduled.
- So at that "reappearing" location is a good place to put your message 
- code so as to do the rendevous work that's necessary to match up sends
- and receives.
+This is a good time to mention an important aspect of the OS and
+scheduling.
+As you know, after doing a switch_context, the hardware passes
+control to the code after SwitchContext.  In other words, a process
+that is being rescheduled "disappears" into SwitchContext.  But
+it "reappears" after some other process causes that "disappeared"
+process to be scheduled.
+So at that "reappearing" location is a good place to put your message
+code so as to do the rendevous work that's necessary to match up sends
+and receives.
 
- Why do this:        Suppose process A has sent a message to
- process B.  It so happens that you may well want
- to do some preparation in process B once it's
- registers are in memory, but BEFORE it executes
- the test.  In other words, it allows you to
- complete the work for the send to process B.
+Why do this:        Suppose process A has sent a message to
+process B.  It so happens that you may well want
+to do some preparation in process B once it's
+registers are in memory, but BEFORE it executes
+the test.  In other words, it allows you to
+complete the work for the send to process B.
 
- We use test1x as our target process; but since it doesn't have any
- messaging code, it never actually sends or receives messages so it
- will never actually be scheduled.
+We use test1x as our target process; but since it doesn't have any
+messaging code, it never actually sends or receives messages so it
+will never actually be scheduled.
 
- **************************************************************************/
+**************************************************************************/
 
 #define         LEGAL_MESSAGE_LENGTH           (INT16)64
 #define         ILLEGAL_MESSAGE_LENGTH         (INT16)1000
@@ -659,7 +645,7 @@ typedef struct {
 	long ReceiveLength;
 	long ActualSendLength;
 	long loop_count;
-	char MessageBuffer[LEGAL_MESSAGE_LENGTH ];
+	char MessageBuffer[LEGAL_MESSAGE_LENGTH];
 } TEST1I_DATA;
 
 void test1i(void) {
@@ -668,10 +654,10 @@ void test1i(void) {
 	long ErrorReturned;
 	TEST1I_DATA *td; // Use as ptr to data */
 
-	// Here we maintain the data to be used by this process when running
-	// on this routine.  This code should be re-entrant.
+					 // Here we maintain the data to be used by this process when running
+					 // on this routine.  This code should be re-entrant.
 
-	td = (TEST1I_DATA *) calloc(1, sizeof(TEST1I_DATA));
+	td = (TEST1I_DATA *)calloc(1, sizeof(TEST1I_DATA));
 	if (td == 0) {
 		printf("Something screwed up allocating space in test1i\n");
 	}
@@ -687,7 +673,7 @@ void test1i(void) {
 
 	// Make a legal target
 	CREATE_PROCESS("test1i_a", test1x, NORMAL_PRIORITY, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 
 	// Send a message to illegal process
 	td->TargetPid = 9999;
@@ -705,29 +691,29 @@ void test1i(void) {
 	td->SourcePid = 9999;
 	td->ReceiveLength = LEGAL_MESSAGE_LENGTH;
 	RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-			&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
+		&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
 	ErrorExpected(ErrorReturned, "RECEIVE_MESSAGE");
 
 	//      Receive with illegal buffer size
 	td->SourcePid = ProcessID1;
 	td->ReceiveLength = ILLEGAL_MESSAGE_LENGTH;
 	RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-			&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
+		&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
 	ErrorExpected(ErrorReturned, "RECEIVE_MESSAGE");
 
 	//      Send a legal ( but long ) message to self
 	td->TargetPid = OurProcessID;
 	td->SendLength = LEGAL_MESSAGE_LENGTH;
 	SEND_MESSAGE(td->TargetPid, "a long but legal message", td->SendLength,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "SEND_MESSAGE");
 	td->loop_count++;      // Count the number of legal messages sent
 
-	//   Receive this long message, which should error because the receive buffer is too small
+   //   Receive this long message, which should error because the receive buffer is too small
 	td->SourcePid = OurProcessID;
 	td->ReceiveLength = 10;
 	RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-			&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
+		&(td->ActualSendLength), &(td->ActualSourcePid), &ErrorReturned);
 	ErrorExpected(ErrorReturned, "RECEIVE_MESSAGE");
 
 	// Keep sending legal messages until the architectural
@@ -739,7 +725,7 @@ void test1i(void) {
 		td->TargetPid = ProcessID1;
 		td->SendLength = LEGAL_MESSAGE_LENGTH;
 		SEND_MESSAGE(td->TargetPid, "Legal Test1i Message", td->SendLength,
-				&ErrorReturned);
+			&ErrorReturned);
 		td->loop_count++;
 	}  // End of while
 
@@ -749,35 +735,35 @@ void test1i(void) {
 
 /**************************************************************************
 
- Test1j   SEND_MESSAGE and RECEIVE_MESSAGE Successfully.
+Test1j   SEND_MESSAGE and RECEIVE_MESSAGE Successfully.
 
- Creates three other processes, each running their own code.
- RECEIVE and SEND messages are winged back and forth at them.
+Creates three other processes, each running their own code.
+RECEIVE and SEND messages are winged back and forth at them.
 
- The SEND and RECEIVE system calls as implemented by this test
- imply the following behavior:
+The SEND and RECEIVE system calls as implemented by this test
+imply the following behavior:
 
- SENDER = PID A          RECEIVER = PID B,
+SENDER = PID A          RECEIVER = PID B,
 
- Designates SourcePid =
- TargetPid =          A            C             -1
- ----------------+------------+------------+--------------+
- |            |            |              |               |
- | B          |  Message   |     X        |   Message     |
- |Transmitted |            | Transmitted  |               |
- ----------------+------------+------------+--------------+
- |            |            |              |               |
- | C          |     X      |     X        |       X       |
- |            |            |              |               |
- ----------------+------------+------------+--------------+
- |            |            |              |               |
- | -1         |   Message  |     X        |   Message     |
- | Transmitted|            | Transmitted  |               |
- ----------------+------------+------------+--------------+
- A broadcast ( TargetPid = -1 ) means send to everyone BUT yourself.
- ANY of the receiving processes can handle a broadcast message.
- A receive ( SourcePid = -1 ) means receive from anyone.
- **************************************************************************/
+Designates SourcePid =
+TargetPid =          A            C             -1
+----------------+------------+------------+--------------+
+|            |            |              |               |
+| B          |  Message   |     X        |   Message     |
+|Transmitted |            | Transmitted  |               |
+----------------+------------+------------+--------------+
+|            |            |              |               |
+| C          |     X      |     X        |       X       |
+|            |            |              |               |
+----------------+------------+------------+--------------+
+|            |            |              |               |
+| -1         |   Message  |     X        |   Message     |
+| Transmitted|            | Transmitted  |               |
+----------------+------------+------------+--------------+
+A broadcast ( TargetPid = -1 ) means send to everyone BUT yourself.
+ANY of the receiving processes can handle a broadcast message.
+A receive ( SourcePid = -1 ) means receive from anyone.
+**************************************************************************/
 
 #define         LEGAL_MESSAGE_LENGTH            (INT16)64
 #define         ILLEGAL_MESSAGE_LENGTH          (INT16)1000
@@ -793,8 +779,8 @@ typedef struct {
 	long ActualSendLength;
 	long send_loop_count;
 	long receive_loop_count;
-	char MessageBuffer[LEGAL_MESSAGE_LENGTH ];
-	char MessageSent[LEGAL_MESSAGE_LENGTH ];
+	char MessageBuffer[LEGAL_MESSAGE_LENGTH];
+	char MessageSent[LEGAL_MESSAGE_LENGTH];
 } TEST1J_DATA;
 
 void test1j(void) {
@@ -806,10 +792,10 @@ void test1j(void) {
 	int Iteration;
 	TEST1J_DATA *td;           // Use as pointer to data
 
-	// Here we maintain the data to be used by this process when running
-	// on this routine.  This code should be re-entrant.                */
+	   // Here we maintain the data to be used by this process when running
+	   // on this routine.  This code should be re-entrant.                */
 
-	td = (TEST1J_DATA *) calloc(1, sizeof(TEST1J_DATA));
+	td = (TEST1J_DATA *)calloc(1, sizeof(TEST1J_DATA));
 	if (td == 0) {
 		printf("Something screwed up allocating space in test1j\n");
 	}
@@ -826,13 +812,13 @@ void test1j(void) {
 
 	// Make 3 legal targets
 	CREATE_PROCESS("test1j_1", test1j_echo, NORMAL_PRIORITY, &ProcessID1,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 	CREATE_PROCESS("test1j_2", test1j_echo, NORMAL_PRIORITY, &ProcessID2,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 	CREATE_PROCESS("test1j_3", test1j_echo, NORMAL_PRIORITY, &ProcessID3,
-			&ErrorReturned);
+		&ErrorReturned);
 	SuccessExpected(ErrorReturned, "CREATE_PROCESS");
 
 	//      Send/receive a legal message to each child
@@ -851,14 +837,14 @@ void test1j(void) {
 		}
 		td->SendLength = 20;
 		SEND_MESSAGE(td->TargetPid, td->MessageSent, td->SendLength,
-				&ErrorReturned);
+			&ErrorReturned);
 		SuccessExpected(ErrorReturned, "SEND_MESSAGE");
 
 		td->SourcePid = -1;
 		td->ReceiveLength = LEGAL_MESSAGE_LENGTH;
 		RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-				&(td->ActualSendLength), &(td->ActualSourcePid),
-				&ErrorReturned);
+			&(td->ActualSendLength), &(td->ActualSourcePid),
+			&ErrorReturned);
 		SuccessExpected(ErrorReturned, "RECEIVE_MESSAGE");
 
 		if (strcmp(td->MessageBuffer, td->MessageSent) != 0)
@@ -871,17 +857,17 @@ void test1j(void) {
 			printf("ERROR - send length not sent correctly.\n");
 	}    // End of for loop
 
-	//      Keep sending legal messages until the architectural (OS)
-	//      limit for buffer space is exhausted.
+		 //      Keep sending legal messages until the architectural (OS)
+		 //      limit for buffer space is exhausted.
 
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		td->TargetPid = -1;
-		sprintf(td->MessageSent, "This is message %ld          ", 
-                       td->send_loop_count);
+		sprintf(td->MessageSent, "This is message %ld          ",
+			td->send_loop_count);
 		td->SendLength = 20 + (td->send_loop_count % 8);
 		SEND_MESSAGE(td->TargetPid, td->MessageSent, td->SendLength,
-				&ErrorReturned);
+			&ErrorReturned);
 
 		td->send_loop_count++;
 	}
@@ -894,38 +880,38 @@ void test1j(void) {
 		td->SourcePid = -1;
 		td->ReceiveLength = LEGAL_MESSAGE_LENGTH;
 		RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-				&(td->ActualSendLength), &(td->ActualSourcePid),
-				&ErrorReturned);
+			&(td->ActualSendLength), &(td->ActualSourcePid),
+			&ErrorReturned);
 		SuccessExpected(ErrorReturned, "RECEIVE_MESSAGE");
-                if ( strlen(td->MessageBuffer) != td->ActualSendLength ) {
-                   printf( "Test1j:  ERROR - String received doesn't match specified length\n");
-                }
+		if (strlen(td->MessageBuffer) != td->ActualSendLength) {
+			printf("Test1j:  ERROR - String received doesn't match specified length\n");
+		}
 		printf("Test1j: Receive from PID = %ld: length = %ld: msg = %s:\n",
-				td->ActualSourcePid, 
-                                td->ActualSendLength, 
-                                td->MessageBuffer);
+			td->ActualSourcePid,
+			td->ActualSendLength,
+			td->MessageBuffer);
 		td->receive_loop_count++;
 	}
 
 	printf("A total of %ld messages were received.\n", td->receive_loop_count);
-	CALL(TERMINATE_PROCESS(-2, &ErrorReturned ));
+	CALL(TERMINATE_PROCESS(-2, &ErrorReturned));
 
 }                                                 // End of test1j     
 
-/**************************************************************************
+  /**************************************************************************
 
- Test1k  Test other oddities in your system.
+  Test1k  Test other oddities in your system.
 
 
- There are many other strange effects, not taken into account
- by the previous tests.  One of these is:
+  There are many other strange effects, not taken into account
+  by the previous tests.  One of these is:
 
- 1. Executing a privileged instruction from a user program
- This should cause the program to be terminated.  The hardware will
- cause a fault to occur.  Your fault handler in the OS will catch this
- and terminate the program.
+  1. Executing a privileged instruction from a user program
+  This should cause the program to be terminated.  The hardware will
+  cause a fault to occur.  Your fault handler in the OS will catch this
+  and terminate the program.
 
- **************************************************************************/
+  **************************************************************************/
 
 void test1k(void) {
 	long OurProcessID;         // PID of this process
@@ -940,28 +926,28 @@ void test1k(void) {
 	//  Do an illegal hardware instruction - we will
 	//  not return from this.    The hardware will take a fault
 	mmio.Mode = Z502Status;
-	MEM_READ(Z502Timer, (void * )&mmio);
+	MEM_READ(Z502Timer, (void *)&mmio);
 
 }                       // End of test1k
 
 /**************************************************************************
- Test 1l
+Test 1l
 
- Write an interesting test of your own to exhibit some feature of
- your Operating System.
+Write an interesting test of your own to exhibit some feature of
+your Operating System.
 
- **************************************************************************/
+**************************************************************************/
 void test1l(void) {
 }                                               // End test1l
 
 /**************************************************************************
- Test1x
+Test1x
 
- is used as a target by the process creation programs.
- It has the virtue of causing lots of rescheduling activity in
- a relatively random way.
+is used as a target by the process creation programs.
+It has the virtue of causing lots of rescheduling activity in
+a relatively random way.
 
- **************************************************************************/
+**************************************************************************/
 
 #define         NUMBER_OF_TEST1X_ITERATIONS     10
 
@@ -977,15 +963,14 @@ void test1x(void) {
 	printf("Release %s:Test 1x: Pid %ld\n", CURRENT_REL, OurProcessID);
 
 	for (Iterations = 0; Iterations < NUMBER_OF_TEST1X_ITERATIONS;
-			Iterations++) {
+	Iterations++) {
 		GET_TIME_OF_DAY(&RandomSeed);
 		RandomSleep = (RandomSleep * RandomSeed) % 143;
 		SLEEP(RandomSleep);
-		printf("%d sleep of test1x completed\n", Iterations);
 		GET_TIME_OF_DAY(&EndingTime);
 		printf("Test1X: Pid = %d, Sleep Time = %ld, Latency Time = %d\n",
-				(int) OurProcessID, RandomSleep,
-				(int) (EndingTime - RandomSeed));
+			(int)OurProcessID, RandomSleep,
+			(int)(EndingTime - RandomSeed));
 	}
 	printf("Test1x, PID %ld, Ends at Time %ld\n", OurProcessID, EndingTime);
 
@@ -996,13 +981,13 @@ void test1x(void) {
 
 /**************************************************************************
 
- Test1j_echo
+Test1j_echo
 
- is used as a target by the message send/receive programs.
- All it does is send back the same message it received to the
- same sender.
+is used as a target by the message send/receive programs.
+All it does is send back the same message it received to the
+same sender.
 
- **************************************************************************/
+**************************************************************************/
 
 typedef struct {
 	long TargetPid;
@@ -1011,8 +996,8 @@ typedef struct {
 	long SendLength;
 	long ReceiveLength;
 	long ActualSendersLength;
-	char MessageBuffer[LEGAL_MESSAGE_LENGTH ];
-	char MessageSent[LEGAL_MESSAGE_LENGTH ];
+	char MessageBuffer[LEGAL_MESSAGE_LENGTH];
+	char MessageSent[LEGAL_MESSAGE_LENGTH];
 } TEST1J_ECHO_DATA;
 
 void test1j_echo(void) {
@@ -1020,10 +1005,10 @@ void test1j_echo(void) {
 	long ErrorReturned;
 	TEST1J_ECHO_DATA *td;                          // Use as ptr to data
 
-	// Here we maintain the data to be used by this process when running
-	// on this routine.  This code should be re-entrant.
+// Here we maintain the data to be used by this process when running
+// on this routine.  This code should be re-entrant.
 
-	td = (TEST1J_ECHO_DATA *) calloc(1, sizeof(TEST1J_ECHO_DATA));
+	td = (TEST1J_ECHO_DATA *)calloc(1, sizeof(TEST1J_ECHO_DATA));
 	if (td == 0) {
 		printf("Something screwed up allocating space in test1j_echo\n");
 	}
@@ -1036,41 +1021,42 @@ void test1j_echo(void) {
 		td->SourcePid = -1;
 		td->ReceiveLength = LEGAL_MESSAGE_LENGTH;
 		RECEIVE_MESSAGE(td->SourcePid, td->MessageBuffer, td->ReceiveLength,
-				&(td->ActualSendersLength), &(td->ActualSourcePid),
-				&ErrorReturned);
+			&(td->ActualSendersLength), &(td->ActualSourcePid),
+			&ErrorReturned);
 		SuccessExpected(ErrorReturned, "RECEIVE_MESSAGE");
-                if ( strlen(td->MessageBuffer) != td->ActualSendersLength ) {
-                   printf( "Pid %ld:  ERROR - String received doesn't ", OurProcessID);
-                   printf( "match specified length\n");
+		if (strlen(td->MessageBuffer) != td->ActualSendersLength) {
+			printf("Pid %ld:  ERROR - String received doesn't ", OurProcessID);
+			printf("match specified length\n");
 
-                }
+		}
 		printf("PID %ld: Receive from PID = %ld: length = %ld: msg = %s:\n",
-				OurProcessID, td->ActualSourcePid, 
-                                td->ActualSendersLength, td->MessageBuffer);
+			OurProcessID, td->ActualSourcePid,
+			td->ActualSendersLength, td->MessageBuffer);
 
 		td->TargetPid = td->ActualSourcePid;
 		strcpy(td->MessageSent, td->MessageBuffer);
 		td->SendLength = td->ActualSendersLength;
 		SEND_MESSAGE(td->TargetPid, td->MessageSent, td->SendLength,
-				&ErrorReturned);
+			&ErrorReturned);
 		SuccessExpected(ErrorReturned, "SEND_MESSAGE");
 	}     // End of while
 
 }                                               // End of test1j_echo
 
 /**************************************************************************
- ErrorExpected    and    SuccessExpected
+ErrorExpected    and    SuccessExpected
 
- These routines simply handle the display of success/error data.
+These routines simply handle the display of success/error data.
 
- **************************************************************************/
+**************************************************************************/
 
 void ErrorExpected(INT32 ErrorCode, char sys_call[]) {
 	if (ErrorCode == ERR_SUCCESS) {
 		printf("An Error SHOULD have occurred.\n");
 		printf("????: Error( %d ) occurred in case %d (%s)\n", ErrorCode,
-				Z502_PROGRAM_COUNTER - 2, sys_call);
-	} else
+			Z502_PROGRAM_COUNTER - 2, sys_call);
+	}
+	else
 		printf("Program correctly returned an error: %d\n", ErrorCode);
 
 }                      // End of ErrorExpected
@@ -1079,20 +1065,21 @@ void SuccessExpected(INT32 ErrorCode, char sys_call[]) {
 	if (ErrorCode != ERR_SUCCESS) {
 		printf("An Error should NOT have occurred.\n");
 		printf("????: Error( %d ) occurred in case %d (%s)\n", ErrorCode,
-				Z502_PROGRAM_COUNTER - 2, sys_call);
-	} else
+			Z502_PROGRAM_COUNTER - 2, sys_call);
+	}
+	else
 		printf("Program correctly returned success.\n");
 
 }                      // End of SuccessExpected
 
 /**************************************************************************
- Test2a exercises a simple memory write and read
+Test2a exercises a simple memory write and read
 
- In global.h, there's a variable  DO_MEMORY_DEBUG.   Switching it to
- TRUE will allow you to see what the memory system thinks is happening.
- WARNING - it's verbose -- and I don't want to see such output - it's
- strictly for your debugging pleasure.
- **************************************************************************/
+In global.h, there's a variable  DO_MEMORY_DEBUG.   Switching it to
+TRUE will allow you to see what the memory system thinks is happening.
+WARNING - it's verbose -- and I don't want to see such output - it's
+strictly for your debugging pleasure.
+**************************************************************************/
 void test2a(void) {
 	long OurProcessID;
 	long MemoryAddress;
@@ -1110,24 +1097,24 @@ void test2a(void) {
 	MEM_READ(MemoryAddress, &DataRead);
 
 	printf("PID= %ld  address= %ld   written= %ld   read= %ld\n", OurProcessID,
-			MemoryAddress, DataWritten, DataRead);
+		MemoryAddress, DataWritten, DataRead);
 	if (DataRead != DataWritten)
 		printf("AN ERROR HAS OCCURRED.\n");
 	TERMINATE_PROCESS(-1, &ErrorReturned);
 
 }                   // End of test2a   
 
-/**************************************************************************
- Test2b
+					/**************************************************************************
+					Test2b
 
- Exercises simple memory writes and reads.  Watch out, the addresses 
- used are diabolical and are designed to show unusual features of your 
- memory management system.
+					Exercises simple memory writes and reads.  Watch out, the addresses
+					used are diabolical and are designed to show unusual features of your
+					memory management system.
 
- We do sanity checks - after each read/write pair, we will 
- read back the first set of data to make sure it's still there.
+					We do sanity checks - after each read/write pair, we will
+					read back the first set of data to make sure it's still there.
 
- **************************************************************************/
+					**************************************************************************/
 
 #define         TEST_DATA_SIZE          (INT16)7
 
@@ -1143,9 +1130,9 @@ void test2b(void) {
 	INT16 TestDataIndex = 0;
 
 	// This is an array containing the memory address we are accessing
-	INT32 test_data[TEST_DATA_SIZE ] = { 0, 4, PGSIZE - 2, PGSIZE, 3 * PGSIZE
-			- 2, (VIRTUAL_MEM_PAGES - 1) * PGSIZE, VIRTUAL_MEM_PAGES * PGSIZE
-			- 2 };
+	INT32 test_data[TEST_DATA_SIZE] = { 0, 4, PGSIZE - 2, PGSIZE, 3 * PGSIZE
+		- 2, (VIRTUAL_MEM_PAGES - 1) * PGSIZE, VIRTUAL_MEM_PAGES * PGSIZE
+		- 2 };
 
 	GET_PROCESS_ID("", &OurProcessID, &ErrorReturned);
 	printf("\n\nRelease %s:Test 2b: Pid %ld\n", CURRENT_REL, OurProcessID);
@@ -1156,7 +1143,7 @@ void test2b(void) {
 	MEM_WRITE(FirstMemoryAddress, &FirstDataWritten);
 
 	// Loop through all the memory addresses defined in the array
-	while (TRUE ) {
+	while (TRUE) {
 		MemoryAddress = test_data[TestDataIndex];
 		DataWritten = MemoryAddress + OurProcessID + 27;
 		MEM_WRITE(MemoryAddress, &DataWritten);
@@ -1164,7 +1151,7 @@ void test2b(void) {
 		MEM_READ(MemoryAddress, &DataRead);
 
 		printf("PID= %ld  address= %ld  written= %ld   read= %ld\n",
-				OurProcessID, MemoryAddress, DataWritten, DataRead);
+			OurProcessID, MemoryAddress, DataWritten, DataRead);
 		if (DataRead != DataWritten)
 			printf("AN ERROR HAS OCCURRED.\n");
 
@@ -1172,29 +1159,29 @@ void test2b(void) {
 		MEM_READ(FirstMemoryAddress, &FirstDataRead);
 
 		printf("PID= %ld  address= %ld   written= %ld   read= %ld\n",
-				OurProcessID, FirstMemoryAddress, FirstDataWritten,
-				FirstDataRead);
+			OurProcessID, FirstMemoryAddress, FirstDataWritten,
+			FirstDataRead);
 		if (FirstDataRead != FirstDataWritten)
 			printf("AN ERROR HAS OCCURRED.\n");
 		TestDataIndex++;
 	}
 }                            // End of test2b    
 
-/**************************************************************************
+	 /**************************************************************************
 
- Test2c causes usage of disks.  The test is designed to give
- you a chance to develop a mechanism for handling disk requests.
+	 Test2c causes usage of disks.  The test is designed to give
+	 you a chance to develop a mechanism for handling disk requests.
 
- You will need a way to get the data read back from the disk into the
- buffer defined by the user process.  This can most easily be done after
- the process is rescheduled and about to return to user code.
- **************************************************************************/
+	 You will need a way to get the data read back from the disk into the
+	 buffer defined by the user process.  This can most easily be done after
+	 the process is rescheduled and about to return to user code.
+	 **************************************************************************/
 
 #define         DISPLAY_GRANULARITY2c           10
 #define         TEST2C_LOOPS                    50
 
 typedef union {
-	char char_data[PGSIZE ];
+	char char_data[PGSIZE];
 	UINT32 int_data[PGSIZE / sizeof(int)];
 } DISK_DATA;
 
@@ -1210,8 +1197,8 @@ void test2c(void) {
 	long Sector;
 	int Iterations;
 
-	DataWritten = (DISK_DATA *) calloc(1, sizeof(DISK_DATA));
-	DataRead = (DISK_DATA *) calloc(1, sizeof(DISK_DATA));
+	DataWritten = (DISK_DATA *)calloc(1, sizeof(DISK_DATA));
+	DataRead = (DISK_DATA *)calloc(1, sizeof(DISK_DATA));
 	if (DataRead == 0)
 		printf("Something screwed up allocating space in test2c\n");
 
@@ -1228,35 +1215,36 @@ void test2c(void) {
 		DataWritten->int_data[0] = DiskID;
 		DataWritten->int_data[1] = CheckValue;
 		DataWritten->int_data[2] = Sector;
-		DataWritten->int_data[3] = (int) OurProcessID;
+		DataWritten->int_data[3] = (int)OurProcessID;
 		//printf( "Test2c - Pid = %d, Writing from Addr = %X\n", (int)OurProcessID, (unsigned int )(DataWritten->char_data));
-		DISK_WRITE(DiskID, Sector, (char* )(DataWritten->char_data));
+		DISK_WRITE(DiskID, Sector, (char*)(DataWritten->char_data));
 
 		// Now read back the same data.  Note that we assume the
 		// DiskID and Sector have not been modified by the previous
 		// call.
-		DISK_READ(DiskID, Sector, (char* )(DataRead->char_data));
+		DISK_READ(DiskID, Sector, (char*)(DataRead->char_data));
 
 		if ((DataRead->int_data[0] != DataWritten->int_data[0])
-				|| (DataRead->int_data[1] != DataWritten->int_data[1])
-				|| (DataRead->int_data[2] != DataWritten->int_data[2])
-				|| (DataRead->int_data[3] != DataWritten->int_data[3])) {
+			|| (DataRead->int_data[1] != DataWritten->int_data[1])
+			|| (DataRead->int_data[2] != DataWritten->int_data[2])
+			|| (DataRead->int_data[3] != DataWritten->int_data[3])) {
 			printf("ERROR in Test 2c, Pid = %ld. Disk = %ld\n", OurProcessID,
-					DiskID);
+				DiskID);
 			printf("Written:  %d,  %d,  %d,  %d\n", DataWritten->int_data[0],
-					DataWritten->int_data[1], DataWritten->int_data[2],
-					DataWritten->int_data[3]);
+				DataWritten->int_data[1], DataWritten->int_data[2],
+				DataWritten->int_data[3]);
 			printf("Read:     %d,  %d,  %d,  %d\n", DataRead->int_data[0],
-					DataRead->int_data[1], DataRead->int_data[2],
-					DataRead->int_data[3]);
-		} else if ((Iterations % DISPLAY_GRANULARITY2c) == 0) {
+				DataRead->int_data[1], DataRead->int_data[2],
+				DataRead->int_data[3]);
+		}
+		else if ((Iterations % DISPLAY_GRANULARITY2c) == 0) {
 			printf(
-					"TEST2C: PID = %ld: SUCCESS READING  DiskID =%ld, Sector = %ld\n",
-					OurProcessID, DiskID, Sector);
+				"TEST2C: PID = %ld: SUCCESS READING  DiskID =%ld, Sector = %ld\n",
+				OurProcessID, DiskID, Sector);
 		}
 	}   // End of for loop
 
-	// Now read back the data we've previously written and read
+		// Now read back the data we've previously written and read
 
 	printf("TEST2C: Reading back data: PID %ld.\n", OurProcessID);
 	Sector = OurProcessID;
@@ -1270,24 +1258,25 @@ void test2c(void) {
 		DataWritten->int_data[2] = Sector;
 		DataWritten->int_data[3] = OurProcessID;
 
-		DISK_READ(DiskID, Sector, (char* )(DataRead->char_data));
+		DISK_READ(DiskID, Sector, (char*)(DataRead->char_data));
 
 		if ((DataRead->int_data[0] != DataWritten->int_data[0])
-				|| (DataRead->int_data[1] != DataWritten->int_data[1])
-				|| (DataRead->int_data[2] != DataWritten->int_data[2])
-				|| (DataRead->int_data[3] != DataWritten->int_data[3])) {
+			|| (DataRead->int_data[1] != DataWritten->int_data[1])
+			|| (DataRead->int_data[2] != DataWritten->int_data[2])
+			|| (DataRead->int_data[3] != DataWritten->int_data[3])) {
 			printf("AN ERROR HAS OCCURRED in Test 2c, Pid = %ld.\n",
-					OurProcessID);
+				OurProcessID);
 			printf("Written:  %d,  %d,  %d,  %d\n", DataWritten->int_data[0],
-					DataWritten->int_data[1], DataWritten->int_data[2],
-					DataWritten->int_data[3]);
+				DataWritten->int_data[1], DataWritten->int_data[2],
+				DataWritten->int_data[3]);
 			printf("Read:     %d,  %d,  %d,  %d\n", DataRead->int_data[0],
-					DataRead->int_data[1], DataRead->int_data[2],
-					DataRead->int_data[3]);
-		} else if ((Iterations % DISPLAY_GRANULARITY2c) == 0) {
+				DataRead->int_data[1], DataRead->int_data[2],
+				DataRead->int_data[3]);
+		}
+		else if ((Iterations % DISPLAY_GRANULARITY2c) == 0) {
 			printf(
-					"TEST2C: PID = %ld: SUCCESS READING  DiskID =%ld, Sector = %ld\n",
-					OurProcessID, DiskID, Sector);
+				"TEST2C: PID = %ld: SUCCESS READING  DiskID =%ld, Sector = %ld\n",
+				OurProcessID, DiskID, Sector);
 		}
 
 	}   // End of for loop
@@ -1300,17 +1289,17 @@ void test2c(void) {
 
 /**************************************************************************
 
- Test2d runs several disk programs at a time.  The purpose here
- is to watch the scheduling that goes on for these
- various disk processes.  The behavior that should be seen
- is that the processes alternately run and do disk
- activity - there should always be someone running unless
- ALL processes happen to be waiting on the disk at some
- point.
- This program will terminate when all the test2c routines
- have finished.
+Test2d runs several disk programs at a time.  The purpose here
+is to watch the scheduling that goes on for these
+various disk processes.  The behavior that should be seen
+is that the processes alternately run and do disk
+activity - there should always be someone running unless
+ALL processes happen to be waiting on the disk at some
+point.
+This program will terminate when all the test2c routines
+have finished.
 
- **************************************************************************/
+**************************************************************************/
 #define           MOST_FAVORABLE_PRIORITY                       1
 
 void test2d(void) {
@@ -1343,7 +1332,7 @@ void test2d(void) {
 	}
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Found Process -first- completed at %ld\n\n",
-			OurProcessID, CurrentTime);
+		OurProcessID, CurrentTime);
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		SLEEP(SleepTime);
@@ -1351,7 +1340,7 @@ void test2d(void) {
 	}
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Found Process -second- completed at %ld\n\n",
-			OurProcessID, CurrentTime);
+		OurProcessID, CurrentTime);
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		SLEEP(SleepTime);
@@ -1359,7 +1348,7 @@ void test2d(void) {
 	}
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Found Process -third- completed at %ld\n\n",
-			OurProcessID, CurrentTime);
+		OurProcessID, CurrentTime);
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		SLEEP(SleepTime);
@@ -1367,7 +1356,7 @@ void test2d(void) {
 	}
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Found Process -fourth- completed at %ld\n\n",
-			OurProcessID, CurrentTime);
+		OurProcessID, CurrentTime);
 	ErrorReturned = ERR_SUCCESS;
 	while (ErrorReturned == ERR_SUCCESS) {
 		SLEEP(SleepTime);
@@ -1375,20 +1364,20 @@ void test2d(void) {
 	}
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Found Process -fifth- completed at %ld\n\n",
-			OurProcessID, CurrentTime);
+		OurProcessID, CurrentTime);
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("Test2d, PID %ld, Ends at Time %ld\n\n", OurProcessID, CurrentTime);
 	TERMINATE_PROCESS(-2, &ErrorReturned);
 
 }                                   // End of test2d 
 
-/**************************************************************************
+			/**************************************************************************
 
- Test2e touches a number of logical pages - but the number of pages touched
- will fit into the physical memory available.
- The addresses accessed are pseudo-random distributed in a non-uniform manner.
+			Test2e touches a number of logical pages - but the number of pages touched
+			will fit into the physical memory available.
+			The addresses accessed are pseudo-random distributed in a non-uniform manner.
 
- **************************************************************************/
+			**************************************************************************/
 
 #define         STEP_SIZE               VIRTUAL_MEM_PAGES/(4 * PHYS_MEM_PGS )
 #define         DISPLAY_GRANULARITY2e   16 * STEP_SIZE
@@ -1423,11 +1412,11 @@ void test2e(void) {
 
 		if (Iteration % DISPLAY_GRANULARITY2e == 0)
 			printf("PID= %ld  address= %6ld   written= %6d   read= %6d\n",
-					OurProcessID, MemoryAddress, DataWritten, DataRead);
+				OurProcessID, MemoryAddress, DataWritten, DataRead);
 		if (DataRead != DataWritten) {  // Written = Read?
 			printf("AN ERROR HAS OCCURRED ON 1ST READBACK.\n");
 			printf("PID= %ld  address= %ld   written= %d   read= %d\n",
-					OurProcessID, MemoryAddress, DataWritten, DataRead);
+				OurProcessID, MemoryAddress, DataWritten, DataRead);
 		}
 
 		// It makes life more fun!! to write the data again
@@ -1435,8 +1424,8 @@ void test2e(void) {
 
 	}    // End of for loop
 
-	// Now read back the data we've written and paged
-	// We try to jump around a bit in choosing addresses we read back
+		 // Now read back the data we've written and paged
+		 // We try to jump around a bit in choosing addresses we read back
 	printf("Reading back data: test 2e, PID %ld.\n", OurProcessID);
 
 	for (Iteration = 0; Iteration < TOTAL_ITERATIONS; Iteration++) {
@@ -1450,11 +1439,11 @@ void test2e(void) {
 
 		if (Iteration % DISPLAY_GRANULARITY2e == 0)
 			printf("PID= %ld  address= %6ld   written= %6d   read= %6d\n",
-					OurProcessID, MemoryAddress, DataWritten, DataRead);
+				OurProcessID, MemoryAddress, DataWritten, DataRead);
 		if (DataRead != DataWritten) {  // Written = Read?
 			printf("AN ERROR HAS OCCURRED ON 2ND READBACK.\n");
 			printf("PID= %ld  address= %ld   written= %d   read= %d\n",
-					OurProcessID, MemoryAddress, DataWritten, DataRead);
+				OurProcessID, MemoryAddress, DataWritten, DataRead);
 		}
 	}    // End of for loop
 	GET_TIME_OF_DAY(&CurrentTime);
@@ -1464,10 +1453,10 @@ void test2e(void) {
 
 /**************************************************************************
 
- Test2f causes extensive page replacement, but reuses pages.
- This program will terminate, but it might take a while.
+Test2f causes extensive page replacement, but reuses pages.
+This program will terminate, but it might take a while.
 
- **************************************************************************/
+**************************************************************************/
 
 #define                 LOOP_COUNT                    4000
 #define                 DISPLAY_GRANULARITY2          100
@@ -1487,11 +1476,11 @@ void test2f(void) {
 	long DataWritten;
 	long DataRead;
 	long ErrorReturned;
-        long CurrentTime;
+	long CurrentTime;
 	MEMORY_TOUCHED_RECORD *mtr;
 	long Index, Loops;
 
-	mtr = (MEMORY_TOUCHED_RECORD *) calloc(1, sizeof(MEMORY_TOUCHED_RECORD));
+	mtr = (MEMORY_TOUCHED_RECORD *)calloc(1, sizeof(MEMORY_TOUCHED_RECORD));
 
 	GET_PROCESS_ID("", &OurProcessID, &ErrorReturned);
 	printf("\n\nRelease %s:Test 2f: Pid %ld\n", CURRENT_REL, OurProcessID);
@@ -1517,7 +1506,7 @@ void test2f(void) {
 
 
 		// Record in our data-base that we've accessed this page
-		mtr->page_touched[(short) Loops] = PageNumber;
+		mtr->page_touched[(short)Loops] = PageNumber;
 		Test2f_Statistics(OurProcessID);
 
 	}   // End of for Loops
@@ -1526,7 +1515,7 @@ void test2f(void) {
 
 		// We can only read back from pages we've previously
 		// written to, so find out which pages those are.
-		PageNumber = mtr->page_touched[(short) Loops];
+		PageNumber = mtr->page_touched[(short)Loops];
 		MemoryAddress = PGSIZE * PageNumber;        // Convert page to addr.
 		DataWritten = MemoryAddress + OurProcessID; // Expected read
 		MEM_READ(MemoryAddress, &DataRead);
@@ -1534,15 +1523,15 @@ void test2f(void) {
 
 		if (Loops % DISPLAY_GRANULARITY2 == 0)
 			printf("PID= %ld  address= %ld   written= %ld   read= %ld\n",
-						OurProcessID, MemoryAddress, DataWritten, DataRead);
+				OurProcessID, MemoryAddress, DataWritten, DataRead);
 		if (DataRead != DataWritten)
 			printf("ERROR HAS OCCURRED: READ NOT SAME AS WRITE.\n");
 
 	}   // End of for Loops
 
-	// We've completed reading back everything
+		// We've completed reading back everything
 	printf("TEST 2f, PID %ld, HAS COMPLETED %ld Loops\n", OurProcessID,
-				Loops);
+		Loops);
 
 	GET_TIME_OF_DAY(&CurrentTime);
 	printf("TEST2f:    PID %ld, Ends at Time %ld\n", OurProcessID, CurrentTime);
@@ -1550,22 +1539,22 @@ void test2f(void) {
 
 }                                 // End of test2f
 
-/**************************************************************************
- Test2g
+		  /**************************************************************************
+		  Test2g
 
- Tests multiple copies of test2f running simultaneously.
- Test2f runs these with the same priority in order to show
- equal preference for each child process.  This means all the
- child processes will be stealing memory from each other.
+		  Tests multiple copies of test2f running simultaneously.
+		  Test2f runs these with the same priority in order to show
+		  equal preference for each child process.  This means all the
+		  child processes will be stealing memory from each other.
 
- WARNING:  This test assumes tests 2e - 2f run successfully
+		  WARNING:  This test assumes tests 2e - 2f run successfully
 
- **************************************************************************/
+		  **************************************************************************/
 
 #define         PRIORITY2G              10
 
 void test2g(void) {
-        long OurProcessID;
+	long OurProcessID;
 	long ProcessID1;           // Created processes
 	long ProcessID2;
 	long ProcessID3;
@@ -1573,7 +1562,7 @@ void test2g(void) {
 	long ProcessID5;
 	long ErrorReturned;
 	long SleepTime = 10000;
-        long CurrentTime;
+	long CurrentTime;
 
 	GET_PROCESS_ID("", &OurProcessID, &ErrorReturned);
 	printf("\n\nRelease %s:Test 2g: Pid %ld\n", CURRENT_REL, OurProcessID);
@@ -1621,12 +1610,12 @@ void test2g(void) {
 
 }            // End test2g
 
-/**************************************************************************
+			 /**************************************************************************
 
- Test2h starts up a number of processes who do tests of shared area.
+			 Test2h starts up a number of processes who do tests of shared area.
 
- This process doesn't do much - the real action is in test2hx
- **************************************************************************/
+			 This process doesn't do much - the real action is in test2hx
+			 **************************************************************************/
 
 #define           MOST_FAVORABLE_PRIORITY                       1
 #define           NUMBER_2HX_PROCESSES                          5
@@ -1636,7 +1625,7 @@ void test2h(void) {
 	long OurProcessID;
 	long ProcessID1;           // Created processes
 	long ErrorReturned;
-        long CurrentTime;
+	long CurrentTime;
 
 	GET_PROCESS_ID("", &OurProcessID, &ErrorReturned);
 	printf("\n\nRelease %s:Test 2h: Pid %ld\n", CURRENT_REL, OurProcessID);
@@ -1661,62 +1650,62 @@ void test2h(void) {
 
 }                                  // End of test2h
 
-/**************************************************************************
+		   /**************************************************************************
 
- Test2hx - test shared memory usage.
+		   Test2hx - test shared memory usage.
 
- This test runs as multiple instances of processes; there are several
- processes who in turn manipulate shared memory.
+		   This test runs as multiple instances of processes; there are several
+		   processes who in turn manipulate shared memory.
 
- The algorithm used here flows as follows:
+		   The algorithm used here flows as follows:
 
- o Get our PID and print it out.
- o Use our PID to determine the address at which to start shared
- area - every process will have a different starting address.
- o Define the shared area.
- o Fill in initial portions of the shared area by:
- + No locking required because we're modifying only our portion of
- the shared area.
- + Determine which location within shared area is ours by using the
- Shared ID returned by the DEFINE_SHARED_AREA.  The OS will return
- a unique ID for each caller.
- + Fill in portions of the shared area.
- o Sleep to let all 2hx PIDs start up.
+		   o Get our PID and print it out.
+		   o Use our PID to determine the address at which to start shared
+		   area - every process will have a different starting address.
+		   o Define the shared area.
+		   o Fill in initial portions of the shared area by:
+		   + No locking required because we're modifying only our portion of
+		   the shared area.
+		   + Determine which location within shared area is ours by using the
+		   Shared ID returned by the DEFINE_SHARED_AREA.  The OS will return
+		   a unique ID for each caller.
+		   + Fill in portions of the shared area.
+		   o Sleep to let all 2hx PIDs start up.
 
- o If (shared_index == 0)   This is the MASTER Process
+		   o If (shared_index == 0)   This is the MASTER Process
 
- o LOOP many times doing the following steps:
- + We DON'T need to lock the shared area since the SEND/RECEIVE
- act as synchronization.
- + Select a target process
- + Communicate back and forth with the target process.
- + SEND_MESSAGE( "next", ..... );
- END OF LOOP
- o Loop through each Slave process telling them to terminate
+		   o LOOP many times doing the following steps:
+		   + We DON'T need to lock the shared area since the SEND/RECEIVE
+		   act as synchronization.
+		   + Select a target process
+		   + Communicate back and forth with the target process.
+		   + SEND_MESSAGE( "next", ..... );
+		   END OF LOOP
+		   o Loop through each Slave process telling them to terminate
 
- o If (shared_index > 0)   This is a SLAVE Process
- o LOOP Many times until we get terminate message
- + RECEIVE_MESSAGE( "-1", ..... )
- + Read my mailbox and communicate with master
- + Print out lots of stuff
- + Do lots of sanity checks
- + If MASTER tells us to terminate, do so.
- END OF LOOP
+		   o If (shared_index > 0)   This is a SLAVE Process
+		   o LOOP Many times until we get terminate message
+		   + RECEIVE_MESSAGE( "-1", ..... )
+		   + Read my mailbox and communicate with master
+		   + Print out lots of stuff
+		   + Do lots of sanity checks
+		   + If MASTER tells us to terminate, do so.
+		   END OF LOOP
 
- o If (shared_index == 0)   This is the MASTER Process
- o sleep                      Until everyone is done
- o print the whole shared structure
+		   o If (shared_index == 0)   This is the MASTER Process
+		   o sleep                      Until everyone is done
+		   o print the whole shared structure
 
- o Terminate the process.
+		   o Terminate the process.
 
- **************************************************************************/
+		   **************************************************************************/
 
 #define           NUMBER_MASTER_ITERATIONS    28
 #define           PROC_INFO_STRUCT_TAG        1234
 #define           SHARED_MEM_NAME             "almost_done!!\0"
 
-// This is the per-process area for each of the processes participating
-// in the shared memory.
+		   // This is the per-process area for each of the processes participating
+		   // in the shared memory.
 typedef struct {
 	INT32 structure_tag;      // Unique Tag so we know everything is right
 	INT32 Pid;                // The PID of the slave owning this area
@@ -1738,7 +1727,7 @@ typedef struct {
 typedef struct {
 	INT32 StartingAddressOfSharedArea;     // Local Virtual Address
 	INT32 PagesInSharedArea;               // Size of shared area
-	// How OS knows to put all in same shared area
+ // How OS knows to put all in same shared area
 	char AreaTag[32];
 	// Unique number supplied by OS. First must be 0 and the
 	// return values must be monotonically increasing for each
@@ -1772,18 +1761,18 @@ void PrintTest2hMemory(SHARED_DATA *sp, LOCAL_DATA *ld) {
 	int Index;
 	INT32 Data1, Data2, Data3, Data4, Data5;
 
-	printf("\nNumber of Masters + Slaves = %d\n", (int) NUMBER_2HX_PROCESSES);
+	printf("\nNumber of Masters + Slaves = %d\n", (int)NUMBER_2HX_PROCESSES);
 
 	for (Index = 0; Index < NUMBER_2HX_PROCESSES; Index++) {
-		MEM_READ(MEM_ADJUST2( sp, ld, proc_info[ Index ].structure_tag),
-				&Data1);
-		MEM_READ(MEM_ADJUST2( sp, ld, proc_info[ Index ].Pid ), &Data2);
-		MEM_READ(MEM_ADJUST2( sp, ld, proc_info[ Index ].MailboxToMaster ),
-				&Data3);
-		MEM_READ(MEM_ADJUST2( sp, ld, proc_info[ Index ].MailboxToSlave ),
-				&Data4);
-		MEM_READ(MEM_ADJUST2( sp, ld, proc_info[ Index ].WriterOfMailbox),
-				&Data5);
+		MEM_READ(MEM_ADJUST2(sp, ld, proc_info[Index].structure_tag),
+			&Data1);
+		MEM_READ(MEM_ADJUST2(sp, ld, proc_info[Index].Pid), &Data2);
+		MEM_READ(MEM_ADJUST2(sp, ld, proc_info[Index].MailboxToMaster),
+			&Data3);
+		MEM_READ(MEM_ADJUST2(sp, ld, proc_info[Index].MailboxToSlave),
+			&Data4);
+		MEM_READ(MEM_ADJUST2(sp, ld, proc_info[Index].WriterOfMailbox),
+			&Data5);
 
 		printf("Mailbox info for index %d:\n", Index);
 		printf("\tIndex = %d, Struct Tag = %d,  ", Index, Data1);
@@ -1804,7 +1793,7 @@ void test2hx(void) {
 	int Index;
 	INT32 ReadWriteData;    // Used to move to and from shared memory
 
-	ld = (LOCAL_DATA *) calloc(1, sizeof(LOCAL_DATA));
+	ld = (LOCAL_DATA *)calloc(1, sizeof(LOCAL_DATA));
 	if (ld == 0) {
 		printf("Unable to allocate memory in test2hx\n");
 	}
@@ -1822,42 +1811,42 @@ void test2hx(void) {
 	ld->PagesInSharedArea = sizeof(SHARED_DATA) / PGSIZE + 1;
 
 	// Now ask the OS to map us into the shared area
-	DEFINE_SHARED_AREA((long )ld->StartingAddressOfSharedArea, // Input - our virtual address
-			(long)ld->PagesInSharedArea,// Input - pages to map
-			(long)ld->AreaTag,// Input - ID for this shared area
-			&ld->OurSharedID,// Output - Unique shared ID
-			&ld->ErrorReturned);              // Output - any error
+	DEFINE_SHARED_AREA((long)ld->StartingAddressOfSharedArea, // Input - our virtual address
+		(long)ld->PagesInSharedArea,// Input - pages to map
+		(long)ld->AreaTag,// Input - ID for this shared area
+		&ld->OurSharedID,// Output - Unique shared ID
+		&ld->ErrorReturned);              // Output - any error
 	SuccessExpected(ld->ErrorReturned, "DEFINE_SHARED_AREA");
 
 	ReadWriteData = PROC_INFO_STRUCT_TAG; // Sanity data
 	MEM_WRITE(MEM_ADJUST(proc_info[ld->OurSharedID].structure_tag),
-			&ReadWriteData);
+		&ReadWriteData);
 
 	ReadWriteData = OurProcessID; // Store PID in our slot
 	MEM_WRITE(MEM_ADJUST(proc_info[ld->OurSharedID].Pid), &ReadWriteData);
 	ReadWriteData = 0;         // Initialize this counter
 	MEM_WRITE(MEM_ADJUST(proc_info[ld->OurSharedID].MailboxToMaster),
-			&ReadWriteData);
+		&ReadWriteData);
 	ReadWriteData = 0;         // Initialize this counter
 	MEM_WRITE(MEM_ADJUST(proc_info[ld->OurSharedID].MailboxToSlave),
-			&ReadWriteData);
+		&ReadWriteData);
 
 	//  This is the code used ONLY by the MASTER Process
 	if (ld->OurSharedID == 0) {  //   We are the MASTER Process
-		// Loop here the required number of times
+		 // Loop here the required number of times
 		for (Index = 0; Index < NUMBER_MASTER_ITERATIONS; Index++) {
 
 			// Wait for all slaves to start up - we assume after the sleep
 			// that the slaves are no longer modifying their shared areas.
 			SLEEP(1000); // Wait for slaves to start
 
-			// Get slave ID we're going to work with - be careful here - the
-			// code further on depends on THIS algorithm
+ // Get slave ID we're going to work with - be careful here - the
+ // code further on depends on THIS algorithm
 			ld->TargetShared = (Index % (NUMBER_2HX_PROCESSES - 1)) + 1;
 
 			// Read the memory of that slave to make sure it's OK
 			MEM_READ(MEM_ADJUST(proc_info[ld->TargetShared].structure_tag),
-					&ReadWriteData);
+				&ReadWriteData);
 			if (ReadWriteData != PROC_INFO_STRUCT_TAG) {
 				printf("We should see a structure tag, but did not\n");
 				printf("This means that this memory is not mapped \n");
@@ -1866,33 +1855,33 @@ void test2hx(void) {
 			}
 			// Get the pid of the process we're working with
 			MEM_READ(MEM_ADJUST(proc_info[ld->TargetShared].Pid),
-					&ld->TargetPid);
+				&ld->TargetPid);
 
 			// We're sending data to the Slave
 			MEM_WRITE(MEM_ADJUST(proc_info[ld->TargetShared].MailboxToSlave),
-					&Index);
+				&Index);
 			MEM_WRITE(MEM_ADJUST(proc_info[ld->TargetShared].WriterOfMailbox),
-					&OurProcessID);
+				&OurProcessID);
 			ReadWriteData = 0;   // Do NOT terminate
 			MEM_WRITE(
-					MEM_ADJUST(proc_info[ld->TargetShared].TerminationRequest),
-					&ReadWriteData);
+				MEM_ADJUST(proc_info[ld->TargetShared].TerminationRequest),
+				&ReadWriteData);
 			printf("Sender %ld to Receiver %d passing data %d\n", OurProcessID,
-					(int) ld->TargetPid, Index);
+				(int)ld->TargetPid, Index);
 
 			// Check the iteration count of the slave.  If it tells us it has done a
 			// certain number of iterations, then tell it to terminate itself.
 			MEM_READ(MEM_ADJUST(proc_info[ld->TargetShared].MailboxToMaster),
-					&ReadWriteData);
+				&ReadWriteData);
 			if (ReadWriteData
-					>= (NUMBER_MASTER_ITERATIONS / (NUMBER_2HX_PROCESSES - 1))
-							- 1) {
+				>= (NUMBER_MASTER_ITERATIONS / (NUMBER_2HX_PROCESSES - 1))
+				- 1) {
 				ReadWriteData = 1;   // Do terminate
 				MEM_WRITE(
-						MEM_ADJUST(proc_info[ld->TargetShared].TerminationRequest),
-						&ReadWriteData);
+					MEM_ADJUST(proc_info[ld->TargetShared].TerminationRequest),
+					&ReadWriteData);
 				printf("Master is sending termination message to PID %d\n",
-						(int) ld->TargetPid);
+					(int)ld->TargetPid);
 			}
 
 			// Now we are done with this slave - send it a message which will start it working.
@@ -1902,21 +1891,21 @@ void test2hx(void) {
 		}     // End of For Index
 	}     // End of MASTER PROCESS
 
-	// This is the start of the slave process work
+		  // This is the start of the slave process work
 	if (ld->OurSharedID != 0) {  //   We are a SLAVE Process
-		// The slaves keep going forever until the master tells them to quit
-		while (TRUE ) {
+		 // The slaves keep going forever until the master tells them to quit
+		while (TRUE) {
 
 			ld->SourcePid = -1; // From anyone
 			ld->MessageReceiveLength = 20;
 			RECEIVE_MESSAGE(ld->SourcePid, ld->ReceiveBuffer,
-					ld->MessageReceiveLength, &ld->MessageSendLength,
-					&ld->MessageSenderPid, &ld->ErrorReturned);
+				ld->MessageReceiveLength, &ld->MessageSendLength,
+				&ld->MessageSenderPid, &ld->ErrorReturned);
 			SuccessExpected(ld->ErrorReturned, "RECEIVE_MESSAGE");
 
 			// Make sure we have our memory mapped correctly
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].structure_tag),
-					&ReadWriteData);
+				&ReadWriteData);
 			if (ReadWriteData != PROC_INFO_STRUCT_TAG) {
 				printf("We should see a structure tag, but did not.\n");
 				printf("This means that this memory is not mapped \n");
@@ -1927,7 +1916,7 @@ void test2hx(void) {
 			// Get the value placed in shared memory and compare it with the PID provided
 			// by the messaging system.
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].WriterOfMailbox),
-					&ReadWriteData);
+				&ReadWriteData);
 			if (ReadWriteData != ld->MessageSenderPid) {
 				printf("ERROR: ERROR: The sender PID, given by the \n");
 				printf("RECEIVE_MESSAGE and by the mailbox, don't match\n");
@@ -1935,33 +1924,33 @@ void test2hx(void) {
 
 			// We're receiving data from the Master
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].MailboxToSlave),
-					&ReadWriteData);
+				&ReadWriteData);
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].WriterOfMailbox),
-					&ld->MessageSenderPid);
+				&ld->MessageSenderPid);
 			printf("Receiver %ld got message from %d passing data %d\n",
-					OurProcessID, ld->MessageSenderPid, ReadWriteData);
+				OurProcessID, ld->MessageSenderPid, ReadWriteData);
 
 			// See if we've been asked to terminate
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].TerminationRequest),
-					&ReadWriteData);
+				&ReadWriteData);
 			if (ReadWriteData > 0) {
 				printf("Process %ld received termination message\n",
-						OurProcessID);
+					OurProcessID);
 				TERMINATE_PROCESS(-1, &ErrorReturned);
 			}
 
 			// Increment the number of iterations we've done.  This will ultimately lead
 			// to the master telling us to terminate.
 			MEM_READ(MEM_ADJUST(proc_info[ld->OurSharedID].MailboxToMaster),
-					&ReadWriteData);
+				&ReadWriteData);
 			ReadWriteData++;
 			MEM_WRITE(MEM_ADJUST(proc_info[ld->OurSharedID].MailboxToMaster),
-					&ReadWriteData);
+				&ReadWriteData);
 
 		}  //End of while TRUE
 	}      // End of SLAVE
 
-	// The Master comes here and prints out the entire shared area
+		   // The Master comes here and prints out the entire shared area
 
 	if (ld->OurSharedID == 0) {      // The slaves should terminate before this.
 		SLEEP(5000);                        // Wait for msgs to finish
@@ -1974,12 +1963,12 @@ void test2hx(void) {
 }                                // End of test2hx   
 /**************************************************************************
 
- test2f_Statistics   This is designed to give an overview of how the
- paging algorithms are working.  It is especially useful when running
- test2g because it will enable us to better understand the global policy
- being used for allocating pages.
+test2f_Statistics   This is designed to give an overview of how the
+paging algorithms are working.  It is especially useful when running
+test2g because it will enable us to better understand the global policy
+being used for allocating pages.
 
- **************************************************************************/
+**************************************************************************/
 
 #define  MAX2F_PID    20
 #define  REPORT_GRANULARITY_2F     100
@@ -2011,53 +2000,53 @@ void Test2f_Statistics(int Pid) {
 			for (i = 0; i < MAX2F_PID; i++) {
 				if (PagesTouched[i] > 0)
 					printf("Pid = %d, Pages Touched = %d\n", i,
-							PagesTouched[i]);
+PagesTouched[i]);
 			}
 		}
 	}
 }                 // End of Test2f_Statistics
 /**************************************************************************
 
- GetSkewedRandomNumber   Is a homegrown deterministic random
- number generator.  It produces  numbers that are NOT uniform across
- the allowed range.
- This is useful in picking page locations so that pages
- get reused and makes a LRU algorithm meaningful.
- This algorithm is VERY good for developing page replacement tests.
- July 2015 - optimized values so as to differentiate between random 
-             replacement and LRU replacement.  I saw a 10% improvement
-             in fault rates when using LRU as compared to random replacement.
- **************************************************************************/
+GetSkewedRandomNumber   Is a homegrown deterministic random
+number generator.  It produces  numbers that are NOT uniform across
+the allowed range.
+This is useful in picking page locations so that pages
+get reused and makes a LRU algorithm meaningful.
+This algorithm is VERY good for developing page replacement tests.
+July 2015 - optimized values so as to differentiate between random
+replacement and LRU replacement.  I saw a 10% improvement
+in fault rates when using LRU as compared to random replacement.
+**************************************************************************/
 
 #define                 SKEWING_FACTOR          0.30
 void GetSkewedRandomNumber(long *random_number, long range) {
 	double temp, temp2, temp3;
-	long extended_range = (long) pow(range, (double) (1 / SKEWING_FACTOR));
-	double multiplier = (double) extended_range / (double) RAND_MAX;
+	long extended_range = (long)pow(range, (double)(1 / SKEWING_FACTOR));
+	double multiplier = (double)extended_range / (double)RAND_MAX;
 
-	temp = multiplier * (double) rand();
+	temp = multiplier * (double)rand();
 	if (temp < 0)
 		temp = -temp;
-	temp2 = (double) ((long) temp % extended_range);
-	temp3 = pow(temp2, (double) SKEWING_FACTOR);
-	*random_number = (long) temp3;
+	temp2 = (double)((long)temp % extended_range);
+	temp3 = pow(temp2, (double)SKEWING_FACTOR);
+	*random_number = (long)temp3;
 	//printf( "GSRN RAND_MAX Extended, temp, temp2, temp3 %6d %6ld  %6d  %6d  %6d\n",
 	//	   RAND_MAX, extended_range, (int)temp, (int)temp2, (int)temp3 );
 } // End GetSkewedRandomNumber 
 
 void GetRandomNumber(long *random_number, long range) {
 
-	*random_number = (long) rand() % range;
+	*random_number = (long)rand() % range;
 } // End GetRandomNumber 
 
-/*****************************************************************
- testStartCode()
- A new thread (other than the initial thread) comes here the
- first time it's scheduled.
- *****************************************************************/
+  /*****************************************************************
+  testStartCode()
+  A new thread (other than the initial thread) comes here the
+  first time it's scheduled.
+  *****************************************************************/
 void testStartCode() {
-	void (*routine)(void);
-	routine = (void (*)(void)) Z502PrepareProcessForExecution();
+	void(*routine)(void);
+	routine = (void(*)(void)) Z502PrepareProcessForExecution();
 	(*routine)();
 	// If we ever get here, it's because the thread ran to the end
 	// of a test program and wasn't terminated properly.
@@ -2066,10 +2055,10 @@ void testStartCode() {
 }
 
 /*****************************************************************
- main()
- This is the routine that will start running when the
- simulator is invoked.
- *****************************************************************/
+main()
+This is the routine that will start running when the
+simulator is invoked.
+*****************************************************************/
 int main(int argc, char *argv[]) {
 	int i;
 	for (i = 0; i < MAX_NUMBER_OF_USER_THREADS; i++) {
