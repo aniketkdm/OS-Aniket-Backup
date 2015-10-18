@@ -179,6 +179,7 @@ void FaultHandler(void) {
 	long ErrorReturned;
 	SP_INPUT_DATA SPData;    // Used to feed SchedulerPrinter
 	PCB_stack *tmp;
+	ready_queue* tmpReady;
 
 	MEMORY_MAPPED_IO mmio;       // Enables communication with hardware
 
@@ -214,16 +215,20 @@ void FaultHandler(void) {
 		SPData.NumberOfRunningProcesses = 0;
 
 		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+
+		tmpReady = returnFrontReadyQueue();
+
 		for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
-			SPData.ReadyProcessPIDs[i] = i;
+			if (i == 0)
+			{
+				//tmpReady = front_ready_queue;
+			}
+			else
+			{
+				tmpReady = tmpReady->next_ready_process;
+			}
+			SPData.ReadyProcessPIDs[i] = tmpReady->current_ready_process_addr->PID;
 		}
-	
-		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-		for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
-			SPData.TimerSuspendedProcessPIDs[i] = i + 8;
-		}
-		
-		SPData.NumberOfTerminatedProcesses = 0;   // Not used at this time
 
 		CALL(SPPrintLine(&SPData));
 

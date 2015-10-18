@@ -840,7 +840,7 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	}
 	else
 	{
-		Message("process not found in get_process_id\n");
+		printf("process not found in get_process_id\n");
 		*ReturnProcessData->Argument[2] = ERR_PROCESS_NOT_FOUND;
 		
 	}
@@ -910,7 +910,7 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 	Message("Number of processes already created: %d\n", PCB_COUNT);
 	if (PCB_COUNT >= 13) // Limiting the number of processes that can be created
 	{
-		//Message("Max number of processes allowed: 2\n");
+		printf("Max number of processes allowed reached\n");
 		*create_process_data->Argument[4] = ERR_MAX_PROCESSES_REACHED;
 		Message("validating count %d\n", *create_process_data->Argument[4]);
 
@@ -1577,7 +1577,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 	// Checking if we are trying to suspend ourselves. 
 	if (SystemCallData->Argument[0] == -1)
 	{
-		Message("Trying to suspend ourself is illegal. Causes Error.\n");
+		printf("Trying to suspend ourselves is illegal. Causes Error.\n");
 		*SystemCallData->Argument[1] = ERR_SUSPENDING_OURSELVES;
 		return;
 	}
@@ -1587,6 +1587,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 	// validating if the process exists
 	if (tmp == NULL)
 	{
+		printf("process doesn't exist.\n");
 		*SystemCallData->Argument[1] = ERR_PROCESS_NOT_FOUND;
 		return;
 		
@@ -1596,7 +1597,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 		// Checking if the process is already suspended
 		if (tmp->processing_status == SUSPENDED)
 		{
-			Message("Trying to suspend already suspended process. This causes an error\n");
+			printf("Trying to suspend already suspended process. This causes an error\n");
 			*SystemCallData->Argument[1] = ERR_ALREADY_SUSPENDED;
 
 		}
@@ -1604,7 +1605,7 @@ void CustomSuspendProcess(SYSTEM_CALL_DATA *SystemCallData)
 		{
 			// Suspending the process
 			tmp->processing_status = SUSPENDED;
-			Message("%d suspended successfully\n", tmp->process_context);
+			printf("%d suspended successfully\n", tmp->process_context);
 			*SystemCallData->Argument[1] = ERR_SUCCESS;
 		}
 
@@ -1629,7 +1630,7 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 
 	if (tmp->process_context == SystemCallData->Argument[0])
 	{
-		Message("Trying to resume currently running process. Causes Error.\n");
+		printf("Trying to resume currently running process. Causes Error.\n");
 		*SystemCallData->Argument[1] = ERR_RESUMING_OURSELVES;
 		return;
 	}
@@ -1641,6 +1642,7 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 
 	if (tmp == NULL)
 	{
+		printf("Process doesn't exist\n");
 		*SystemCallData->Argument[1] = ERR_PROCESS_NOT_FOUND;
 		return;
 
@@ -1650,13 +1652,13 @@ void CustomResumeProcess(SYSTEM_CALL_DATA *SystemCallData)
 		// Checks if the process is already resumed
 		if (tmp->processing_status == ON_READY_QUEUE)
 		{
-			Message("Trying to resume already resumed process. Causes error\n");
+			printf("Trying to resume already resumed process. Causes error\n");
 			*SystemCallData->Argument[1] = ERR_ALREADY_RESUMED;
 		}
 		else
 		{
 			tmp->processing_status = ON_READY_QUEUE;
-			Message("%d resumed successsfully\n", tmp->process_context);
+			printf("%d resumed successsfully\n", tmp->process_context);
 			*SystemCallData->Argument[1] = ERR_SUCCESS;
 		}
 		
@@ -1681,6 +1683,7 @@ void CustomChangePriority(SYSTEM_CALL_DATA *SystemCallData)
 	if (tmp == NULL)
 	{
 		// If the process doesn't exist, then we return an error
+		printf("process doesn't exist\n");
 		*SystemCallData->Argument[2] = ERR_PROCESS_NOT_FOUND;
 		return;
 	}
@@ -1691,14 +1694,14 @@ void CustomChangePriority(SYSTEM_CALL_DATA *SystemCallData)
 		{
 			// valid priority
 			tmp->priority = SystemCallData->Argument[1];
-			Message("priority of %s changed to %d successfully\n", tmp->process_name, tmp->priority);
+			printf("priority of %s changed to %d successfully\n", tmp->process_name, tmp->priority);
 			*SystemCallData->Argument[2] = ERR_SUCCESS;
 			return;
 		}
 		else
 		{
 			// illegal priority
-			Message("new priority value is incorrect\n");
+			printf("new priority value is incorrect\n");
 			*SystemCallData->Argument[2] = ERR_INCORRECT_PRIORITY;
 			return;
 		}
