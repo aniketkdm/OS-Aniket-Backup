@@ -7,11 +7,15 @@
 #include			"structuresStacksQueues.c"
 //#include			"globalVariables.c"
 
+// 
+//int toPrint = 0;
+
 // this variable will define 
 // whether to print the bulk Message statements or not
 // 1 - print outputs; 0 - omit printing
 int output = 0;
 
+//SP_INPUT_DATA SPData;
 
 /**********************************************************************************
 Message
@@ -91,15 +95,134 @@ int returnTimerQueueCount()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));
+	Message("%s\n", &(Success[SPART * LockResult]));*/
 
 	return count_timer_queue;
 
-	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+/*	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));
+	Message("%s\n", &(Success[SPART * LockResult]));*/
+}
+
+ready_queue* returnFrontReadyQueue()
+{
+	return front_ready_queue;
+}
+
+timer_queue* returnFrontTimerQueue()
+{
+	return front_timer_queue;
+}
+
+/************************************************************************************
+getProcessFromContext
+using the context supplied, traverses through the PCB to find the Process on the PCB_STACK
+If the process is found, then it is returned, else
+If the process is not found then NULL is returned
+************************************************************************************/
+
+PCB_stack* getProcessFromContext(long context)
+{
+	PCB_stack *tmp;
+	int i;
+
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
+
+	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+	&LockResult);
+	Message("%s\n", &(Success[SPART * LockResult]));*/
+
+	tmp = top_process;
+	i = PCB_COUNT;
+
+	while (i != 0)
+	{
+		if (tmp->process_context == context)
+		{
+			break;
+		}
+		tmp = tmp->prev_process; i--;
+	}
+
+	if (i != 0)
+	{
+		Message("Process found is: %s\n", tmp->process_name);
+
+		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+		Message("%s\n", &(Success[SPART * LockResult]));*/
+
+		return tmp;
+	}
+	else
+	{
+		Message("Process not found with context value: %d", context);
+
+		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+		&LockResult);
+		Message("%s\n", &(Success[SPART * LockResult]));*/
+
+		return NULL;
+	}
+
+
+}
+
+
+/***************************************************************************************************
+GETCURRENTRUNNINGPROCESS
+Returns the PCB of the process that is currently running
+Uses the "GetCurrentContext" mechanism to get the address of the context that is running
+Passes the context of the currently running process to getProcessFromContext routine to get the Process
+The obtained process is then returned
+****************************************************************************************************/
+
+PCB_stack* GetCurrentRunningProcess()
+{
+	MEMORY_MAPPED_IO mmio;
+	long CurrentRunningProcessContext; PCB_stack *tmp; //int i = PCB_COUNT;
+													   //short *PAGE_TBL_ADDR;
+	SetMode(KERNEL_MODE);
+
+	mmio.Mode = Z502GetCurrentContext;
+	mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
+	MEM_READ(Z502Context, &mmio);
+	SuccessExpected(mmio.Field4, "GetCurrentContext");
+
+	CurrentRunningProcessContext = mmio.Field1;
+
+	Message("top process context: %d and process name: %s\n", top_process->process_context, top_process->process_name);
+	Message("Current running process: %d\n", CurrentRunningProcessContext);
+
+	tmp = getProcessFromContext(CurrentRunningProcessContext);
+
+	/*while (i != 0)
+	{
+	if (tmp->process_context == CurrentRunningProcessContext)
+	{
+	break;
+	}
+	tmp = tmp->prev_process; i--;
+	}
+
+	if (i != 0)
+	{
+	Message("Current Running Process is: %s\n", tmp->process_name);
+	return tmp;
+	}
+	else
+	{
+	Message("Process not found with context value: %d", CurrentRunningProcessContext);
+	return NULL;
+	}*/
+
+	//SetMode(USER_MODE);
+
+	return tmp;
+
 }
 
 
@@ -148,6 +271,8 @@ void sort_ready_queue()
 {
 	ready_queue *temp; ready_queue *before, *after, *mover;
 	int i, j;
+	PCB_stack *tmp;
+	char p;
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
@@ -209,6 +334,7 @@ void sort_ready_queue()
 			&LockResult);
 		Message("%s\n", &(Success[SPART * LockResult]));*/
 
+
 		print_ready_queue();
 	}
 	else
@@ -223,111 +349,6 @@ void sort_ready_queue()
 	return;
 }
 
-/************************************************************************************
-getProcessFromContext
-using the context supplied, traverses through the PCB to find the Process on the PCB_STACK
-If the process is found, then it is returned, else
-If the process is not found then NULL is returned
-************************************************************************************/
-
-PCB_stack* getProcessFromContext(long context)
-{
-	PCB_stack *tmp;
-	int i;
-
-	INT32 LockResult;
-	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-	tmp = top_process;
-	i = PCB_COUNT;
-
-	while (i != 0)
-	{
-		if (tmp->process_context == context)
-		{
-			break;
-		}
-		tmp = tmp->prev_process; i--;
-	}
-
-	if (i != 0)
-	{
-		Message("Process found is: %s\n", tmp->process_name);
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
-		return tmp;
-	}
-	else
-	{
-		Message("Process not found with context value: %d", context);
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
-		return NULL;
-	}
-
-
-}
-
-
-/***************************************************************************************************
-GETCURRENTRUNNINGPROCESS
-Returns the PCB of the process that is currently running
-Uses the "GetCurrentContext" mechanism to get the address of the context that is running
-Passes the context of the currently running process to getProcessFromContext routine to get the Process
-The obtained process is then returned
-****************************************************************************************************/
-
-PCB_stack* GetCurrentRunningProcess()
-{
-	MEMORY_MAPPED_IO mmio;  
-	long CurrentRunningProcessContext; PCB_stack *tmp; //int i = PCB_COUNT;
-	//short *PAGE_TBL_ADDR;
-
-	mmio.Mode = Z502GetCurrentContext;
-	mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
-	MEM_READ(Z502Context, &mmio);
-	SuccessExpected(mmio.Field4, "GetCurrentContext");
-
-	CurrentRunningProcessContext = mmio.Field1;
-
-	Message("top process context: %d and process name: %s\n", top_process->process_context, top_process->process_name);
-	Message("Current running process: %d\n", CurrentRunningProcessContext);
-
-	tmp = getProcessFromContext(CurrentRunningProcessContext);
-
-	/*while (i != 0)
-	{
-		if (tmp->process_context == CurrentRunningProcessContext)
-		{
-			break;
-		}
-		tmp = tmp->prev_process; i--;
-	}
-
-	if (i != 0)
-	{
-		Message("Current Running Process is: %s\n", tmp->process_name);
-		return tmp;
-	}
-	else
-	{
-		Message("Process not found with context value: %d", CurrentRunningProcessContext);	
-		return NULL;
-	}*/
-
-	return tmp;
-
-}
 
 
 /***********************************************************************************************
@@ -361,7 +382,7 @@ void print_timer_queue()
 
 	CALL(waste_time());
 
-
+	Message("ll try to get lock\n");
 	
 	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
 		&LockResult);
@@ -402,6 +423,11 @@ void sort_timer_queue()
 {
 	timer_queue *temp; timer_queue *before, *after, *mover;
 	int i, j;
+	PCB_stack *tmp;
+	int z;
+	ready_queue *readyTmp;
+	timer_queue *timerTmp;
+	SP_INPUT_DATA SPData;    // Used to feed SchedulerPrinter
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
@@ -421,6 +447,7 @@ void sort_timer_queue()
 			temp = front_timer_queue;
 			for (j = 1; j <= count_timer_queue - i; j++)
 			{
+
 				if (temp->current_timer_process->updated_sleep_time > temp->next_process_context->current_timer_process->updated_sleep_time)
 				{
 					Message("current sleep time greater than next sleep time\n");
@@ -458,6 +485,50 @@ void sort_timer_queue()
 		}
 		Message("front: %s\trear: %s\n", front_timer_queue->current_timer_process->process_name, rear_timer_queue->current_timer_process->process_name);
 		Message("sorting timer queue completed\n");
+
+		
+
+		// State Printer
+
+		/*memset(&SPData, 0, sizeof(SP_INPUT_DATA));
+		strcpy(SPData.TargetAction, "Timer");
+
+		tmp = GetCurrentRunningProcess();
+
+		SPData.CurrentlyRunningPID = tmp->PID;
+		//SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
+
+		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+		Message("%d\n", SPData.NumberOfReadyProcesses);
+
+		for (z = 0; z < SPData.NumberOfReadyProcesses; z++) {
+			if (z == 0)
+			{
+				readyTmp = front_ready_queue;
+			}
+			else
+			{
+				readyTmp = readyTmp->next_ready_process;
+			}
+			SPData.ReadyProcessPIDs[z] = readyTmp->current_ready_process_addr->PID;
+		}
+
+		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
+		Message("%d\n", SPData.NumberOfTimerSuspendedProcesses);
+
+		for (z = 0; z < SPData.NumberOfTimerSuspendedProcesses; z++) {
+			if (z == 0)
+			{
+				timerTmp = front_timer_queue;
+			}
+			else
+			{
+				timerTmp = timerTmp->next_process_context;
+			}
+			SPData.ReadyProcessPIDs[z] = timerTmp->current_timer_process->PID;
+		}
+
+		SPPrintLine(&SPData);*/
 
 		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
@@ -991,6 +1062,7 @@ void pop_ready_queue()
 		&LockResult);
 	Message("%s\n", &(Success[SPART * LockResult]));*/
 
+
 	return;
 }
 
@@ -1128,6 +1200,12 @@ PCB_stack* dispatcher()
 	int wasteTimeInt = 0;
 	long timeOfDay;
 
+	/*SP_INPUT_DATA SPData;    SP_INPUT_DATA SPData2; // Used to feed SchedulerPrinter
+	PCB_stack *tmp;
+	int i;
+	ready_queue *readyTmp;
+	timer_queue *timerTmp;*/
+
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
@@ -1153,12 +1231,53 @@ PCB_stack* dispatcher()
 	{
 		process_to_dispatch = front_ready_queue->current_ready_process_addr;
 		Message("%s will be dispatched to the timer queue from the dispatcher\n", process_to_dispatch->process_name);
-		//pop_ready_queue();
+		
 
 		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		Message("%s\n", &(Success[SPART * LockResult]));*/
 
+		// State Printer
+
+		/*memset(&SPData, 0, sizeof(SP_INPUT_DATA));
+		strcpy(SPData.TargetAction, "Timer");
+
+		tmp = GetCurrentRunningProcess();
+
+		SPData.CurrentlyRunningPID = tmp->PID;
+		SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
+
+		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+		//Message("%d\n",count_ready_queue);
+
+		for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
+		if (i == 0)
+		{
+		readyTmp = front_ready_queue;
+		}
+		else
+		{
+		readyTmp = readyTmp->next_ready_process;
+		}
+		SPData.ReadyProcessPIDs[i] = readyTmp->current_ready_process_addr->PID;
+		}
+
+		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
+		//Message("%d\n", SPData.NumberOfTimerSuspendedProcesses);
+
+		for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
+		if (i == 0)
+		{
+		timerTmp = front_timer_queue;
+		}
+		else
+		{
+		timerTmp = timerTmp->next_process_context;
+		}
+		SPData.TimerSuspendedProcessPIDs[i] = timerTmp->current_timer_process->PID;
+		}
+
+		SPPrintLine(&SPData);*/
 
 		return process_to_dispatch;
 	}
@@ -1191,6 +1310,7 @@ void AddToTimerQueue(long sleep_time)
 	PCB_stack *current_process; // = (PCB_stack *)malloc(1 * sizeof(PCB_stack));
 	timer_queue *new_timer_process = (timer_queue *)malloc(1 * sizeof(timer_queue));
 	long timeOfDay;
+
 	Message("****");
 	current_process = dispatcher();
 	Message("****");
@@ -1250,6 +1370,7 @@ void AddToTimerQueue(long sleep_time)
 		print_timer_queue();
 
 		sort_timer_queue();
+
 	}
 	
 	return;
@@ -1269,40 +1390,29 @@ void CustomStartTimer(long start_time, long sleep_time)
 	long Status;
 	PCB_stack *ready_process_start = (PCB_stack *)calloc(1,sizeof(PCB_stack));
 	SYSTEM_CALL_DATA *create_process_data = (SYSTEM_CALL_DATA *)calloc(1,sizeof(SYSTEM_CALL_DATA));
+	SP_INPUT_DATA SPData;    SP_INPUT_DATA SPData2; // Used to feed SchedulerPrinter
+	PCB_stack *tmp;
+	int i;
+	ready_queue *readyTmp;
+	timer_queue *timerTmp;
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	Message("in start timer\n");
-
-	//make_ready_to_run();
+	//printf("in start timer\n");
 
 	AddToTimerQueue(sleep_time);
+
+	//printf("after adding to timer queue\n");
+
 	pop_ready_queue();
-	/*while (wasteTimeInt < 100)
-	{
-		CALL(waste_time());
-		wasteTimeInt++;
-	}*/	
 
-	//Message("Starting Timer at: ");
-	//GET_TIME_OF_DAY(&TimerStartTime);
-
-	Message("sleeping for: %d\n", sleep_time);
-
-	Message("checking the status before starting the timer\n");
+	//printf("done with printing\n");
 
 	SetMode(KERNEL_MODE);
-
-	/*mmio.Mode = Z502Status;
-	mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
-	MEM_READ(Z502Timer, &mmio);
-	Status = mmio.Field1;
-
-	if (Status == DEVICE_IN_USE)
-		Message("Got expected result (DEVICE_IN_USE) for Status of Timer\n");
-	else
-		Message("Got erroneous result for Status of Timer\n");*/
-
+	
 	do
 	{
+	
 		mmio.Mode = Z502Start;
 		mmio.Field1 = sleep_time;   // You pick the time units
 		mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
@@ -1314,7 +1424,7 @@ void CustomStartTimer(long start_time, long sleep_time)
 		MEM_READ(Z502Timer, &mmio);
 		Status = mmio.Field1;
 	} while (Status != DEVICE_IN_USE);
-	
+
 	
 	//Message("Status=%d\n", Status);
 	if (Status == DEVICE_IN_USE)
@@ -1326,12 +1436,66 @@ void CustomStartTimer(long start_time, long sleep_time)
 		"\nThe next output from the Interrupt Handler should report that \n");
 	Message("   interrupt of device 4 has occurred with no error.\n");
 
+	Message("sleeping for: %d\n", sleep_time);
+
+	Message("checking the status before starting the timer\n");
+
 	if (count_timer_queue != 0 && count_ready_queue == 0)
 	{
 		make_ready_to_run();
 	}
 
 	Message("calling dispatcher after start timer\n");
+
+	// State Printer
+
+	memset(&SPData, 0, sizeof(SP_INPUT_DATA));
+	strcpy(SPData.TargetAction, "Timer");
+
+	tmp = GetCurrentRunningProcess();
+
+	SPData.CurrentlyRunningPID = tmp->PID;
+	SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
+
+	SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+	//printf("%d\n",count_ready_queue);
+
+	for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
+	if (i == 0)
+	{
+	readyTmp = front_ready_queue;
+	}
+	else
+	{
+	readyTmp = readyTmp->next_ready_process;
+	}
+	SPData.ReadyProcessPIDs[i] = readyTmp->current_ready_process_addr->PID;
+	}
+
+	i = 10;
+
+	while (i!=0)
+	{
+		CALL(waste_time());
+		i--;
+	}
+
+	SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
+	//printf("%d\n", SPData.NumberOfTimerSuspendedProcesses);
+
+	for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
+	if (i == 0)
+	{
+	timerTmp = front_timer_queue;
+	}
+	else
+	{
+	timerTmp = timerTmp->next_process_context;
+	}
+	SPData.TimerSuspendedProcessPIDs[i] = timerTmp->current_timer_process->PID;
+	}
+
+	SPPrintLine(&SPData);
 
 	ready_process_start = dispatcher();
 
@@ -1351,14 +1515,49 @@ void CustomStartTimer(long start_time, long sleep_time)
 		os_create_process(create_process_data);
 	}
 	
+	// State Printer
 
+	/*memset(&SPData2, 0, sizeof(SP_INPUT_DATA));
+	strcpy(SPData2.TargetAction, "Timer");
+
+	tmp = GetCurrentRunningProcess();
+
+	SPData2.CurrentlyRunningPID = tmp->PID;
+	SPData2.TargetPID = front_ready_queue->current_ready_process_addr->PID;
+
+	SPData2.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
+	//Message("%d\n",count_ready_queue);
 	
-	//sleep-idle code
-	/*mmio.Mode = Z502Action;
-	mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
-	Message("halt started\n");
-	MEM_WRITE(Z502Idle, &mmio);       //  Let the interrupt for this timer occur
-									  //DoSleep(sleep_time);*/
+	for (i = 0; i < SPData2.NumberOfReadyProcesses; i++) {
+		if (i == 0)
+		{
+			readyTmp = front_ready_queue;
+		}
+		else
+		{
+			readyTmp = readyTmp->next_ready_process;
+		}
+		SPData2.ReadyProcessPIDs[i] = readyTmp->current_ready_process_addr->PID;
+	}
+
+	SPData2.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
+	//Message("%d\n", SPData2.NumberOfTimerSuspendedProcesses);
+
+	for (i = 0; i < SPData2.NumberOfTimerSuspendedProcesses; i++) {
+		if (i == 0)
+		{
+			timerTmp = front_timer_queue;
+		}
+		else
+		{
+			timerTmp = timerTmp->next_process_context;
+		}
+		SPData2.TimerSuspendedProcessPIDs[i] = timerTmp->current_timer_process->PID;
+	}
+
+	SPPrintLine(&SPData2);*/
+	
+	
 	Message("halt ended\n");
 }
 

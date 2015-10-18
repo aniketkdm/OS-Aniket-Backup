@@ -62,6 +62,12 @@ void InterruptHandler(void) {
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
+	PCB_stack *tmp;
+	int z;
+	ready_queue *readyTmp;
+	timer_queue *timerTmp;
+	SP_INPUT_DATA SPData;    // Used to feed SchedulerPrinter
+
 
 	MEMORY_MAPPED_IO mmio;       // Enables communication with hardware
 
@@ -83,6 +89,7 @@ void InterruptHandler(void) {
 	MEM_READ(Z502InterruptDevice, &mmio);
 	DeviceID = mmio.Field1;
 	//Status = mmio.Field2;
+
 
 	/** REMOVE THE NEXT SIX LINES **/
 	how_many_interrupt_entries++; /** TEMP **/
@@ -207,19 +214,18 @@ void FaultHandler(void) {
 		SPData.NumberOfRunningProcesses = 0;
 
 		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
-		for (i = 0; i <= SPData.NumberOfReadyProcesses; i++) {
+		for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
 			SPData.ReadyProcessPIDs[i] = i;
 		}
 	
 		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-		for (i = 0; i <= SPData.NumberOfTimerSuspendedProcesses; i++) {
+		for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
 			SPData.TimerSuspendedProcessPIDs[i] = i + 8;
 		}
 		
 		SPData.NumberOfTerminatedProcesses = 0;   // Not used at this time
 
 		CALL(SPPrintLine(&SPData));
-
 
 		TERMINATE_PROCESS(-2, &ErrorReturned);
 	}
@@ -241,8 +247,15 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 	short call_type;
 	static short do_print = 10;
 	short i;
+	SP_INPUT_DATA SPData;    SP_INPUT_DATA SPData2; // Used to feed SchedulerPrinter
+	PCB_stack *tmp;
+	//int i;
+	ready_queue *readyTmp;
+	timer_queue *timerTmp;
+
 
 	MEMORY_MAPPED_IO mmio;
+
 
 	Message("in SVC before call type: do_print: %d\n", do_print); // Message
 
@@ -307,6 +320,9 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 				*SystemCallData->Argument[1] = ERR_SUCCESS;
 				mmio.Mode = Z502Action;
 				mmio.Field1 = mmio.Field2 = mmio.Field3 = mmio.Field4 = 0;
+
+				//getch();
+
 				MEM_WRITE(Z502Halt, 0);
 				break;
 			}
@@ -360,6 +376,7 @@ void svc(SYSTEM_CALL_DATA *SystemCallData) {
 
 			// SLEEP system call
 		case SYSNUM_SLEEP:
+			//SetMode(KERNEL_MODE);
 			CustomStartTimer(0, SystemCallData->Argument[0]);
 			break;
 

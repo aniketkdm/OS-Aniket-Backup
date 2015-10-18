@@ -60,6 +60,8 @@ short SPPrintLine(SP_INPUT_DATA *Input) {
 	// INT32       current_time;
 	MEMORY_MAPPED_IO mmio;
 
+	SetMode(KERNEL_MODE);
+
 	// print out the header
 	sprintf(OutputLine, "%s", SP_HEADER_STRING);
 
