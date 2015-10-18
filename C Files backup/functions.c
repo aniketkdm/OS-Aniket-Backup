@@ -5,17 +5,12 @@
 #include             <stdlib.h>
 
 #include			"structuresStacksQueues.c"
-//#include			"globalVariables.c"
-
-// 
-//int toPrint = 0;
 
 // this variable will define 
 // whether to print the bulk Message statements or not
 // 1 - print outputs; 0 - omit printing
 int output = 0;
 
-//SP_INPUT_DATA SPData;
 
 /**********************************************************************************
 Message
@@ -73,16 +68,9 @@ int returnReadyQueueCount()
 {
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-	&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
+	
 	return count_ready_queue;
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-	&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 }
 
 /************************************************************************************************
@@ -95,15 +83,8 @@ int returnTimerQueueCount()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 	return count_timer_queue;
 
-/*	READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 }
 
 ready_queue* returnFrontReadyQueue()
@@ -131,10 +112,6 @@ PCB_stack* getProcessFromContext(long context)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-	&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 	tmp = top_process;
 	i = PCB_COUNT;
 
@@ -150,21 +127,13 @@ PCB_stack* getProcessFromContext(long context)
 	if (i != 0)
 	{
 		Message("Process found is: %s\n", tmp->process_name);
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
+		
 		return tmp;
 	}
 	else
 	{
 		Message("Process not found with context value: %d", context);
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
+		
 		return NULL;
 	}
 
@@ -183,8 +152,8 @@ The obtained process is then returned
 PCB_stack* GetCurrentRunningProcess()
 {
 	MEMORY_MAPPED_IO mmio;
-	long CurrentRunningProcessContext; PCB_stack *tmp; //int i = PCB_COUNT;
-													   //short *PAGE_TBL_ADDR;
+	long CurrentRunningProcessContext; PCB_stack *tmp; 
+													   
 	SetMode(KERNEL_MODE);
 
 	mmio.Mode = Z502GetCurrentContext;
@@ -198,28 +167,6 @@ PCB_stack* GetCurrentRunningProcess()
 	Message("Current running process: %d\n", CurrentRunningProcessContext);
 
 	tmp = getProcessFromContext(CurrentRunningProcessContext);
-
-	/*while (i != 0)
-	{
-	if (tmp->process_context == CurrentRunningProcessContext)
-	{
-	break;
-	}
-	tmp = tmp->prev_process; i--;
-	}
-
-	if (i != 0)
-	{
-	Message("Current Running Process is: %s\n", tmp->process_name);
-	return tmp;
-	}
-	else
-	{
-	Message("Process not found with context value: %d", CurrentRunningProcessContext);
-	return NULL;
-	}*/
-
-	//SetMode(USER_MODE);
 
 	return tmp;
 
@@ -238,11 +185,6 @@ void print_ready_queue()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
 	ready_queue *tmp = front_ready_queue;
 	int ready_position = 1;
 	Message("initial ready position: %d\tcount_ready_queue: %d\n", ready_position, count_ready_queue);
@@ -256,9 +198,7 @@ void print_ready_queue()
 		
 		ready_position++;
 	}
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
+	
 }
 
 /**************************************************************************************
@@ -276,11 +216,6 @@ void sort_ready_queue()
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 
 	Message("in sort ready queue, count_ready_queue: %d\n", count_ready_queue);
 
@@ -330,19 +265,11 @@ void sort_ready_queue()
 		Message("front: %s\trear: %s\n", front_ready_queue->current_ready_process_addr->process_name, rear_ready_queue->current_ready_process_addr->process_name);
 		Message("sorting ready queue completed\n");
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
 		print_ready_queue();
 	}
 	else
 	{
 		Message("in sort ready queue: count of ready queue is %d; No sorting required. returning\n", count_ready_queue);
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
 	}
 	
 
@@ -366,10 +293,6 @@ void print_timer_queue()
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, DO_NOT_SUSPEND,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 
 	strcpy(lock_result, "Action Succeeded");
 
@@ -486,50 +409,6 @@ void sort_timer_queue()
 		Message("front: %s\trear: %s\n", front_timer_queue->current_timer_process->process_name, rear_timer_queue->current_timer_process->process_name);
 		Message("sorting timer queue completed\n");
 
-		
-
-		// State Printer
-
-		/*memset(&SPData, 0, sizeof(SP_INPUT_DATA));
-		strcpy(SPData.TargetAction, "Timer");
-
-		tmp = GetCurrentRunningProcess();
-
-		SPData.CurrentlyRunningPID = tmp->PID;
-		//SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
-
-		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
-		Message("%d\n", SPData.NumberOfReadyProcesses);
-
-		for (z = 0; z < SPData.NumberOfReadyProcesses; z++) {
-			if (z == 0)
-			{
-				readyTmp = front_ready_queue;
-			}
-			else
-			{
-				readyTmp = readyTmp->next_ready_process;
-			}
-			SPData.ReadyProcessPIDs[z] = readyTmp->current_ready_process_addr->PID;
-		}
-
-		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-		Message("%d\n", SPData.NumberOfTimerSuspendedProcesses);
-
-		for (z = 0; z < SPData.NumberOfTimerSuspendedProcesses; z++) {
-			if (z == 0)
-			{
-				timerTmp = front_timer_queue;
-			}
-			else
-			{
-				timerTmp = timerTmp->next_process_context;
-			}
-			SPData.ReadyProcessPIDs[z] = timerTmp->current_timer_process->PID;
-		}
-
-		SPPrintLine(&SPData);*/
-
 		READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
 			&LockResult);
 		Message("%s\n", &(Success[SPART * LockResult]));
@@ -566,20 +445,12 @@ void push_ready_queue(PCB_stack *P)
 
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-	
+		
 	if (count_ready_queue == 0)
 	{
 		count_ready_queue++;
 		front_ready_queue = rear_ready_queue = R;
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-		//return;
 	}
 	else
 	{
@@ -587,13 +458,9 @@ void push_ready_queue(PCB_stack *P)
 		R->prev_ready_process = rear_ready_queue;
 		rear_ready_queue->next_ready_process = R;
 		rear_ready_queue = R;
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
+		
 		sort_ready_queue();
-		//return;
+		
 	}
 
 	
@@ -613,21 +480,10 @@ void make_ready_to_run()
 {
 	PCB_stack *ProcessToReady;
 
-	/*INT32 LockResult;
-	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
 	ProcessToReady = GetCurrentRunningProcess();
 
 	push_ready_queue(ProcessToReady);
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 }
 
 /***********************************************************************************************
@@ -642,10 +498,6 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 {
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 
 	ready_queue *tmp = front_ready_queue;
 	int cnt = count_ready_queue;
@@ -675,11 +527,6 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 
 			count_ready_queue--;
 			
-
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			Message("%s\n", &(Success[SPART * LockResult]));*/
-			
 			free(tmp);
 			return;
 		}
@@ -689,9 +536,6 @@ void remove_PCB_ready_queue(PCB_stack *temp)
 
 	Message("%s not found on ready queue, hence not removed\n", temp->process_name);
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 }
 
 /***********************************************************************************************
@@ -705,13 +549,9 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
+	
 	int i = PCB_COUNT; PCB_stack *temp = top_process; PCB_stack *move; PCB_stack *above;
-	//Message("here");
+	
 	Message("process context to pop: %d\n", pop_process_data->Argument[0]);
 	above = top_process;
 	while (i != 0)
@@ -738,15 +578,14 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 			}
 
 					
-			//Message("here");
 			if (temp->prev_process == NULL)
 			{
-				//Message("here2");
+			
 				above->prev_process = NULL;
 			}
 			else
 			{
-				//Message("here3");
+			
 				above->prev_process = temp->prev_process;
 			}
 
@@ -757,10 +596,6 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 			free(temp);
 			PCB_COUNT--;
 
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			Message("%s\n", &(Success[SPART * LockResult]));*/
-
 			return;
 		}
 		above = temp;
@@ -768,9 +603,7 @@ void pop_process(SYSTEM_CALL_DATA *pop_process_data)
 		i--;
 
 	}
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
+	
 }
 
 
@@ -786,21 +619,12 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
-
+	
 	temp = top_process;
 	i = PCB_COUNT;
 
 	if (strcmp(ReturnProcessData->Argument[0], "") == 0)
 	{
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
 
 		temp = GetCurrentRunningProcess();
 
@@ -825,7 +649,6 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	}
 	Message("while ended with i=%d\n", i);
 	if (strcmp(temp->process_name, ReturnProcessData->Argument[0]) == 0)
-	//if(i != 0)
 	{
 		*ReturnProcessData->Argument[1] = temp->process_context;
 		if (temp->processing_status == 3)
@@ -844,10 +667,6 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 		*ReturnProcessData->Argument[2] = ERR_PROCESS_NOT_FOUND;
 		
 	}
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 
 	return;
 }
@@ -879,10 +698,7 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 	
 	Message("trying to get lock while validating 1\n");
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
+	
 	i = PCB_COUNT; temp = top_process;
 
 	//validating the process_name
@@ -893,10 +709,6 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 		if (stricmp(temp->process_name, create_process_data->Argument[0]) == 0)
 		{
 			*create_process_data->Argument[4] = ERR_INCORRECT_PROCESS_NAME;
-
-			/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-				&LockResult);
-			Message("%s\n", &(Success[SPART * LockResult]));*/
 
 			Message("completed PCB unlock after validating process names failed\n");
 
@@ -914,15 +726,9 @@ void Validate_Process_Data(SYSTEM_CALL_DATA *create_process_data)
 		*create_process_data->Argument[4] = ERR_MAX_PROCESSES_REACHED;
 		Message("validating count %d\n", *create_process_data->Argument[4]);
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
 		return;
 	}
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
+	
 }
 
 /***********************************************************************************************
@@ -958,33 +764,29 @@ long only_create_process(SYSTEM_CALL_DATA *create_process_data)
 	mmio.Field2 = create_process_data->Argument[1];
 	mmio.Field3 = (long)PageTable;
 
-	//Message("%d\t%d\n", mmio.Field2,(long)test1a);
-
 	MEM_WRITE(Z502Context, &mmio);   // Start of Make Context Sequence
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 
 	//Here we enter the process context details in the PCB
 	P->PID = ++PCB_COUNT;
 	strcpy(P->process_name, create_process_data->Argument[0]);
-	//Message("%s\n", P->process_name);
+	
 	P->process_to_run = create_process_data->Argument[1];
 	P->priority = create_process_data->Argument[2];
 	P->process_context = mmio.Field1;
+	
 	//Processing_status of the newly created process should be 'Initialized: To be Picked: 0'
 	P->processing_status = PROCESS_INITIALIZED;
+	
 	//process page table
 	P->pageTable = PageTable;
 	P->updated_sleep_time = 0;
+	
 	// New process created should point to the previous process in the PCB
 	P->prev_process = top_process;
 
 	
 	top_process = P;
-	//Message("%d\t%s\t%d\t%d\t%d\n", P->PID, P->process_name, P->process_to_run, P->priority, P->process_context);
+	
 	Message("PID: %d, process_context: %d initialized successfully with %d\n", P->PID, P->process_context, create_process_data->Argument[3]);
 
 	*create_process_data->Argument[3] = mmio.Field1;
@@ -993,10 +795,6 @@ long only_create_process(SYSTEM_CALL_DATA *create_process_data)
 
 	push_ready_queue(P);
 	P->processing_status = ON_READY_QUEUE;
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 20, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
 
 	return mmio.Field1;
 
@@ -1037,11 +835,6 @@ void pop_ready_queue()
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
 	ready_queue *tmp = front_ready_queue;
 	Message("in pop, count_ready_queue: %d\n", count_ready_queue);
 	if (count_ready_queue > 1)
@@ -1057,11 +850,6 @@ void pop_ready_queue()
 	free(tmp);
 	count_ready_queue--;
 	Message("Count of ready queue after popping: %d\n", count_ready_queue);
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 
 	return;
 }
@@ -1180,8 +968,6 @@ void updateTimerQueue(long timeOfDay)
 
 	print_timer_queue();
 
-	//popTimerQueue();
-
 }
 
 /***********************************************************************************************
@@ -1195,24 +981,13 @@ Until the ready queue has a process that can be dispatched
 PCB_stack* dispatcher()
 {
 	PCB_stack *process_to_dispatch;// = (PCB_stack *)malloc(1 * sizeof(PCB_stack));
-	//SYSTEM_CALL_DATA *dispatcher_create_process = (SYSTEM_CALL_DATA *)malloc(1*sizeof(SYSTEM_CALL_DATA));
+	
 	MEMORY_MAPPED_IO mmio;
 	int wasteTimeInt = 0;
 	long timeOfDay;
 
-	/*SP_INPUT_DATA SPData;    SP_INPUT_DATA SPData2; // Used to feed SchedulerPrinter
-	PCB_stack *tmp;
-	int i;
-	ready_queue *readyTmp;
-	timer_queue *timerTmp;*/
-
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
 
 	while (count_ready_queue == 0 && count_timer_queue != 0) // && wasteTimeInt < 5)
 	{
@@ -1232,70 +1007,15 @@ PCB_stack* dispatcher()
 		process_to_dispatch = front_ready_queue->current_ready_process_addr;
 		Message("%s will be dispatched to the timer queue from the dispatcher\n", process_to_dispatch->process_name);
 		
-
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
-		// State Printer
-
-		/*memset(&SPData, 0, sizeof(SP_INPUT_DATA));
-		strcpy(SPData.TargetAction, "Timer");
-
-		tmp = GetCurrentRunningProcess();
-
-		SPData.CurrentlyRunningPID = tmp->PID;
-		SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
-
-		SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
-		//Message("%d\n",count_ready_queue);
-
-		for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
-		if (i == 0)
-		{
-		readyTmp = front_ready_queue;
-		}
-		else
-		{
-		readyTmp = readyTmp->next_ready_process;
-		}
-		SPData.ReadyProcessPIDs[i] = readyTmp->current_ready_process_addr->PID;
-		}
-
-		SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-		//Message("%d\n", SPData.NumberOfTimerSuspendedProcesses);
-
-		for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
-		if (i == 0)
-		{
-		timerTmp = front_timer_queue;
-		}
-		else
-		{
-		timerTmp = timerTmp->next_process_context;
-		}
-		SPData.TimerSuspendedProcessPIDs[i] = timerTmp->current_timer_process->PID;
-		}
-
-		SPPrintLine(&SPData);*/
-
 		return process_to_dispatch;
 	}
 	else
 	{
 		Message("There is no process on the ready to be dispatched\n");
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
 		return NULL;
 	}
 	
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE + 10, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-		
 }
 
 /***********************************************************************************************
@@ -1307,7 +1027,7 @@ To sort the timer queue w.r.t the required time to sleep
 
 void AddToTimerQueue(long sleep_time)
 {
-	PCB_stack *current_process; // = (PCB_stack *)malloc(1 * sizeof(PCB_stack));
+	PCB_stack *current_process; 
 	timer_queue *new_timer_process = (timer_queue *)malloc(1 * sizeof(timer_queue));
 	long timeOfDay;
 
@@ -1326,12 +1046,6 @@ void AddToTimerQueue(long sleep_time)
 	Message("trying to get lock on timer in add timer queue\n");
 
 
-
-	/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_LOCK, SUSPEND_UNTIL_LOCKED,
-		&LockResult);
-	Message("%s\n", &(Success[SPART * LockResult]));*/
-
-
 	Message("process dispatched: %s\n", current_process->process_name);
 	current_process->updated_sleep_time = sleep_time;
 	new_timer_process->current_timer_process = current_process;
@@ -1345,10 +1059,7 @@ void AddToTimerQueue(long sleep_time)
 		count_timer_queue++;
 		front_timer_queue = rear_timer_queue = new_timer_process;
 
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
+		
 		print_timer_queue();
 	}
 	else
@@ -1361,10 +1072,6 @@ void AddToTimerQueue(long sleep_time)
 		Message("**Printing timer_queue before sorting\n");
 		Message("%s\n", rear_timer_queue->current_timer_process->process_name);
 		
-		/*READ_MODIFY(MEMORY_INTERLOCK_BASE, DO_UNLOCK, DO_NOT_SUSPEND,
-			&LockResult);
-		Message("%s\n", &(Success[SPART * LockResult]));*/
-
 		CALL(waste_time());
 
 		print_timer_queue();
@@ -1398,15 +1105,10 @@ void CustomStartTimer(long start_time, long sleep_time)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
-	//printf("in start timer\n");
-
 	AddToTimerQueue(sleep_time);
-
-	//printf("after adding to timer queue\n");
 
 	pop_ready_queue();
 
-	//printf("done with printing\n");
 
 	SetMode(KERNEL_MODE);
 	
@@ -1426,7 +1128,7 @@ void CustomStartTimer(long start_time, long sleep_time)
 	} while (Status != DEVICE_IN_USE);
 
 	
-	//Message("Status=%d\n", Status);
+	
 	if (Status == DEVICE_IN_USE)
 		Message("Got expected result (DEVICE_IN_USE) for Status of Timer\n");
 	else
@@ -1458,8 +1160,7 @@ void CustomStartTimer(long start_time, long sleep_time)
 	SPData.TargetPID = front_ready_queue->current_ready_process_addr->PID;
 
 	SPData.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
-	//printf("%d\n",count_ready_queue);
-
+	
 	for (i = 0; i < SPData.NumberOfReadyProcesses; i++) {
 	if (i == 0)
 	{
@@ -1481,7 +1182,7 @@ void CustomStartTimer(long start_time, long sleep_time)
 	}
 
 	SPData.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-	//printf("%d\n", SPData.NumberOfTimerSuspendedProcesses);
+	
 
 	for (i = 0; i < SPData.NumberOfTimerSuspendedProcesses; i++) {
 	if (i == 0)
@@ -1510,52 +1211,10 @@ void CustomStartTimer(long start_time, long sleep_time)
 		create_process_data->Argument[2] = NULL;
 		create_process_data->Argument[3] = &context;
 		create_process_data->Argument[4] = (long *)ERR_SUCCESS;
-		//Message("process_name: %s\n process_to_run: %d \n", create_process_data->Argument[0], Create_Process_Data->Argument[1]);
+		
 
 		os_create_process(create_process_data);
 	}
-	
-	// State Printer
-
-	/*memset(&SPData2, 0, sizeof(SP_INPUT_DATA));
-	strcpy(SPData2.TargetAction, "Timer");
-
-	tmp = GetCurrentRunningProcess();
-
-	SPData2.CurrentlyRunningPID = tmp->PID;
-	SPData2.TargetPID = front_ready_queue->current_ready_process_addr->PID;
-
-	SPData2.NumberOfReadyProcesses = returnReadyQueueCount();   // Processes ready to run
-	//Message("%d\n",count_ready_queue);
-	
-	for (i = 0; i < SPData2.NumberOfReadyProcesses; i++) {
-		if (i == 0)
-		{
-			readyTmp = front_ready_queue;
-		}
-		else
-		{
-			readyTmp = readyTmp->next_ready_process;
-		}
-		SPData2.ReadyProcessPIDs[i] = readyTmp->current_ready_process_addr->PID;
-	}
-
-	SPData2.NumberOfTimerSuspendedProcesses = returnTimerQueueCount();
-	//Message("%d\n", SPData2.NumberOfTimerSuspendedProcesses);
-
-	for (i = 0; i < SPData2.NumberOfTimerSuspendedProcesses; i++) {
-		if (i == 0)
-		{
-			timerTmp = front_timer_queue;
-		}
-		else
-		{
-			timerTmp = timerTmp->next_process_context;
-		}
-		SPData2.TimerSuspendedProcessPIDs[i] = timerTmp->current_timer_process->PID;
-	}
-
-	SPPrintLine(&SPData2);*/
 	
 	
 	Message("halt ended\n");
