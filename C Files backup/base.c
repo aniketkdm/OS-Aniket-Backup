@@ -675,6 +675,29 @@ void osInit(int argc, char *argv[]) {
 				os_create_process(Create_Process_Data);
 				break;
 
+			case 'h':
+				Create_Process_Data->NumberOfArguments = 5;
+				Create_Process_Data->Argument[0] = (long *) "test1h";
+				Create_Process_Data->Argument[1] = (long *)test1h;
+				Create_Process_Data->Argument[2] = 1;
+				Create_Process_Data->Argument[3] = &context;
+				Create_Process_Data->Argument[4] = &status;
+				Message("process_name: %s\n process_to_run: %d \n", Create_Process_Data->Argument[0], Create_Process_Data->Argument[1]);
+				//			Validate_Process_Data(Create_Process_Data);
+				//SuccessExpected(Create_Process_Data->Argument[4], "CREATE_PROCESS");
+				//if (Create_Process_Data->Argument[4] != ERR_SUCCESS)
+
+				//Message("status:%d", status);
+				only_create_process(Create_Process_Data);
+
+				if (status != ERR_SUCCESS)
+				{
+					Message("%d Exiting!!! As error has occurred", status);
+					return;
+				}
+				os_create_process(Create_Process_Data);
+				break;
+
 			case 'k':
 				Create_Process_Data->NumberOfArguments = 5;
 				Create_Process_Data->Argument[0] = (long *) "test1k";

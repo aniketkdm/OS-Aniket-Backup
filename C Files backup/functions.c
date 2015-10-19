@@ -1349,38 +1349,60 @@ void CustomChangePriority(SYSTEM_CALL_DATA *SystemCallData)
 {
 	PCB_stack *tmp;
 
-	// checking if the process exists
-	tmp = getProcessFromContext(SystemCallData->Argument[0]);
+	INT32 LockResult;
+	char Success[] = "      Action Failed\0        Action Succeeded";
 
-
-	if (tmp == NULL)
+	// don't need to change our own priority
+	// as the design by default assigns highest priority to the current process in osInit
+	// whereas other processes that are created are assigned priority as per the argument passed
+	// while creating the process
+	if (SystemCallData->Argument[0] != -1)
 	{
-		// If the process doesn't exist, then we return an error
-		printf("process doesn't exist\n");
-		*SystemCallData->Argument[2] = ERR_PROCESS_NOT_FOUND;
-		return;
-	}
-	else
-	{ 
-		// validating the new priority
-		if (SystemCallData->Argument[1] > 0 && SystemCallData->Argument[1] != 999)
+
+		// checking if the process exists
+		tmp = getProcessFromContext(SystemCallData->Argument[0]);
+
+
+		if (tmp == NULL)
 		{
-			// valid priority
-			tmp->priority = SystemCallData->Argument[1];
-			printf("priority of %s changed to %d successfully\n", tmp->process_name, tmp->priority);
-			*SystemCallData->Argument[2] = ERR_SUCCESS;
+			// If the process doesn't exist, then we return an error
+			printf("process doesn't exist\n");
+			*SystemCallData->Argument[2] = ERR_PROCESS_NOT_FOUND;
 			return;
 		}
 		else
 		{
-			// illegal priority
-			printf("new priority value is incorrect\n");
-			*SystemCallData->Argument[2] = ERR_INCORRECT_PRIORITY;
-			return;
+			// validating the new priority
+			if (SystemCallData->Argument[1] > 0 && SystemCallData->Argument[1] != 999)
+			{
+				// valid priority
+				tmp->priority = SystemCallData->Argument[1];
+				printf("priority of %s changed to %d successfully\n", tmp->process_name, tmp->priority);
+				*SystemCallData->Argument[2] = ERR_SUCCESS;
+				
+				READ_MODIFY(MEMORY_INTERLOCK_BASE + 100, DO_LOCK, SUSPEND_UNTIL_LOCKED,
+					&LockResult);
+				Message("%s\n", &(Success[SPART * LockResult]));
+
+				sort_ready_queue();
+
+				READ_MODIFY(MEMORY_INTERLOCK_BASE + 100, DO_UNLOCK, SUSPEND_UNTIL_LOCKED,
+					&LockResult);
+				Message("%s\n", &(Success[SPART * LockResult]));
+
+				return;
+			}
+			else
+			{
+				// illegal priority
+				printf("new priority value is incorrect\n");
+				*SystemCallData->Argument[2] = ERR_INCORRECT_PRIORITY;
+				return;
+			}
+
+
+
 		}
-		
-
-
 	}
 
 }
