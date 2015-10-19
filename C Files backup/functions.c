@@ -87,10 +87,20 @@ int returnTimerQueueCount()
 
 }
 
+/***********************************************************************************
+returnFrontReadyQueue
+Returns the front_ready_queue
+************************************************************************************/
+
 ready_queue* returnFrontReadyQueue()
 {
 	return front_ready_queue;
 }
+
+/***********************************************************************************
+returnFrontTimerQueue
+Returns the front_timer_queue
+************************************************************************************/
 
 timer_queue* returnFrontTimerQueue()
 {
@@ -623,6 +633,8 @@ void get_process_id(SYSTEM_CALL_DATA *ReturnProcessData)
 	temp = top_process;
 	i = PCB_COUNT;
 
+	// If "" is mentioned in the process name then 
+	// Current Running Process Context is returned
 	if (strcmp(ReturnProcessData->Argument[0], "") == 0)
 	{
 
@@ -1105,13 +1117,15 @@ void CustomStartTimer(long start_time, long sleep_time)
 	INT32 LockResult;
 	char Success[] = "      Action Failed\0        Action Succeeded";
 
+	// Adding process to the timer queue
 	AddToTimerQueue(sleep_time);
 
+	// Popping the process from the Ready Queue after adding it to the Timer queue
 	pop_ready_queue();
 
 
 	SetMode(KERNEL_MODE);
-	
+	// Starting or updating the Timer Value
 	do
 	{
 	
